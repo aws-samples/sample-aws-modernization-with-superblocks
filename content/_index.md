@@ -1,39 +1,55 @@
 ---
-title: "Building a Full-Stack AI Application with Superblocks"
+title: "Building a Full-Stack AI Application with AWS and Superblocks"
 chapter: true
 weight: 1
 ---
 
-# Building a Full-Stack <br>AI  Application with Superblocks
+# Building a Full-Stack <br>AI Application with AWS and Superblocks
 <br>
 [PLACEHOLDER - SUPERBLOCKS_LOGO]
 
 ## Welcome
 
-This workshop guides you through building a full-stack application using Superblocks. You'll create a modern dashboard application for the [PLACEHOLDER] Company, complete with data visualization, filtering capabilities, and proper access controls.
+This hands-on workshop guides you through building a modern, enterprise-grade application that leverages the power of AWS services and Superblocks' low-code development platform. You'll create a complete dashboard application with AI-powered insights, demonstrating how this powerful combination accelerates development and delivers business value.
 
 Throughout this workshop, you'll learn how to:
-- Build a responsive frontend with modern UI components
-- Create and connect backend APIs
-- Implement data visualization with Plotly
-- Integrate with AWS Bedrock to surface insights about inventory and sales
+- Build a responsive frontend dashboard with modern UI components
+- Create secure backend APIs that connect to AWS services
+- Implement AI-powered insights using AWS Bedrock to analyze business data
 - Set up proper governance and access controls
-- Deploy the application
+- Deploy your application to AWS infrastructure
 
-This hands-on workshop is designed for individuals who want to learn how to build enterprise-grade applications using Superblocks' application development platform.
+## Key Benefits
 
-{{% notice warning %}}
-The examples and sample code provided in this workshop are intended to be consumed as instructional content. These will help you understand how various Superblocks features can be architected to build a solution while demonstrating best practices along the way. These examples are not intended for use in production environments.
-{{% /notice %}}
+- **10x Faster Development** ⚡: Build in days what would normally take months
+- **Simplified AI Integration** 🤖: Easily incorporate AWS Bedrock's generative AI capabilities
+- **Enterprise-Ready** 🔒: Implement proper governance and security from day one
+- **Full-Stack Solution** 🏗️: Create complete applications with frontend, backend, and AI components
+- **No ML Expertise Required** 🧠: Leverage advanced AI capabilities without specialized knowledge
+
+This workshop is ideal for developers, technical leaders, and solution architects looking to accelerate application development while incorporating powerful AI capabilities.
+
+::alert[The examples and sample code provided in this workshop are intended to be consumed as instructional content. These will help you understand how various AWS services and Superblocks features can be architected to build a solution while demonstrating best practices along the way. These examples are not intended for use in production environments.]{header="Warning" type="warning"}
 
 ## Cost
 
-This workshop will incur costs associated with using Amazon RDS. There are no costs associated with using Superblocks. It’s important to be aware that once the lab is completed, we highly advise following the instructions to delete any resources to avoid additional costs. Click here to navigate to the Clean-Up instructions. [REMINDER TO ADD CLEAN-UP SECTION]
+This workshop will incur costs associated with using Amazon RDS and AWS Bedrock. There are no costs associated with using Superblocks. It's important to be aware that once the lab is completed, we highly advise following the instructions to delete any resources to avoid additional costs. Click here to navigate to the Clean-Up instructions. [REMINDER TO ADD CLEAN-UP SECTION]
 
 ## Duration
 
-The workshop is divided into several sections and typically takes [X-Y] hours to complete.
+The workshop is divided into several sections and typically takes 2-3 hours to complete.
 
+## What You'll Build
+
+In this workshop, you'll build a complete inventory and sales management dashboard for a fictional retail company. The application will include:
+
+- Interactive data visualizations for inventory and sales metrics
+- AI-powered inventory analysis and forecasting
+- Natural language query capabilities for business data
+- Role-based access controls and governance
+- Deployment to AWS infrastructure
+
+By the end of this workshop, you'll have a functional application that demonstrates the power of combining AWS services with Superblocks' development platform.
 
 <!-- ### The Entry Point Of The Workshop And Naming Conventions
 All modifications should be done to files in the `content` folder. `_index.md` serves as the main entry point to your workshop. Adding modules can be done utilizing the format of `#_title` as a folder within `content`. By adding a number value to the title, this helps to keep the files structured in parity with the content of the workshop. A good practice for file naming is to have the folder be the module number and the submodule numbers add to that number reflecting their order. For example, the first module is `1_ModuleOne` and the submodules would be `11_SubmoduleOne`, `12_SubmoduleTwo`, and so forth. <br> <!-- <br> applies a line break to paragraphs -->
