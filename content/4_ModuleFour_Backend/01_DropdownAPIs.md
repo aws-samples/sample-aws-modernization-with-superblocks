@@ -14,10 +14,12 @@ In this section, we'll create two APIs to populate the filter dropdowns with pap
 2. Click "Add new API"
 3. Search for the integration to your database (AWS RDS if applicable)
 4. Copy and paste the below SQL inside the Superblocks editor:
+
 ```sql
-SELECT DISTINCT category_name 
+SELECT DISTINCT category_name
 FROM dm_operations.inventory;
 ```
+
 5. Click "Run API"
 6. Click the pencil icon next to 'API1' and rename it to "get_papercategories"
 
@@ -26,10 +28,12 @@ FROM dm_operations.inventory;
 1. Click "Add new API"
 2. Search for the integration to your database (same integration as the Paper Categories API)
 3. Copy and paste the below SQL inside the Superblocks editor:
+
 ```sql
-SELECT DISTINCT location_name 
+SELECT DISTINCT location_name
 FROM dm_operations.inventory;
 ```
+
 4. Click "Run API"
 5. Click the pencil icon next to 'API1' and rename it to "get_locations"
 
@@ -38,6 +42,7 @@ FROM dm_operations.inventory;
 1. Hide the API Builder Tool (CMD/CTRL + U)
 2. Select the first Dropdown component (Paper Categories)
 3. In the Properties panel:
+
    - Find the "Options" section
    - Delete the placeholder data
    - Add: {{get_papercategories.response}}
@@ -53,9 +58,10 @@ Make sure to test both dropdowns after connecting the APIs. They should populate
 {{% /notice %}}
 
 ## Example
+
 Here's how you connect your dropdown components to the APIs:
 ![Dropdown Components Example](/images/gifs/dropdown-api-example.gif)
 
-
 ## Next Steps
+
 Once the dropdowns are working, we'll move on to creating the dynamic inventory data API.

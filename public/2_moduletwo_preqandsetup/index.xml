@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Prerequisites and Setup on English</title>
+    <link>//localhost:62373/2_moduletwo_preqandsetup.html</link>
+    <description>Recent content in Prerequisites and Setup on English</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="//localhost:62373/2_moduletwo_preqandsetup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Workshop Overview</title>
+      <link>//localhost:62373/2_moduletwo_preqandsetup/01_workshopoverview.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:62373/2_moduletwo_preqandsetup/01_workshopoverview.html</guid>
+      <description>&lt;h1 id=&#34;workshop-overview&#34;&gt;Workshop Overview&lt;/h1&gt;&#xA;&lt;p&gt;This workshop guides you through building a full-stack dashboard application for [PLACEHOLDER] Company using Superblocks. You&amp;rsquo;ll create a modern, interactive dashboard that includes:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Dynamic data filtering&lt;/li&gt;&#xA;&lt;li&gt;Real-time statistics&lt;/li&gt;&#xA;&lt;li&gt;Interactive data visualization&lt;/li&gt;&#xA;&lt;li&gt;Role-based access control&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;technical-requirements&#34;&gt;Technical Requirements&lt;/h2&gt;&#xA;&lt;p&gt;Before starting, ensure you have:&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;1. Web Browser&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Chrome (recommended)&lt;/li&gt;&#xA;&lt;li&gt;Firefox&lt;/li&gt;&#xA;&lt;li&gt;Safari&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;2. Superblocks Account&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Permission to create apps (role can be owner, admin, or developer)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;3. Database with proper credentials&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Permissions to write (set up mock data)&lt;/li&gt;&#xA;&lt;li&gt;Permissions to read&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;4. Basic understanding of SQL and Python&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Workshop Resource Setup</title>
+      <link>//localhost:62373/2_moduletwo_preqandsetup/02_setup.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:62373/2_moduletwo_preqandsetup/02_setup.html</guid>
+      <description>&lt;h1 id=&#34;workshop-resource-setup&#34;&gt;Workshop Resource Setup&lt;/h1&gt;&#xA;&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;&#xA;&lt;p&gt;Before starting this workshop, you&amp;rsquo;ll need:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;A Superblocks Account&lt;/li&gt;&#xA;&lt;li&gt;Database Access&lt;/li&gt;&#xA;&lt;li&gt;Web Development Environment (Chrome recommended)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h2&gt;&#xA;&lt;h3 id=&#34;superblocks-account-setup&#34;&gt;Superblocks Account Setup&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;1. Create a Superblock&amp;rsquo;s Account (if you don&amp;rsquo;t have one)&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Visit the Superblocks website &lt;a href=&#34;https://www.superblocks.com&#34; target=&#34;_blank&#34;&gt;superblocks.com&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;Click &amp;ldquo;Try for free&amp;rdquo; at the top of the page&lt;/li&gt;&#xA;&lt;li&gt;Sign up with your work email (public email domains such as gmail, yahoo, outlook, etc. are blocked)&lt;/li&gt;&#xA;&lt;li&gt;Verify your email address&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;2. Login to Superblocks (already have an account)&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Technical Concepts</title>
+      <link>//localhost:62373/2_moduletwo_preqandsetup/03_technicalconcepts.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:62373/2_moduletwo_preqandsetup/03_technicalconcepts.html</guid>
+      <description>&lt;h1 id=&#34;technical-concepts&#34;&gt;Technical Concepts&lt;/h1&gt;&#xA;&lt;h2 id=&#34;superblocks-architecture&#34;&gt;Superblocks Architecture&lt;/h2&gt;&#xA;&lt;h3 id=&#34;deployment-options&#34;&gt;Deployment Options&lt;/h3&gt;&#xA;&lt;p&gt;Superblocks offers two deployment models to meet different organizational needs:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Cloud (Default)&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Simple to get started and manage&lt;/li&gt;&#xA;&lt;li&gt;Superblocks Cloud acts as a proxy to your integration&lt;/li&gt;&#xA;&lt;li&gt;No customer data storage in Superblocks&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;On-premise Agent&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Customer data remains within your VPC&lt;/li&gt;&#xA;&lt;li&gt;Ideal for strict compliance requirements&lt;/li&gt;&#xA;&lt;li&gt;Uses lightweight open-source agent&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;on-premise-agent-architecture&#34;&gt;On-Premise Agent Architecture&lt;/h3&gt;&#xA;&lt;p&gt;The following diagram shows how the On-Premise Agent integrates with your infrastructure:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>On-Premise Agent (Optional)</title>
+      <link>//localhost:62373/2_moduletwo_preqandsetup/04_opalocal.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:62373/2_moduletwo_preqandsetup/04_opalocal.html</guid>
+      <description>&lt;h1 id=&#34;on-premise-agent-setup&#34;&gt;On-Premise Agent Setup&lt;/h1&gt;&#xA;&lt;p&gt;The Superblocks On-Premise Agent (OPA) allows you to securely connect to resources in your local environment. This section will guide you through setting up OPA locally.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;//localhost:62373/images/local-opa-deployment.png?width=45pc&#34; alt=&#34;Local OPA Deployment&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;&#xA;&lt;p&gt;Before installing the OPA, ensure you have:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Docker installed on your machine&lt;/li&gt;&#xA;&lt;li&gt;Access to a terminal/command prompt&lt;/li&gt;&#xA;&lt;li&gt;An agent token from Superblocks&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;installation-steps&#34;&gt;Installation Steps&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-get-your-agent-token&#34;&gt;1. Get Your Agent Token&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;In Superblocks, go to &lt;strong&gt;Organization Settings&lt;/strong&gt; → &lt;strong&gt;Access Tokens&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;Click &lt;strong&gt;Create token&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;Name your token (e.g., &amp;ldquo;Local Agent Token&amp;rdquo;)&lt;/li&gt;&#xA;&lt;li&gt;Keep the &lt;strong&gt;expiration date&lt;/strong&gt; as the default (90 days)&lt;/li&gt;&#xA;&lt;li&gt;For token type, select &lt;strong&gt;Agent key&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;Copy the generated token - &lt;strong&gt;store it securely as it won&amp;rsquo;t be shown again&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;2-deploy-with-docker&#34;&gt;2. Deploy with Docker&lt;/h3&gt;&#xA;&lt;p&gt;Run the following command, replacing {AGENT_KEY} with the token you just generated.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
