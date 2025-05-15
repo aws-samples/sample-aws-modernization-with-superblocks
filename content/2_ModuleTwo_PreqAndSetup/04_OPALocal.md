@@ -10,10 +10,9 @@ The Superblocks On-Premise Agent (OPA) allows you to securely connect to resourc
 
 ![Local OPA Deployment](/images/local-opa-deployment.png?width=45pc)
 
-
 ## Prerequisites
 
-Before installing OPA, ensure you have:
+Before installing the OPA, ensure you have:
 
 1. Docker installed on your machine
 2. Access to a terminal/command prompt
@@ -23,58 +22,48 @@ Before installing OPA, ensure you have:
 
 ### 1. Get Your Agent Token
 
-1. In Superblocks, go to **Settings** → **On-Premise Agent**
-2. Click **Create New Agent**
-3. Name your agent (e.g., "Local Workshop Agent")
-4. Copy the generated token
+1. In Superblocks, go to **Organization Settings** → **Access Tokens**
+2. Click **Create token**
+3. Name your token (e.g., "Local Agent Token")
+4. Keep the **expiration date** as the default (90 days)
+5. For token type, select **Agent key**
+6. Copy the generated token - **store it securely as it won't be shown again**
 
 ### 2. Deploy with Docker
 
+Run the following command, replacing {AGENT_KEY} with the token you just generated.
+
 ```bash
-docker run -d \
-  --name superblocks-agent \
-  -e AGENT_TOKEN=<your-agent-token> \
-  -e WORKSPACE_ID=<your-workspace-id> \
-  superblocks/agent:latest
+curl -s https://raw.githubusercontent.com/superblocksteam/agent/main/compose.yaml | \
+SUPERBLOCKS_AGENT_KEY="{AGENT_KEY}"  \
+SUPERBLOCKS_AGENT_HOST_URL="http://localhost:8080" \
+SUPERBLOCKS_AGENT_TAGS="profile:*" \
+SUPERBLOCKS_DOCKER_AGENT_TAG="latest" \
+SUPERBLOCKS_AGENT_DATA_DOMAIN="app.superblocks.com" \
+docker compose -p superblocks -f - up
 ```
 
-### 3. Verify Installation
+You should see Docker downloading images and starting containers. Keep this terminal window open to view logs.
 
-1. Check container status:
-```bash
-docker ps | grep superblocks-agent
-```
+## Configuration with local services
 
-2. View agent logs:
-```bash
-docker logs superblocks-agent
-```
+With the agent running, you can connect to locally hosted services as well:
 
-## Configuration
+1. Go to the Integrations page and select which integrations to connect locally
+2. Click on ... followed by **Manage**
+3. Fill out the configuration form for your local server/database
+4. **Important:** For host addresses, use host.docker.internal instead of localhost to reach services from inside the Docker container
 
-### Environment Variables
+## Validating the Connection
 
-- `AGENT_TOKEN`: Your agent authentication token
-- `WORKSPACE_ID`: Your Superblocks workspace ID
-- `LOG_LEVEL` (optional): Set to `debug` for verbose logging
-
-### Network Configuration
-
-The agent needs outbound access to:
-- `api.superblocks.com` on port 443
-- Your local resources (database, services, etc.)
-
-## Testing the Connection
-
-1. In Superblocks, go to **Integrations**
-2. Click **Add New Integration**
-3. Select **PostgreSQL**
-4. Choose your local agent in the connection settings
-5. Test the connection
+1. In Superblocks, go to **Organization Settings** → **On-Premise Agents**
+2. Change the view from **Cloud Deployment** to **On-Premise Deployment** using the dropdown
+3. You should see your OPA with an **Active** status
 
 ### Getting Help
 
 If you encounter issues:
+
 1. Check the [Superblocks documentation](https://docs.superblocks.com)
 2. Review agent logs for specific errors
 3. Check out the [Troubleshooting OPA](https://docs.superblocks.com/superblocks/on-premise-agent/troubleshooting) guide for common issues and solutions.

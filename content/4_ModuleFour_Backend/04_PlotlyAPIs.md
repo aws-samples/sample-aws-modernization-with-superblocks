@@ -12,10 +12,11 @@ In this section, we'll create two APIs that generate Plotly charts for our dashb
 
 1. Open the API Builder Tool (CMD/CTRL + U)
 2. Click "Add new API"
-3. Search for the Postgres integration
+3. Search for the database integration
 4. Click the pencil icon next to 'API1' and rename the API to "location_chart"
 
-Add the below SQL to the Postgres integration:
+Add the below SQL to the database integration:
+
 ```sql
 SELECT location_name, SUM(total_amount) as total_sales
 FROM dm_operations.sales
@@ -24,6 +25,7 @@ ORDER BY total_sales DESC;
 ```
 
 Add a Python Function Step and add the below code:
+
 ```python
 import plotly.express as px
 import pandas as pd
@@ -53,9 +55,10 @@ return fig.to_json()
 3. Search for the Postgres integration
 4. Click the pencil icon next to 'API1' and rename the API to "monthly_trends"
 
-Add the below SQL to the Postgres integration:
+Add the below SQL to the database integration:
+
 ```sql
-SELECT 
+SELECT
     DATE_TRUNC('month', sale_date) as month,
     SUM(total_amount) as total_sales,
     COUNT(*) as number_of_orders
@@ -65,7 +68,8 @@ GROUP BY DATE_TRUNC('month', sale_date)
 ORDER BY month;
 ```
 
-3. Add Python Function Step:
+3. Add a Python Function Step:
+
 ```python
 import plotly.graph_objects as go
 import pandas as pd
@@ -121,29 +125,30 @@ fig.update_layout(
 return fig.to_json()
 ```
 
-## Connect Charts to APIs
+## Connect the Chart Components
 
 1. Configure Top Chart (Location Sales):
+
    - Select the first chart component
    - Clear the "Header" value
    - Set "Definition" to "Plotly"
-   - Set "Data" to: {{location_chart.response}}
+   - Set "Plotly chart JSON" to: {{location_chart.response}}
 
 2. Configure Bottom Chart (Monthly Trends):
    - Select the second chart component
    - Clear the "Header" value
    - Set "Definition" to "Plotly"
-   - Set "Data" to: {{monthly_trends.response}}
+   - Set "Plotly chart JSON" to: {{monthly_trends.response}}
 
 {{% notice tip %}}
 Plotly charts are interactive by default. Users can hover over data points, zoom, and pan the charts. If data is not populating in the table, try clicking the "Run API" button again in the API Builder Tool.
 {{% /notice %}}
 
 ## Testing
+
 1. Verify both charts render correctly
 2. Test interactivity features
-3. Check that data updates appropriately
-4. Verify dual-axis functionality on the monthly trends chart
 
 ## Next Steps
-Now that we've completed all the backend APIs, we'll move on to implementing governance and access controls.
+
+Now that we've completed all the backend APIs, we'll move on to integrating with AWS Bedrock.
