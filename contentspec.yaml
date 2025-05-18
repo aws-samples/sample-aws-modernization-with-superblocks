@@ -25,6 +25,7 @@ infrastructure:
       participantVisibleStackOutputs:
         - VSCODEURL
         - Password
+        - SecretsManagerLink
 
       #parameters:
 
