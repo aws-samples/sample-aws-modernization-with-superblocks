@@ -49,7 +49,6 @@ awsAccountConfig:
       - "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
       - "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
       - "arn:aws:iam::aws:policy/AmazonQDeveloperAccess"
-      - "arn:aws:iam::aws:policy/AWSCodeCommitPowerUser"
       - "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
       
 
