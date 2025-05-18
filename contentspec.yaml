@@ -9,13 +9,13 @@ localeCodes:
 # A dictionary of arbitrary parameters that can be referenced in the workshop guide
 # using the params directive.
 params:
-  author: Patrick Vassell, JJ Lei, Joshua Amah, Abby Wilson, Omar Faruk
-  description: Docker & AWS - Modernization Workshop
+  author: Patrick Vassell
+  description: Superblocks & AWS - Modernization Workshop
 
 # List of links to display in the workshop guide. Will be rendered on the left hand side navigation menu.
 additionalLinks:
-  - title: "AWS Modernization with Docker"
-    link: "https://docker.awsworkshop.io/"
+  - title: "AWS Modernization with Superblocks"
+    link: "https://superblocks.awsworkshop.io/"
 
 # START Infrastructure
 infrastructure:
@@ -61,6 +61,7 @@ awsAccountConfig:
         - lambda.amazonaws.com
         - elasticloadbalancing.amazonaws.com
         - ecs.amazonaws.com
+        - bedrock.amazonaws.com
   regionConfiguration:
     minAccessibleRegions: 1
     maxAccessibleRegions: 3
