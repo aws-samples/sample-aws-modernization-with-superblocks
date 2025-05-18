@@ -23,7 +23,7 @@ infrastructure:
     - templateLocation: static/infrastructure/vscode-server.yaml
       label: Docker Workshop Vscode Server
       participantVisibleStackOutputs:
-        - URL
+        - VSCODEURL
         - Password
 
       #parameters:
