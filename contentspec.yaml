@@ -26,6 +26,13 @@ infrastructure:
         - VSCODEURL
         - Password
         - SecretsManagerLink
+    - templateLocation: static/infrastructure/superblocks-rds-template.yaml
+      label: Superblocks Workshop RDS Instance
+      participantVisibleStackOutputs:
+        - DBUsername
+        - DBPassword
+        - DBEndpoint
+        - ConnectionString
 
       #parameters:
 
