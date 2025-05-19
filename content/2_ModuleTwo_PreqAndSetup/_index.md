@@ -1,7 +1,7 @@
 ---
 title: "Prerequisites and Setup"
 chapter: true
-weight: 2
+weight: 3
 ---
 
 # Module 2: Prerequisites and Setup
