@@ -1,7 +1,7 @@
 ---
 title: "Integrating with AWS Bedrock"
 chapter: true
-weight: 5
+weight: 6
 ---
 
 # Enhancing Your Application with AWS Bedrock 🤖 🚀
