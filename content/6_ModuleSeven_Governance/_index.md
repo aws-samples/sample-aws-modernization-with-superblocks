@@ -1,7 +1,7 @@
 ---
 title: "Governance & Access Controls"
 chapter: true
-weight: 6
+weight: 7
 ---
 
 # Governance & Access Controls
