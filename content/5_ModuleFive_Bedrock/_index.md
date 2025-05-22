@@ -1,10 +1,10 @@
 ---
 title: "Integrating with AWS Bedrock"
 chapter: true
-weight: 6
+weight: 5
 ---
 
-# Enhancing Your Application with AWS Bedrock 🤖 🚀
+# Enhancing Your Application with AWS Bedrock
 
 ## What You'll Learn
 
@@ -25,7 +25,6 @@ By integrating AWS Bedrock with your Superblocks application, you'll enable:
 
 - **Data-Driven Decision Making** 📊: Surface actionable insights from your inventory and sales data
 - **Operational Efficiency** ⚙️: Automate analysis that would typically require data science expertise
-- **Enhanced User Experience** 🌟: Provide natural language interfaces for complex data queries
 - **Predictive Capabilities** 🔮: Anticipate inventory needs before they become critical
 - **Rapid AI Implementation** ⚡: Deploy AI features in days instead of months
 

@@ -6,36 +6,40 @@ weight: 4
 
 # Creating the Body Section
 
-In this section, we'll build the main body of the dashboard, including the data table and charts.
+Let's create the main dashboard layout with a data table and charts.
 
-## Steps
+## Step 1: Set Up the Layout
+1. Create the section:
+   - Add a new section (adds a column automatically)
+   - Set section height to "Fill Viewport"
+2. Configure the column:
+   - Set layout to "Horizontal"
 
-**1. Create the Body Section**
-   - Add a new section for the body (automatically adds a column component)
-   - Set the section height to "Fill Viewport"
-   - Set the column layout to "Horizontal"
+## Step 2: Add Containers
+1. Left container (for table):
+   - Add a container component
+   - Width will be "Fluid" (¾ of section)
+   - Set layout to "Vertical"
+   - Set height to "Fill Parent"
+2. Right container (for charts):
+   - Add a container component
+   - Set width to "Fill Parent"
+   - Set layout to "Vertical"
+   - Set height to "Fill Parent"
 
-**2. Add Container Components**
-   - Add 2 container components within the section
-   - Configure the left container:
-     - Width will automatically be set to "Fluid"
-     - Should occupy ¾ of the section width
-   - Configure the right container:
-     - Set width to "Fill Parent"
-   - Update both containers to have "Vertical" layout
-   - Set both containers' height to "Fill Parent"
+## Step 3: Add the Table
+1. In the left container:
+   - Add a Table component
+   - Set height to "Fill Parent"
+2. Simplify the table:
+   - Remove the default header
+   - Remove the search bar
+   - Remove the download button
 
-**3. Add the Table Component**
-   - Add a Table component to the left container
-   - Set the table height to "Fill Parent"
-   - Remove some of the default selections for the table component:
-     - Remove the header (titled "Users" by default)
-     - Remove the search bar
-     - Remove the download button
-
-**4. Add Chart Components**
-   - Add 2 chart components to the right container
-   - Set both charts' height to "Fill Parent"
+## Step 4: Add Charts
+1. In the right container:
+   - Add two chart components
+   - Set both heights to "Fill Parent"
 
 {{% notice tip %}}
 The "Fill Parent" and "Fill Viewport" settings ensure your components use the available space effectively and create a responsive layout.
@@ -46,4 +50,4 @@ Here's how your body section should look after completion:
 ![Body Section Example](/images/gifs/body-section-example.gif)
 
 ## Next Steps
-After completing the body section layout, we'll move on to implementing the slide-out panel in the next module.
+Great work! Next, we'll implement the APIs to populate your application with data.

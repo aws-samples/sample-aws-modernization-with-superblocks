@@ -5,20 +5,23 @@ weight: 2
 
 ## Building an Inventory Analysis Feature 📦
 
-Now that we have our Bedrock connection set up, let's create a powerful inventory analysis feature that can provide insights about current inventory levels, identify potential stockouts, and recommend transfering strategies.
+Now that we have our Bedrock connection set up, let's create a powerful inventory analysis feature that can provide insights about current inventory levels and recommend transferring strategies.
 
-### Step 1: Create the Inventory Analysis API 🔍
+### Step 1: Create the Inventory Analysis API
 
-1. Navigate to **API Builder** in the left sidebar
-2. Open the API Builder Tool (CMD/CTRL + U)
-3. Search for the integration to your database (AWS RDS if applicable)
-4. Name your API "generate_insights"
-5. Add the below SQL and rename the step to "get_input_data"
+1. Create a new API:
+   - Open the API Builder Tool (CMD/CTRL + U)
+   - Click the pencil icon next to API1 and rename it to "generate_insights"
+
+2. Configure the data source:
+   - Search for your database integration
+   - Add a new SQL step and rename it to "get_input_data"
+   - Add the query below:
 
 ```sql
-SELECT
+SELECT 
 ils.inventory_id, ils.sku, ils.product_name, ils.category_name,
-ils.location_name, ils.current_stock, ils.reorder_point,
+ils.location_name, ils.current_stock, ils.reorder_point, 
 ils.stock_margin, ils.stock_status,
 sv.daily_velocity, po.total_quantity_ordered
 FROM dm_operations.inventory_location_status ils
@@ -26,8 +29,12 @@ LEFT JOIN dm_operations.sales_velocity sv ON ils.inventory_id = sv.inventory_id 
 LEFT JOIN dm_operations.pending_orders po ON ils.inventory_id = po.inventory_id AND ils.location_name = po.location_name;
 ```
 
-6. Underneath the first step, add a new Python step
-7. Add the below Python code to limit the input data size and rename the step to "simplify_input_data"
+### Step 2: Process the Data
+
+1. Add data preprocessing:
+   - Add a new Python step after the SQL query
+   - Name the step "simplify_input_data"
+   - Add the code below to prepare data for the AI model:
 
 ```python
 def prepare_data_for_llm(input_data):
@@ -35,6 +42,7 @@ def prepare_data_for_llm(input_data):
 
     # Convert JSON object to a formatted string representation
     if isinstance(input_data, (dict, list)):
+
         # Convert to a nicely formatted string with indentation
         formatted_string = json.dumps(input_data, indent=2)
 
@@ -42,18 +50,25 @@ def prepare_data_for_llm(input_data):
         max_chars = 8000
         if len(formatted_string) > max_chars:
             formatted_string = formatted_string[:max_chars] + "\n...(truncated)"
+
         return formatted_string
 
-# Call the function
 return prepare_data_for_llm(get_input_data.output)
 ```
 
-8. Add an additional Python step and the below code to call AWS Bedrock
-9. Rename the step to "send_to_bedrock"
+### Step 3: Connect to AWS Bedrock
+
+1. Create the Bedrock integration:
+   - Add a new Python step
+   - Name it "send_to_bedrock"
+   - Add the following code to interact with AWS Bedrock
+   - Replace the placeholder values with your actual AWS credentials (aws_region, aws_access_key, and aws_secret_key)
+   - The default model is `amazon.nova-lite-v1:0`, but you can test other models if provisioned
 
 ```python
 import boto3
 import json
+
 
 def send_to_bedrock(text_data):
     # Truncate data
@@ -62,30 +77,24 @@ def send_to_bedrock(text_data):
     # Create client
     client = boto3.client(
         service_name="bedrock-runtime",
-        region_name=aws_region,
-        aws_access_key_id=aws_access_key,
-        aws_secret_access_key=aws_secret_key,
+        region_name="region-placeholder",
+        aws_access_key_id="access-key-placeholder",
+        aws_secret_access_key="secret-key-placeholder",
     )
 
-    # Create prompt as a message
-    prompt = f"""Analyze this inventory data: {text_data}
-      Give me 3 inventory transfer recommendations across 3 different locations with:
+    # Simple prompt for bullet points
+    prompt = f"""Based on this inventory data: {text_data}
 
-      - Product name
-      - From location
-      - To location
-      - Quantity
-      - Priority score (0-100)
-      - Cost savings
-      - Reasoning
-      - Analysis points (demand, cost, impact)
+Provide 5 inventory transfer recommendations as bullet points. For each recommendation, include:
+• Product name and quantity to transfer
+• From location → To location  
+• Brief reasoning
 
-      Make sure to the reasoning is informative and not a generic statement. The reasoning should be different for each recommendation. Do not restate the analysis points in the response and can include
-      information on forecased demand in rationale. Return as a JSON array."""
+Format as JSON."""
 
-    # Make request with content as an array
+    # Make request
     response = client.invoke_model(
-        modelId="amazon.nova-lite-v1:0",
+        modelId="us.amazon.nova-micro-v1:0",
         body=json.dumps(
             {"messages": [{"role": "user", "content": [{"text": prompt}]}]}
         ),
@@ -93,14 +102,12 @@ def send_to_bedrock(text_data):
         accept="application/json",
     )
 
-    # Parse the response
+    # Parse response
     response_body = json.loads(response["body"].read())
 
-    # Check response structure and extract accordingly
     if "content" in response_body and isinstance(response_body["content"], list):
         output = response_body["content"][0]["text"]
     else:
-        # Fallback if response format is different
         output = str(response_body)
 
     return {"raw_output": output}
@@ -108,128 +115,95 @@ def send_to_bedrock(text_data):
 
 # Call the function
 return send_to_bedrock(simplify_input_data.output)
-
 ```
 
-10. Add a 4th and final Python step with the below code, and rename it to "format_output"
+### Step 4: Format the Results
+
+1. Process the AI response:
+   - Add a final Python step
+   - Name it "format_output"
+   - Add the code below to parse and structure the recommendations as JSON:
 
 ````python
 import json
+import ast
 import re
 
-
-def parse_text_recommendations(raw_output):
+def parse_bullet_recommendations(raw_output):
     try:
-        # Get the raw output string
-        if isinstance(raw_output, dict) and "raw_output" in raw_output:
-            text = raw_output["raw_output"]
-        else:
-            text = str(raw_output)
+        # Extract text from various input formats
+        text = (
+            raw_output.get("raw_output", str(raw_output))
+            if isinstance(raw_output, dict)
+            else str(raw_output)
+        )
 
-        # Extract the JSON array from the code block using regex
-        json_match = re.search(r"```json\s*\n(.*?)\n\s*```", text, re.DOTALL)
+        # Handle nested structure from Bedrock
+        if text.startswith("{'"):
+            data = ast.literal_eval(text)
+            content_text = (
+                data.get("output", {})
+                .get("message", {})
+                .get("content", [{}])[0]
+                .get("text", "")
+            )
+
+            # Clean up escaped characters
+            content_text = (
+                content_text.replace("\\n", "\n")
+                .replace('\\"', '"')
+                .replace("\\'", "'")
+            )
+        else:
+            content_text = text
+
+        # Extract JSON from code block
+        json_match = re.search(r"```json\s*\n(.*?)\n\s*```", content_text, re.DOTALL)
         if json_match:
             json_text = json_match.group(1)
-            # Parse the extracted JSON directly
             recommendations = json.loads(json_text)
-            return recommendations
+            return {"recommendations": recommendations, "count": len(recommendations)}
 
-        # If we can't find a code block, try to parse the nested structure
-        # First convert single quotes to double quotes for proper JSON parsing
-        # But be careful with nested quotes in the JSON content
-        if text.startswith("{'"):
-            # This is a Python dict representation, not valid JSON
-            # Use ast.literal_eval which is safer than eval
-            import ast
-
-            data = ast.literal_eval(text)
-
-            # Navigate through the nested structure
-            if "output" in data and "message" in data["output"]:
-                message = data["output"]["message"]
-                if "content" in message and isinstance(message["content"], list):
-                    content_text = message["content"][0]["text"]
-
-                    # Extract JSON from code block
-                    json_match = re.search(
-                        r"```json\s*\n(.*?)\n\s*```", content_text, re.DOTALL
-                    )
-                    if json_match:
-                        json_text = json_match.group(1)
-                        recommendations = json.loads(json_text)
-                        return recommendations
-
-        # If all else fails, run the original regex pattern
-        pattern = r"(\d+)\.\s+Product name:\s+(.*?)\nFrom location:\s+(.*?)\nTo location:\s+(.*?)\nQuantity:\s+(.*?)\nPriority score.*?:\s+(.*?)\nCost savings:\s+(.*?)\nReasoning:\s+(.*?)(?=\n\n\d+\.|\n\nPlease|\Z)"
-        matches = re.findall(pattern, text, re.DOTALL)
-        if matches:
-            recommendations = []
-            for match in matches:
-                recommendation = {
-                    "product_name": match[1].strip(),
-                    "from_location": match[2].strip(),
-                    "to_location": match[3].strip(),
-                    "quantity": match[4].strip(),
-                    "priority_score": match[5].strip(),
-                    "cost_savings": match[6].strip(),
-                    "reasoning": match[7].strip(),
-                }
-                # Try to convert numeric fields
-                try:
-                    recommendation["quantity"] = int(recommendation["quantity"])
-                except:
-                    pass
-                try:
-                    recommendation["priority_score"] = int(
-                        recommendation["priority_score"]
-                    )
-                except:
-                    pass
-
-                recommendations.append(recommendation)
-            return recommendations
-
-        return {
-            "error": "Could not parse recommendations from output",
-            "original_output": text,
-        }
+        # If no JSON code block found, return error
+        return {"error": "No JSON code block found", "original_output": content_text}
 
     except Exception as e:
-        # Custom extraction as a last resort
-        try:
-            # Direct extraction of the JSON array from the text
-            start_idx = text.find("[\\n  {")
-            end_idx = text.find("]\\n```")
-
-            if start_idx != -1 and end_idx != -1:
-                json_text = text[start_idx : end_idx + 1]
-                # Replace escaped characters
-                json_text = (
-                    json_text.replace("\\n", "\n")
-                    .replace('\\"', '"')
-                    .replace("\\'", "'")
-                )
-                recommendations = json.loads(json_text)
-                return recommendations
-        except:
-            pass
-
         return {"error": str(e), "original_output": raw_output}
 
 
-# Call the function with the Bedrock output
+# Call the function
 raw_output = send_to_bedrock.output
-return parse_text_recommendations(raw_output)
+return parse_bullet_recommendations(raw_output)
 ````
 
-10. Click **Run API** to test your API
+### Step 5: Test the Integration
+
+1. Test your new API:
+   - Click **Run API** to execute the workflow
+   - Review the recommendations in the response
+   - Verify the data formatting and structure
+2. Click the "Runs on" button (underneath the API name) and update the "Run on page load" value to "Never"
+   - This will prevent the API from running automatically when the page loads as we will be running it whenever a user clicks a button component
 
 {{% notice tip %}}
-When crafting prompts for foundation models, be specific about the format and type of analysis you want. This helps ensure consistent, useful responses.
+When crafting prompts for foundation models:
+- Be specific about the format you want
+- Include examples when possible
+- Define clear constraints
+- Test and refine your prompts
 {{% /notice %}}
 
-{{% notice tip %}}
-You've now created a powerful inventory analysis feature that leverages AWS Bedrock to provide actionable insights. This feature demonstrates how Superblocks and AWS Bedrock can work together to transform raw data into valuable business intelligence.
+{{% notice success %}}
+Congratulations! You've created a powerful inventory analysis feature that:
+- Analyzes inventory data in real-time
+- Provides actionable transfer recommendations
+- Helps optimize stock levels across locations
 {{% /notice %}}
+
+## Working with AWS Services using boto3
+
+The boto3 library is AWS's SDK for Python, providing a powerful interface to interact with any AWS service programmatically. Just as we used boto3 to connect with Bedrock above, you can use the same pattern to interact with other AWS services like S3, DynamoDB, or Lambda, making it easy to build comprehensive AWS applications.
 
 ## Next Steps
+
+In the next section, we'll add a UI component to display the recommendations generated from Bedrock. 🚀

@@ -6,16 +6,16 @@ weight: 1
 
 # Workshop Overview
 
-This workshop guides you through building a full-stack dashboard application for [PLACEHOLDER] Company using Superblocks. You'll create a modern, interactive dashboard that includes:
+Welcome to the Superblocks workshop! Together, we'll build a full-stack AI application for Acme Incorporated. You'll create a modern, interactive dashboard featuring:
 
 - Dynamic data filtering
-- Real-time statistics
+- Real-time statistics and insights
 - Interactive data visualization
 - Role-based access control
 
 ## Technical Requirements
 
-Before starting, ensure you have:
+To get started, you'll need:
 
 **1. Web Browser**
 
@@ -29,16 +29,17 @@ Before starting, ensure you have:
 
 **3. Database with proper credentials**
 
-- Permissions to write (set up mock data)
-- Permissions to read
+- Permissions to write data (needed to initially set up mock data)
+- Permissions to read data
 
-**4. Basic understanding of SQL and Python**
+**4. Programming Knowledge**
 
-- Knowledge of JavaScript/TypeScript is not required
+- Basic SQL and Python skills
+- No JavaScript/TypeScript experience needed
 
 ## Time Requirements
 
-The workshop is divided into five modules:
+The workshop is divided into six modules:
 
 1. Prerequisites and Setup (30 minutes)
 2. Building the Frontend (30 minutes)
@@ -51,4 +52,4 @@ Total estimated time is 2 to 3 hours
 
 ## Next Steps
 
-In the next section, we'll cover the technical concepts you need to understand before starting the workshop.
+In the next section, we'll set up your Superblocks account and database resources, then generate the mock data needed for the workshop.

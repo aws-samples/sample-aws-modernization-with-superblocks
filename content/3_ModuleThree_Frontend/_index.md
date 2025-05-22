@@ -1,25 +1,25 @@
 ---
 title: "Building the Frontend"
 chapter: true
-weight: 4
+weight: 3
 ---
 
 # Building the Frontend
 
 ## What You'll Learn
 
-In this module, you'll build the frontend of the [PLACEHOLDER] dashboard application. You'll learn how to:
+In this module, you'll build the frontend of the Acme Incorporated dashboard. You'll:
 
-1. Create a responsive header with navigation
-2. Build filter components for data interaction
-3. Implement hero stats for key metrics
-4. Create a data table with detailed information
-5. Add interactive charts using Plotly
+1. Create a responsive navigation header
+2. Build interactive filter components
+3. Display key metrics with hero stats
+4. Create a dynamic data table
+5. Add interactive Plotly charts
 
-Each section will guide you through the process of building these components using Superblocks' UI components and templates.
+We'll use Superblocks' UI components and templates to build each part of the dashboard.
 
 ## Time to Complete
-This module should take approximately [XX] minutes to complete.
+This module should take approximately 30 minutes to complete.
 
 ## Next Steps
-In the following sections, we'll build each component of the frontend step by step, starting with the header navigation.
+Let's start building your dashboard, beginning with the navigation header.

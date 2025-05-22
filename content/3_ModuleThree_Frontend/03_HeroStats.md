@@ -6,30 +6,33 @@ weight: 3
 
 # Building the Hero Stats Section
 
-In this section, we'll create the hero stats section that displays key metrics for the dashboard.
+Let's add key metrics to your dashboard using hero stats.
 
-## Steps
+## Step 1: Add the Stats Section
+1. Create a new section:
+   - Click "+ Add Section" below the filters
+   - A column component will be added automatically
+2. Add the template:
+   - Click the template icon next to "Add Component"
+   - Search for "Hero stats with label below"
+   - Click "Insert"
 
-**1. Add the Hero Stats Section**
-   - Click "+ Add Section" underneath the filter section (automatically adds a column component)
-   - Click the icon next to the "Add Component" button and select "Browse UI Templates"
-   - Search for "Hero stats with label below, percentage change beside" and click "Insert"
-
-**2. Configure the Hero Stats Section**
-   - The Hero Stats UI template comes with 3 stats by default and we want to add a fourth
-   - Select the third tile and copy it (CMD/CTRL + C)
-   - Press CMD/CTRL + V to paste it and create the fourth tile
-   - Update the section headers to:
-     - Total Inventory
-     - Low Stock Items
-     - Pending Orders
-     - YTD Sales
-   - Update the units of measurement for each stat (e.g. "$" for "Total Inventory" and "items" for "Low Stock Items")
-   - Remove the +/- figures and parent container to simplify the display
+## Step 2: Configure Your Stats
+1. Add a fourth stat:
+   - Copy the third stat tile (CMD/CTRL + C)
+   - Paste to create a new tile (CMD/CTRL + V)
+2. Update the stats:
+   - Total Inventory (use "$")
+   - Low Stock Items (use "items")
+   - Pending Orders (use "orders")
+   - YTD Sales (use "$")
+3. Simplify the display:
+   - Remove the percentage changes
+   - Remove the parent container
 
 ## Example
 Here's how your hero stats section should look after completion:
 ![Hero Stats Example](/images/gifs/herostats-add-components.gif)
 
 ## Next Steps
-After completing the hero stats section, we'll move on to creating the main body section with the data table and charts.
+Next, we'll create the main dashboard section with your data table and charts.

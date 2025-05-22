@@ -1,43 +1,38 @@
 ---
-title: "Workshop Resource Setup"
+title: "Resource Setup"
 chapter: true
 weight: 2
 ---
 
-# Workshop Resource Setup
+# Resource Setup
 
 ## Prerequisites
 
-Before starting this workshop, you'll need:
+To complete this workshop, you'll need:
 
 1. A Superblocks Account
 2. Database Access
-3. Web Development Environment (Chrome recommended)
+3. A Modern Web Browser (Chrome recommended)
 
-## Getting Started
+## Step 1: Superblocks Account Setup
 
-### Superblocks Account Setup
-
-**1. Create a Superblock's Account (if you don't have one)**
-
-- Visit the Superblocks website [superblocks.com](https://www.superblocks.com)
-- Click "Try for free" at the top of the page
-- Sign up with your work email (public email domains such as gmail, yahoo, outlook, etc. are blocked)
+**Create a Superblocks Account**
+- Go to [superblocks.com](https://www.superblocks.com)
+- Click "Login" then "Sign up"
+- Use your work email (note: public domains like gmail.com are not allowed)
 - Verify your email address
 
-**2. Login to Superblocks (already have an account)**
+**Already have an account?**
+- Go to [superblocks.com](https://www.superblocks.com)
+- Click "Login"
+- Enter your credentials
 
-- Go to the Superblocks website [superblocks.com](https://www.superblocks.com)
-- Click "Login" at the top of the page
-- Login with your credentials
-
-### Database Configuration
-
+## Step 2: Database Configuration
 {{% notice info %}}
 If you're attending a guided workshop, you'll be provided with database credentials and can skip the RDS setup section below.
 {{% /notice %}}
 
-### Option 1: Guided Workshop
+**Option 1: Guided Workshop**
 
 **1. Locate Your Provided Credentials**
 
@@ -48,7 +43,7 @@ If you're attending a guided workshop, you'll be provided with database credenti
   - Username
   - Password
 
-### Option 2: Self-Paced Workshop (AWS RDS Setup)
+**Option 2: Self-Paced Workshop (AWS RDS Setup)**
 
 **1. Create an RDS Instance**
 
@@ -79,11 +74,11 @@ If you're attending a guided workshop, you'll be provided with database credenti
 - Note down your database endpoint when available
 - Save your credentials securely
 
-### Configure Superblocks Connection
+**Configure Superblocks Connection**
 
 1. In Superblocks, go to Integrations
 2. Click "Add Integration"
-3. Select "PostgreSQL"
+3. Search for and select "PostgreSQL"
 4. Enter your database details:
    - Host: Your RDS endpoint or provided workshop host
    - Port: 5432 (default for Postgres)
@@ -91,7 +86,7 @@ If you're attending a guided workshop, you'll be provided with database credenti
    - Username and password
 5. Click "Test Connection" to verify and click "Create"
 
-## Setup Mock Data
+## Step 3: Generate Mock Data
 
 {{% notice info %}}
 If you're in a guided workshop, the mock data will already be populated in your provided database. You can skip this section.
@@ -99,33 +94,61 @@ If you're in a guided workshop, the mock data will already be populated in your 
 
 ### Database Structure
 
-The setup script will create three main tables:
+Let's set up your database. The setup script will create these tables and views in the `dm_operations` schema:
 
 1. `dm_operations.inventory`
 
    ```sql
-   - category_name (text)      -- Paper category (e.g., "Copy Paper", "Card Stock")
-   - location_name (text)      -- Branch location
-   - current_stock (integer)   -- Current quantity in stock
-   - reorder_point (integer)   -- Minimum stock level before reorder
-   - unit_price (decimal)      -- Price per unit
+   - category_name (varchar)    -- Paper category (e.g., "Copy Paper", "Card Stock")
+   - location_name (varchar)    -- Branch location
+   - current_stock (integer)    -- Current quantity in stock
+   - reorder_point (integer)    -- Minimum stock level before reorder
+   - unit_price (numeric)       -- Price per unit
    ```
 
 2. `dm_operations.orders`
 
    ```sql
-   - order_id (integer)        -- Unique order identifier
-   - status (text)             -- Order status (e.g., "Pending", "Shipped")
-   - order_date (timestamp)    -- When the order was placed
-   - total_amount (decimal)    -- Total order value
+   - order_id (integer)         -- Unique order identifier
+   - status (varchar)           -- Order status (e.g., "Pending", "Shipped")
+   - order_date (timestamp)     -- When the order was placed
+   - total_amount (numeric)     -- Total order value
    ```
 
 3. `dm_operations.sales`
    ```sql
    - sale_id (integer)         -- Unique sale identifier
    - sale_date (timestamp)     -- When the sale occurred
-   - location_name (text)      -- Branch where sale occurred
-   - total_amount (decimal)    -- Total sale value
+   - location_name (varchar)    -- Branch where sale occurred
+   - total_amount (numeric)     -- Total sale value
+   ```
+
+4. `dm_operations.inventory_location_status` (View)
+   ```sql
+   - inventory_id (integer)    -- Unique inventory identifier
+   - location_name (text)      -- Branch location
+   - current_stock (integer)   -- Current quantity in stock
+   - stock_status (text)       -- Status based on stock level
+   ...
+   ```
+
+5. `dm_operations.pending_orders` (View)
+   ```sql
+   - inventory_id (integer)    -- Inventory reference
+   - location_name (text)      -- Branch location
+   - num_orders (integer)      -- Number of pending orders
+   - total_quantity_ordered (integer) -- Total items on order
+   ...
+   ```
+
+6. `dm_operations.sales_velocity` (View)
+   ```sql
+   - inventory_id (integer)    -- Inventory reference
+   - location_name (text)      -- Branch location
+   - num_sales (integer)       -- Number of sales
+   - total_revenue (decimal)   -- Total revenue
+   - daily_velocity (decimal)  -- Average daily sales rate
+   ...
    ```
 
 ### Setup Steps
@@ -133,44 +156,56 @@ The setup script will create three main tables:
 **1. Clone the Workshop Repository**
 
 ```bash
-git clone https://github.com/superblocks-at/workshop-mock-data.git
-cd workshop-mock-data
+git clone https://github.com/nvardaro-sb/acme-inc-db-setup.git
+cd acme-inc-db-setup
 ```
 
-**2. Install Required Dependencies**
+**2. Set Up Python Environment**
+
+Create and activate a virtual environment to keep dependencies isolated:
 
 ```bash
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+
+# On macOS/Linux:
+source venv/bin/activate
+
+# On Windows:
+# venv\Scripts\activate
+```
+
+**3. Install Required Dependencies**
+
+```bash
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-**3. Configure Database Connection**
+**4. Configure Database Connection**
 
-- Copy the example configuration file:
+- Copy the example .env file:
   ```bash
-  cp config.example.py config.py
+  cp example.env .env
   ```
-- Edit `config.py` with your database credentials:
-  ```python
-  DB_CONFIG = {
-      'host': 'your-db-endpoint',
-      'database': 'workshop_db',
-      'user': 'your-username',
-      'password': 'your-password'
-  }
+- Edit `.env` with your database credentials:
+  ``` bash
+   DB_USER=
+   DB_PASSWORD=
+   DB_HOST=
+   DB_PORT=5432
+   DB_NAME=
   ```
 
-**4. Run the Setup Script**
+**5. Run the Setup Script**
 
 ```bash
-python setup_mock_data.py
+   ./setup_database.sh
 ```
 
-This will:
-
-- Create necessary tables
-- Populate sample inventory data
-- Add mock transaction history
-- Generate test user accounts
+This script will create the necessary tables and populate sample data for the application.
 
 {{% notice warning %}}
 The setup script will overwrite existing data in the specified tables. Make sure you're using a fresh database or one dedicated to this workshop.
@@ -184,12 +219,6 @@ The setup script will overwrite existing data in the specified tables. Make sure
 SELECT COUNT(*)
 FROM dm_operations.inventory;
 ```
-
-**2. Verify Platform Access**
-
-- Access to Application Builder
-- Ability to create new APIs
-- Permission to query the database
 
 {{% notice warning %}}
 If you can't connect to the database or access any part of Superblocks, please ask for assistance or reach out to Superblocks support before proceeding.
