@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Prerequisites and Setup on English</title>
+    <link>//localhost:1313/2_moduletwo_preqandsetup.html</link>
+    <description>Recent content in Prerequisites and Setup on English</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="//localhost:1313/2_moduletwo_preqandsetup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Workshop Overview</title>
+      <link>//localhost:1313/2_moduletwo_preqandsetup/01_workshopoverview.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/2_moduletwo_preqandsetup/01_workshopoverview.html</guid>
+      <description>&lt;h1 id=&#34;workshop-overview&#34;&gt;Workshop Overview&lt;/h1&gt;&#xA;&lt;p&gt;Welcome to the Superblocks workshop! Together, we&amp;rsquo;ll build a full-stack AI application for Acme Incorporated. You&amp;rsquo;ll create a modern, interactive dashboard featuring:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Dynamic data filtering&lt;/li&gt;&#xA;&lt;li&gt;Real-time statistics and insights&lt;/li&gt;&#xA;&lt;li&gt;Interactive data visualization&lt;/li&gt;&#xA;&lt;li&gt;Role-based access control&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;technical-requirements&#34;&gt;Technical Requirements&lt;/h2&gt;&#xA;&lt;p&gt;To get started, you&amp;rsquo;ll need:&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;1. Web Browser&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Chrome (recommended)&lt;/li&gt;&#xA;&lt;li&gt;Firefox&lt;/li&gt;&#xA;&lt;li&gt;Safari&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;2. Superblocks Account&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Permission to create apps (role can be owner, admin, or developer)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;3. Database with proper credentials&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Resource Setup</title>
+      <link>//localhost:1313/2_moduletwo_preqandsetup/02_setup.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/2_moduletwo_preqandsetup/02_setup.html</guid>
+      <description>&lt;h1 id=&#34;resource-setup&#34;&gt;Resource Setup&lt;/h1&gt;&#xA;&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;&#xA;&lt;p&gt;To complete this workshop, you&amp;rsquo;ll need:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;A Superblocks Account&lt;/li&gt;&#xA;&lt;li&gt;Database Access&lt;/li&gt;&#xA;&lt;li&gt;A Modern Web Browser (Chrome recommended)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;step-1-superblocks-account-setup&#34;&gt;Step 1: Superblocks Account Setup&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;Create a Superblocks Account&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Go to &lt;a href=&#34;https://www.superblocks.com&#34; target=&#34;_blank&#34;&gt;superblocks.com&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;Click &amp;ldquo;Login&amp;rdquo; then &amp;ldquo;Sign up&amp;rdquo;&lt;/li&gt;&#xA;&lt;li&gt;Use your work email (note: public domains like gmail.com are not allowed)&lt;/li&gt;&#xA;&lt;li&gt;Verify your email address&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;Already have an account?&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Go to &lt;a href=&#34;https://www.superblocks.com&#34; target=&#34;_blank&#34;&gt;superblocks.com&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;Click &amp;ldquo;Login&amp;rdquo;&lt;/li&gt;&#xA;&lt;li&gt;Enter your credentials&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;step-2-database-configuration&#34;&gt;Step 2: Database Configuration&lt;/h2&gt;&#xA;&#xA;&lt;div class=&#34;notices info&#34; &gt;&lt;p&gt;If you&amp;rsquo;re attending a guided workshop, you&amp;rsquo;ll be provided with database credentials and can skip the RDS setup section below.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Technical Concepts</title>
+      <link>//localhost:1313/2_moduletwo_preqandsetup/03_technicalconcepts.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/2_moduletwo_preqandsetup/03_technicalconcepts.html</guid>
+      <description>&lt;h1 id=&#34;technical-concepts&#34;&gt;Technical Concepts&lt;/h1&gt;&#xA;&lt;h2 id=&#34;superblocks-architecture&#34;&gt;Superblocks Architecture&lt;/h2&gt;&#xA;&lt;p&gt;Superblocks uses a modern three-plane architecture:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Control Plane&lt;/strong&gt; (Superblocks Cloud)&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Handles user authentication and permissions&lt;/li&gt;&#xA;&lt;li&gt;Manages application definitions and configurations&lt;/li&gt;&#xA;&lt;li&gt;Provides centralized logging and monitoring&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Compute Plane&lt;/strong&gt; (Execution Layer)&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Executes API calls and functions&lt;/li&gt;&#xA;&lt;li&gt;Processes data transformations&lt;/li&gt;&#xA;&lt;li&gt;Handles request routing and retries&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Data Plane&lt;/strong&gt; (Your Data Sources)&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Your databases (SQL, NoSQL)&lt;/li&gt;&#xA;&lt;li&gt;Internal services and APIs&lt;/li&gt;&#xA;&lt;li&gt;Data warehouses and storage&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;deployment-options&#34;&gt;Deployment Options&lt;/h2&gt;&#xA;&lt;p&gt;You can deploy Superblocks in two ways, choosing where to run the compute plane based on your security needs:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>On-Premise Agent (Optional)</title>
+      <link>//localhost:1313/2_moduletwo_preqandsetup/04_opalocal.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/2_moduletwo_preqandsetup/04_opalocal.html</guid>
+      <description>&lt;h1 id=&#34;local-on-premise-agent-opa-setup&#34;&gt;Local On-Premise Agent (OPA) Setup&lt;/h1&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;The On-Premise Agent (OPA) allows you to securely execute queries and access local services during development. When running locally, the OPA:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Runs as a Docker container on your machine&lt;/li&gt;&#xA;&lt;li&gt;Provides secure access to local databases and services&lt;/li&gt;&#xA;&lt;li&gt;Maintains data privacy by processing requests within your environment&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img src=&#34;//localhost:1313/images/local-opa-deployment.png?width=45pc&#34; alt=&#34;Local OPA Deployment&#34;&gt;&lt;/p&gt;&#xA;&#xA;&lt;div class=&#34;notices info&#34; &gt;&lt;p&gt;The On-Premise Agent is optional for this workshop and can be skipped.&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;&#xA;&lt;p&gt;Before starting, ensure you have:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

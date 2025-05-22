@@ -6,98 +6,91 @@ weight: 3
 
 # Implementing the Hero Stats APIs
 
-In this section, we'll create APIs to power the hero stats section and use the Parallel block to run sets of API blocks at the same time. This is a powerful block that unlocks the ability to parallelize work in your APIs.
+Let's create APIs for your hero stats using parallel execution to fetch multiple metrics simultaneously.
 
-## Hero Stats API
+## Step 1: Set Up the API
+1. Open API Builder:
+   - Press CMD/CTRL + U
+2. Create parallel API:
+   - Click "Add new API"
+   - Hover over "Control Blocks"
+   - Select "Run Parallel"
+   - Click the pen icon next to 'API1' and rename it to "get_herostats"
 
-1. Open the API Builder Tool (CMD/CTRL + U)
-2. Click "Add new API"
-3. Hover over "Control Blocks" and click "Run Parallel"
-4. Click the pencil icon next to 'API1' and rename the API to "get_herostats"
+## Step 2: Configure Parallel Paths
+1. Add paths:
+   - Click the Parallel block
+   - Click + to add three new paths
+2. Name your paths:
+   - Path1: "get_inventory"
+   - Path2: "get_lowstock"
+   - Path3: "get_pendingorders"
+   - Path4: "get_ytdsales"
 
-## Configure Paths
+## Step 3: Add Your Queries
+Add these SQL queries to each path:
 
-With a parallel control block, you can run multiple API blocks at the same time. This is a powerful feature that allows you to parallelize work in your APIs.
+1. Total Inventory Value (Path1):
+   ```sql
+   SELECT SUM(current_stock * unit_price)
+   FROM dm_operations.inventory;
+   ```
 
-1. Click on the Parallel block
-2. Click the plus icon under the Parallel block to add two new paths
-3. Update the "Path Names" to:
+2. Low Stock Items (Path2):
+   ```sql
+   SELECT COUNT(*)
+   FROM dm_operations.inventory
+   WHERE current_stock <= reorder_point;
+   ```
 
-   - Path1 = "get_inventory"
-   - Path2 = "get_lowstock"
-   - Path3 = "get_pendingorders"
-   - Path4 = "get_ytdsales"
+3. Pending Orders (Path3):
+   ```sql
+   SELECT COUNT(*)
+   FROM dm_operations.orders
+   WHERE status = 'Pending';
+   ```
 
-Within each Path, select the block and add the database integration. Add the below SQL to each block to pull data in parallel for the respective hero stats:
-
-### Total Inventory Value
-
-```sql
-SELECT SUM(current_stock * unit_price)
-FROM dm_operations.inventory;
+4. YTD Sales (Path4):
+   ```sql
+   SELECT SUM(total_amount)
+   FROM dm_operations.sales
+   WHERE EXTRACT(YEAR FROM sale_date) = 
+         EXTRACT(YEAR FROM CURRENT_DATE);
 ```
 
-### Low Stock Items Count
-
-```sql
-SELECT COUNT(*)
-FROM dm_operations.inventory
-WHERE current_stock <= reorder_point;
-```
-
-### Pending Orders Count
-
-```sql
-SELECT COUNT(*)
-FROM dm_operations.orders
-WHERE status = 'Pending';
-```
-
-### Year-to-Date Sales
-
-```sql
-SELECT SUM(total_amount)
-FROM dm_operations.sales
-WHERE EXTRACT(YEAR FROM sale_date) = EXTRACT(YEAR FROM CURRENT_DATE);
-```
-
-## Connect the Hero Stats Components
-
-Update each hero stat component with the corresponding API response. You can access the output of the Parallel block by referencing its path name (e.g., api_name.response.path_name).
+## Step 4: Connect Your Stats
+Update each stat with its API response:
 
 1. Total Inventory:
-
-```
-{{get_herostats.response.get_inventory}}
-```
+   ```
+   {{get_herostats.response.get_inventory}}
+   ```
 
 2. Low Stock Items:
-
-```
-{{get_herostats.response.get_lowstock}}
-```
+   ```
+   {{get_herostats.response.get_lowstock}}
+   ```
 
 3. Pending Orders:
-
-```
-{{get_herostats.response.get_pendingorders}}
-```
+   ```
+   {{get_herostats.response.get_pendingorders}}
+   ```
 
 4. YTD Sales:
-
-```
-{{get_herostats.response.get_ytdsales}}
-```
+   ```
+   {{get_herostats.response.get_ytdsales}}
+   ```
 
 ## Testing
+1. Check your stats:
+   - Run the API
+   - Verify all numbers appear
+   - Check formatting
 
-1. Verify all stats load correctly
-2. Confirm proper formatting of values
 
 {{% notice tip %}}
-If data is not populating in the table, try clicking the "Run API" button again in the API Builder Tool.
+If stats are missing, click "Run API" in the API Builder Tool.
 {{% /notice %}}
 
 ## Next Steps
-
-Now we'll move on to creating the Plotly visualization APIs for our charts.
+Let's create the Plotly visualization APIs for your charts.

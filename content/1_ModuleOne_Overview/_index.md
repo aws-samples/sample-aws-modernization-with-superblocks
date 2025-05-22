@@ -10,20 +10,17 @@ weight: 1
 
 In this first module, you'll learn about:
 
-1. **Superblocks' Mission** *(10 minutes)*
-   - Understanding the platform's vision
+1. **Superblocks' Mission**
+   - Understanding Superblock's mission
    - How Superblocks empowers developers
-   - Enterprise application development challenges
 
-2. **Technical Challenges** *(15 minutes)*
-   - Common development complexities
-   - Traditional approach limitations
-   - Modern application requirements
+2. **The DIY Development Trap**
+   - How custom tooling leads to technical debt
+   - Why internal platforms create endless maintenance
 
-3. **Solution Overview** *(15 minutes)*
-   - How Superblocks addresses challenges
-   - Platform architecture overview
-   - Key features and capabilities
+3. **Solution Overview**
+   - How Superblocks addresses these development challenges
+   - Key platform features and capabilities
 
 {{% notice info %}}
 This module provides the foundation for understanding why Superblocks is essential for modern enterprise application development. The concepts covered here will be applied throughout the workshop.

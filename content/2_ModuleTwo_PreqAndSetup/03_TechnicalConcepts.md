@@ -8,20 +8,36 @@ weight: 3
 
 ## Superblocks Architecture
 
-### Deployment Options
+Superblocks uses a modern three-plane architecture:
 
-Superblocks offers two deployment models to meet different organizational needs:
+- **Control Plane** (Superblocks Cloud)
+  - Handles user authentication and permissions
+  - Manages application definitions and configurations
+  - Provides centralized logging and monitoring
+
+- **Compute Plane** (Execution Layer)
+  - Executes API calls and functions
+  - Processes data transformations
+  - Handles request routing and retries
+
+- **Data Plane** (Your Data Sources)
+  - Your databases (SQL, NoSQL)
+  - Internal services and APIs
+  - Data warehouses and storage
+
+## Deployment Options
+
+You can deploy Superblocks in two ways, choosing where to run the compute plane based on your security needs:
 
 1. **Cloud (Default)**
-
-   - Simple to get started and manage
-   - Superblocks Cloud acts as a proxy to your integration
-   - No customer data storage in Superblocks
+   - Compute plane runs in Superblocks' secure infrastructure
+   - Zero setup with instant deployment
+   - Data flows through but is never stored
 
 2. **On-premise Agent**
-   - Customer data remains within your VPC
-   - Ideal for strict compliance requirements
-   - Uses lightweight open-source agent
+   - Compute plane runs inside your VPC via lightweight agent
+   - All data processing stays in your network
+   - Open-source agent for full auditability
 
 ### On-Premise Agent Architecture
 
@@ -31,14 +47,6 @@ The following diagram shows how the On-Premise Agent integrates with your infras
   <img src="/images/opa-diagram.png" alt="On-Premise Agent Architecture" style="width: 100%; height: auto;"/>
 </div>
 
-### Core Components
-
-| Component                                | Description                                                                                                                                                                                                                               |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Superblocks Cloud**<br>(Control Plane) | • Manages user access and permissions across your organization<br>• Provisions and maintains agent security keys<br>• Provides centralized logging of all platform activities<br>• Handles user authentication and SSO integration        |
-| **On-Premise Agent**<br>(Compute Plane)  | • Runs your APIs and functions within your own infrastructure<br>• Manages connections to your databases and internal services<br>• Scales automatically based on workload demands<br>• Ensures reliable execution with automatic retries |
-| **Data Plane**<br>(APIs & Databases)     | • Connects to your existing data sources (RDBMS, NoSQL, Data Warehouses)<br>• Supports bring-your-own-data model with no data storage in Superblocks<br>• Extensible with custom Python/JavaScript libraries for new integrations         |
-
 ### Request Flow
 
 The following diagram shows the request flow when using the On-Premise Agent:
@@ -47,7 +55,7 @@ The following diagram shows the request flow when using the On-Premise Agent:
   <img src="/images/opa-flow-diagram.png" alt="Request Flow" style="width: 100%; height: auto;"/>
 </div>
 
-#### Executing Requests via the On-Premise Agent
+### Executing Requests via the On-Premise Agent
 
 1. The browser makes a separate secure request to the on-premise agent inside of your network to execute an API or database call
 2. The agent securely retrieves the API definition from the closest cache on the Global Superblocks Edge Network
@@ -55,4 +63,4 @@ The following diagram shows the request flow when using the On-Premise Agent:
 
 ## Next Steps
 
-Now that you understand the Superblocks architecture and security features, let's proceed with building our application. As an optional step, you can set up the On-Premise Agent (OPA) locally for secure database access. This local setup can be valuable for development and testing purposes.
+Now that you understand the Superblocks architecture, let's proceed with building our application. As an optional step, you can set up the On-Premise Agent (OPA) locally for secure database access. This local setup can be valuable for development and testing purposes.

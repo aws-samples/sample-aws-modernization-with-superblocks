@@ -6,28 +6,27 @@ weight: 2
 
 # Creating the Filter Section
 
-In this section, we'll build the filter components that allow users to interact with the dashboard data.
+Let's add filters to help users interact with the dashboard data.
 
-## Steps
+## Step 1: Create the Filter Container
+1. Add a new section:
+   - Click '+ Add Section' below the navigation bar
+   - A new section with a column component will appear
+2. Configure the layout:
+   - Set layout to "Horizontal"
+   - Set "Vertical align" to "Bottom"
 
-**1. Add the Filter Section**
-
-- Click '+ Add Section' below the navigation bar (will automatically create a new section with a column component)
-- Set the layout of the column component to "Horizontal"
-- Set the "Vertical align" property of the column component to "Bottom"
-
-**2. Create the Filter Container**
-
-- Click the column component and within the column component click "Add Component"
-- Search for "Dropdown" and add two dropdown components
-- Search for "Button" and add two button components
-- Configure the dropdown components:
-  - Update the Label property of the first dropdown to "Paper Categories"
-  - Update the Label property of the second dropdown to "Location"
-  - Set the width for both dropdowns to "Fill Parent"
-- Configure the button components:
-  - Update the Label property of the first button to "Submit"
-  - Update the Label property of the second button to "Reset Filters"
+## Step 2: Add Filter Components
+1. Add dropdowns:
+   - Click "Add Component" in the column
+   - Add two dropdown components:
+     - First dropdown: Label = "Paper Categories"
+     - Second dropdown: Label = "Location"
+     - Set both widths to "Fill Parent"
+2. Add buttons:
+   - Add two button components:
+     - First button: Label = "Submit"
+     - Second button: Label = "Reset Filters"
 
 {{% notice tip %}}
 The horizontal layout ensures all filter components are aligned properly in a single row and removes the need to use CSS or Flexbox to align components.
@@ -41,4 +40,4 @@ Here's how you create your filter section:
 
 ## Next Steps
 
-After completing the filter section, we'll move on to creating the hero stats section to display key performance indicators.
+Next, we'll create the hero stats section to display your key metrics.

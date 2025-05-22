@@ -4,36 +4,50 @@ chapter: true
 weight: 4
 ---
 
-# On-Premise Agent Setup
+# Local On-Premise Agent (OPA) Setup
 
-The Superblocks On-Premise Agent (OPA) allows you to securely connect to resources in your local environment. This section will guide you through setting up OPA locally.
+## Overview
+
+The On-Premise Agent (OPA) allows you to securely execute queries and access local services during development. When running locally, the OPA:
+
+- Runs as a Docker container on your machine
+- Provides secure access to local databases and services
+- Maintains data privacy by processing requests within your environment
 
 ![Local OPA Deployment](/images/local-opa-deployment.png?width=45pc)
 
+{{% notice info %}}
+The On-Premise Agent is optional for this workshop and can be skipped.
+{{% /notice %}}
+
 ## Prerequisites
 
-Before installing the OPA, ensure you have:
+Before starting, ensure you have:
 
-1. Docker installed on your machine
-2. Access to a terminal/command prompt
-3. An agent token from Superblocks
+- Docker Desktop installed and running
+- Terminal/Command Prompt access
+- A Superblocks account with admin access
 
-## Installation Steps
+## Setup Process
 
-### 1. Get Your Agent Token
+### Step 1: Generate an Agent Token
 
-1. In Superblocks, go to **Organization Settings** → **Access Tokens**
+First, create a secure token for your local agent:
+
+1. In Superblocks, navigate to **Organization Settings** → **Access Tokens**
 2. Click **Create token**
-3. Name your token (e.g., "Local Agent Token")
-4. Keep the **expiration date** as the default (90 days)
-5. For token type, select **Agent key**
-6. Copy the generated token - **store it securely as it won't be shown again**
+3. Configure the token:
+   - Name: "Local Development Agent"
+   - Type: **Agent key**
+   - Expiration: 90 days (default)
+4. **Important**: Save the generated token securely - it cannot be viewed again
 
-### 2. Deploy with Docker
+### Step 2: Launch the Agent
 
-Run the following command, replacing {AGENT_KEY} with the token you just generated.
+Run this command in your terminal, replacing `{AGENT_KEY}` with your token:
 
 ```bash
+# Download and start the OPA container
 curl -s https://raw.githubusercontent.com/superblocksteam/agent/main/compose.yaml | \
 SUPERBLOCKS_AGENT_KEY="{AGENT_KEY}"  \
 SUPERBLOCKS_AGENT_HOST_URL="http://localhost:8080" \
@@ -43,24 +57,34 @@ SUPERBLOCKS_AGENT_DATA_DOMAIN="app.superblocks.com" \
 docker compose -p superblocks -f - up
 ```
 
-You should see Docker downloading images and starting containers. Keep this terminal window open to view logs.
+### Step 3: Connect Local Services
 
-## Configuration with local services
+To connect your local databases or services:
 
-With the agent running, you can connect to locally hosted services as well:
+1. Open the **Integrations** page in Superblocks
+2. Select your integration type
+3. Click **Manage** (⋮ menu)
+4. Configure the connection:
+   - Host: Use `host.docker.internal` instead of `localhost`
+   - Port: Use the service's exposed port
+   - Credentials: Enter your local service credentials
 
-1. Go to the Integrations page and select which integrations to connect locally
-2. Click on ... followed by **Manage**
-3. Fill out the configuration form for your local server/database
-4. **Important:** For host addresses, use host.docker.internal instead of localhost to reach services from inside the Docker container
+## Verification
 
-## Validating the Connection
+### Step 4: Check Agent Status
 
-1. In Superblocks, go to **Organization Settings** → **On-Premise Agents**
-2. Change the view from **Cloud Deployment** to **On-Premise Deployment** using the dropdown
-3. You should see your OPA with an **Active** status
+1. Go to **Organization Settings** → **On-Premise Agents**
+2. Switch to **On-Premise Deployment** view
+3. Look for your agent with **Active** status
 
-### Getting Help
+### Step 5: Test the Connection
+
+1. Create a new API in Superblocks
+2. Select your local integration
+3. Run a test query
+4. Verify the results in the response panel
+
+## Troubleshooting
 
 If you encounter issues:
 
