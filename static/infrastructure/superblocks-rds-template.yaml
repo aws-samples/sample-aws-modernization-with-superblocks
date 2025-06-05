@@ -173,7 +173,7 @@ Resources:
   RDSInstance:
     Type: AWS::RDS::DBInstance
     Properties:
-      DBName: employees
+      DBName: acme
       Engine: postgres
       EngineVersion: 16.3
       DBInstanceClass: db.t3.micro
@@ -190,7 +190,7 @@ Resources:
       DeletionProtection: true
       Tags:
         - Key: Name
-          Value: Employees-DB
+          Value: ACME-DB
 
   StoreDBEndpointParameter:
     Type: AWS::SSM::Parameter
@@ -219,7 +219,7 @@ Resources:
       Name: /rds/connection-string
       Type: String
       Value: !Sub 
-        - 'postgresql://${Username}:${Password}@${RDSInstance.Endpoint.Address}:5432/employees'
+        - 'postgresql://${Username}:${Password}@${RDSInstance.Endpoint.Address}:5432/acme'
         - Username: !Join ['', ['{{resolve:secretsmanager:', !Ref RDSSecret, ':SecretString:username}}' ]]
           Password: !Join ['', ['{{resolve:secretsmanager:', !Ref RDSSecret, ':SecretString:password}}' ]]
 
@@ -239,7 +239,7 @@ Outputs:
   ConnectionString:
     Description: PostgreSQL connection string.
     Value: !Sub 
-      - 'postgresql://${Username}:${Password}@${RDSInstance.Endpoint.Address}:5432/employees'
+      - 'postgresql://${Username}:${Password}@${RDSInstance.Endpoint.Address}:5432/acme'
       - Username: !Join ['', ['{{resolve:secretsmanager:', !Ref RDSSecret, ':SecretString:username}}' ]]
         Password: !Join ['', ['{{resolve:secretsmanager:', !Ref RDSSecret, ':SecretString:password}}' ]]
     Export:
