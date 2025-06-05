@@ -61,5 +61,5 @@ The Cloud9 deployment and setup process takes approximately 5 minutes to complet
 :::
 
 :::alert{header="Important" type="warning"}
-If you are running this workshop on your own AWS account, remember to delete all resources by following the [Cleanup instructions](/90-cleanup) to avoid unnecessary charges.
+If you are running this workshop on your own AWS account, remember to delete all resources by following the [Cleanup instructions](/9_ModuleNine_Cleanup) to avoid unnecessary charges.
 :::
