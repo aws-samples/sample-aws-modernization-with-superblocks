@@ -22,7 +22,7 @@ In this section, you'll learn how to access the cloud-based VS Code environment 
    - **VSCODEURL**: Your unique VS Code server URL
    - **Password**: Your secure access credentials
 
-![Event Outputs Location](/images/vscode-server-creds.png)
+![Event Outputs Location](/images/Vscode-server-creds.png)
 
 ### Step 2: Launch VS Code Server
 
@@ -32,7 +32,7 @@ In this section, you'll learn how to access the cloud-based VS Code environment 
 4. Paste it into the password field
 5. Click **Login**
 
-![VS Code Login Screen](/images/vscode-server-login.png)
+![VS Code Login Screen](/images/Vscode-server-login.png)
 
 ### Step 3: Verify Your Connection
 
@@ -41,7 +41,7 @@ Once logged in, you should see the VS Code interface:
 - An editor panel in the center
 - A terminal at the bottom (if not visible, press `` Ctrl + ` `` to open it)
 
-![VS Code Interface](/images/vscode-server-interface.png)
+![VS Code Interface](/images/Vscode-server-interface.png)
 
 ## Workshop Environment Setup
 
@@ -53,20 +53,49 @@ The VS Code environment has been pre-configured with:
 4. **Git**: For version control
 5. **Required Extensions**: AWS Toolkit and other helpful extensions
 
-## Database Connection
+## Configure Environment Variables
 
-The environment is already configured with environment variables for connecting to the PostgreSQL database:
+The VS Code Server environment needs to be configured with the database connection details and Bedrock credentials:
 
-- **DB_ENDPOINT**: The database endpoint
-- **DB_USERNAME**: The database username
-- **DB_PASSWORD**: The database password
-- **DB_NAME**: The database name (acme)
-- **PROD_DATABASE_URL**: The full connection string
+1. Open a terminal in VS Code Server (press `` Ctrl + ` ``)
 
-You can verify these environment variables by running the following command in the terminal:
+2. Run the following commands to set up environment variables:
 
 ```bash
-env | grep -E "DB_|PROD_DATABASE_URL"
+# Get database endpoint from SSM Parameter Store
+export DB_ENDPOINT=$(aws ssm get-parameter --name /rds/db-endpoint --query 'Parameter.Value' --output text)
+
+# Get database username from SSM Parameter Store
+export DB_USERNAME=$(aws ssm get-parameter --name /rds/db-username --query 'Parameter.Value' --output text)
+
+# Get database password from SSM Parameter Store (with decryption)
+export DB_PASSWORD=$(aws ssm get-parameter --name /rds/db-password --query 'Parameter.Value' --output text --with-decryption)
+
+# Set database name
+export DB_NAME="acme"
+
+# Set PostgreSQL password environment variable
+export PGPASSWORD=$DB_PASSWORD
+
+# Get full connection string from SSM Parameter Store
+export PROD_DATABASE_URL=$(aws ssm get-parameter --name /rds/connection-string --query 'Parameter.Value' --output text --with-decryption)
+
+# Get Bedrock credentials from SSM Parameter Store
+export BEDROCK_ACCESS_KEY_ID=$(aws ssm get-parameter --name /bedrock/access-key-id --query 'Parameter.Value' --output text)
+export BEDROCK_SECRET_ACCESS_KEY=$(aws ssm get-parameter --name /bedrock/secret-access-key --query 'Parameter.Value' --output text --with-decryption)
+
+# Add these to .bashrc for persistence
+echo "export DB_ENDPOINT='$DB_ENDPOINT'" >> ~/.bashrc
+echo "export DB_USERNAME='$DB_USERNAME'" >> ~/.bashrc
+echo "export DB_PASSWORD='$DB_PASSWORD'" >> ~/.bashrc
+echo "export DB_NAME='acme'" >> ~/.bashrc
+echo "export PGPASSWORD='$DB_PASSWORD'" >> ~/.bashrc
+echo "export PROD_DATABASE_URL='$PROD_DATABASE_URL'" >> ~/.bashrc
+echo "export BEDROCK_ACCESS_KEY_ID='$BEDROCK_ACCESS_KEY_ID'" >> ~/.bashrc
+echo "export BEDROCK_SECRET_ACCESS_KEY='$BEDROCK_SECRET_ACCESS_KEY'" >> ~/.bashrc
+
+# Verify the environment variables
+env | grep -E "DB_|PROD_DATABASE_URL|BEDROCK_"
 ```
 
 ## Important Notes

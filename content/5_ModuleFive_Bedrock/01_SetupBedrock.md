@@ -79,7 +79,42 @@ Once access has been granted, let's verify that you can see the individual model
 
 ![Model Playground](/images/bedrock-model-playground.png)
 
-## Step 4: Understanding Model Pricing
+## Step 4: Configure Superblocks to Connect with AWS Bedrock
+
+Now that you have enabled access to Amazon Bedrock models, you need to configure your Superblocks application to connect with AWS Bedrock using the IAM credentials we set up earlier:
+
+1. First, let's retrieve your AWS Bedrock credentials from the environment variables:
+
+```bash
+# Display your Bedrock credentials for easy copying
+echo "AWS Access Key ID: $BEDROCK_ACCESS_KEY_ID"
+echo "AWS Secret Access Key: $BEDROCK_SECRET_ACCESS_KEY"
+echo "AWS Region: us-east-1"  # Default region for this workshop
+```
+
+2. Copy these credentials as you'll need them in the next steps.
+
+3. In the Superblocks application:
+   - Navigate to the **Settings** section
+   - Select **Integrations** from the left sidebar
+   - Click the **+ Add Integration** button
+   - Search for and select **AWS**
+
+4. In the AWS integration form:
+   - **Name**: Enter "AWS Bedrock"
+   - **AWS Access Key ID**: Paste the value of `BEDROCK_ACCESS_KEY_ID` you copied earlier
+   - **AWS Secret Access Key**: Paste the value of `BEDROCK_SECRET_ACCESS_KEY` you copied earlier
+   - **AWS Region**: Enter "us-east-1" (or the region where you enabled Bedrock models)
+   - Click **Test Connection** to verify the credentials work
+   - Click **Save** to create the integration
+
+![Superblocks AWS Integration](/images/superblocks-aws-integration.png)
+
+5. Verify the integration is working:
+   - You should see a green checkmark next to your new AWS integration
+   - This integration will now be available to use in your Superblocks applications
+
+## Step 5: Understanding Model Pricing
 
 Before proceeding, it's important to understand the pricing model for Amazon Bedrock:
 

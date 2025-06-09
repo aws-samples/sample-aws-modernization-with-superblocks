@@ -62,8 +62,7 @@ return prepare_data_for_llm(get_input_data.output)
    - Add a new Python step
    - Name it "send_to_bedrock"
    - Add the following code to interact with AWS Bedrock
-   - Replace the placeholder values with your actual AWS credentials (aws_region, aws_access_key, and aws_secret_key)
-   - The default model is `amazon.nova-lite-v1:0`, but you can test other models if provisioned
+   - Use the AWS integration you created in the previous section
 
 ```python
 import boto3
@@ -74,12 +73,12 @@ def send_to_bedrock(text_data):
     # Truncate data
     text_data = text_data[:5000]
 
-    # Create client
+    # Create client using the AWS integration you set up
     client = boto3.client(
         service_name="bedrock-runtime",
-        region_name="region-placeholder",
-        aws_access_key_id="access-key-placeholder",
-        aws_secret_access_key="secret-key-placeholder",
+        region_name="us-east-1",  # Use the region where you enabled Bedrock models
+        aws_access_key_id=env.BEDROCK_ACCESS_KEY_ID,  # Use the environment variable
+        aws_secret_access_key=env.BEDROCK_SECRET_ACCESS_KEY,  # Use the environment variable
     )
 
     # Simple prompt for bullet points
@@ -116,6 +115,14 @@ Format as JSON."""
 # Call the function
 return send_to_bedrock(simplify_input_data.output)
 ```
+
+{{% notice tip %}}
+If you need to check your Bedrock credentials again, you can run this command in your terminal:
+```bash
+echo "AWS Access Key ID: $BEDROCK_ACCESS_KEY_ID"
+echo "AWS Secret Access Key: $BEDROCK_SECRET_ACCESS_KEY"
+```
+{{% /notice %}}
 
 ### Step 4: Format the Results
 
