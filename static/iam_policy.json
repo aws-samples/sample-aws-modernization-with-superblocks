@@ -134,15 +134,7 @@
           "Sid": "BedrockPermissions",
           "Effect": "Allow",
           "Action": [
-              "bedrock:InvokeModel",
-              "bedrock:ListFoundationModels",
-              "bedrock:GetFoundationModel",
-              "bedrock:ListCustomModels",
-              "bedrock:GetCustomModel",
-              "bedrock:ListModelInvocationLoggingConfigurations",
-              "bedrock:ListPromptsForCustomModel",
-              "bedrock:ListPromptTemplates",
-              "bedrock:GetPromptTemplate"
+              "bedrock:*"
           ],
           "Resource": "*"
       },
