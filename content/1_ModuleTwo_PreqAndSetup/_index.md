@@ -4,8 +4,6 @@ chapter: true
 weight: 2
 ---
 
-# Workshop Overview
-
 Welcome to the Superblocks workshop! Together, we'll build a full-stack AI application for Acme Incorporated. You'll create a modern, interactive dashboard featuring:
 
 - Dynamic data filtering

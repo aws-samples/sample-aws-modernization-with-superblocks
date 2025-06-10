@@ -119,9 +119,9 @@ export PGPASSWORD=$DB_PASSWORD
 # Get full connection string from SSM Parameter Store
 export PROD_DATABASE_URL=$(aws ssm get-parameter --name /rds/connection-string --query 'Parameter.Value' --output text --with-decryption)
 
-# Get Bedrock credentials from SSM Parameter Store
-export BEDROCK_ACCESS_KEY_ID=$(aws ssm get-parameter --name /bedrock/access-key-id --query 'Parameter.Value' --output text)
-export BEDROCK_SECRET_ACCESS_KEY=$(aws ssm get-parameter --name /bedrock/secret-access-key --query 'Parameter.Value' --output text --with-decryption)
+# Get Bedrock credentials from AWS Secrets Manager
+export BEDROCK_ACCESS_KEY_ID=$(aws secretsmanager get-secret-value --secret-id MyUserAccessKey --query 'SecretString' --output text | jq -r '.AccessKeyId')
+export BEDROCK_SECRET_ACCESS_KEY=$(aws secretsmanager get-secret-value --secret-id MyUserAccessKey --query 'SecretString' --output text | jq -r '.SecretAccessKey')
 
 # Add these to .bashrc for persistence
 echo "export DB_ENDPOINT='$DB_ENDPOINT'" >> ~/.bashrc

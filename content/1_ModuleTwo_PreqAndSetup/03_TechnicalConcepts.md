@@ -4,8 +4,6 @@ chapter: true
 weight: 3
 ---
 
-# Technical Concepts
-
 ## Superblocks Architecture
 
 Superblocks uses a modern three-plane architecture:
@@ -44,13 +42,13 @@ You can deploy Superblocks in two ways, choosing where to run the compute plane 
 The following diagram shows how the On-Premise Agent integrates with your infrastructure:
 
 
-[On-Premise Agent Architecture](/images/opa-diagram.png)
+![On-Premise Agent Architecture](/images/opa-diagram.png)
 
 ### Request Flow
 
 The following diagram shows the request flow when using the On-Premise Agent:
 
-[Request Flow](/images/opa-flow-diagram.png)
+![Request Flow](/images/opa-flow-diagram.png)
 
 ### Executing Requests via the On-Premise Agent
 
