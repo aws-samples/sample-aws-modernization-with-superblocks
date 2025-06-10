@@ -1,7 +1,7 @@
 ---
 title: "Workshop Overview"
 chapter: true
-weight: 1
+weight: 2
 ---
 
 # Workshop Overview

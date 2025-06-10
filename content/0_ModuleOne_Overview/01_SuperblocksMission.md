@@ -16,14 +16,10 @@ By combining AI-powered development with enterprise-grade security, Superblocks 
 
 ## Platform Overview
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/6mWT0ZPhq-k" 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-    title="Superblocks Platform Overview" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-  </iframe>
-</div>
+## Platform Overview
+
+::video{id=6mWT0ZPhq-k type=youTube autoplay=true}
+
 
 ## Next Steps
 

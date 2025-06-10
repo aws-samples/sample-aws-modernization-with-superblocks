@@ -1,7 +1,7 @@
 ---
 title: "Building the Frontend"
 chapter: true
-weight: 3
+weight: 4
 ---
 
 # Building the Frontend

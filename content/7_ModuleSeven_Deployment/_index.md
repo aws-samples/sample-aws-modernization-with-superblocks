@@ -1,7 +1,7 @@
 ---
 title: "Deployment"
 chapter: true
-weight: 7
+weight: 8
 ---
 
 # Deploying Your Application

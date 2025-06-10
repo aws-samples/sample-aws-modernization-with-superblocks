@@ -1,7 +1,7 @@
 ---
 title: "Cleanup"
 chapter: true
-weight: 9
+weight: 10
 ---
 
 # Cleaning Up Resources

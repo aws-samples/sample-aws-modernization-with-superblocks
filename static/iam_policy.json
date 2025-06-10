@@ -105,7 +105,9 @@
               "secretsmanager:GetSecretValue",
               "secretsmanager:PutSecretValue",
               "secretsmanager:UpdateSecret",
-              "secretsmanager:TagResource"
+              "secretsmanager:TagResource",
+              "secretsmanager:DescribeSecret",
+              "secretsmanager:ListSecrets"
           ],
           "Resource": "arn:aws:secretsmanager:*:*:secret:*"
       },
@@ -127,6 +129,22 @@
               "arn:aws:ssm:*:*:document/*",
               "arn:aws:ssm:*:*:parameter/*"
           ]
+      },
+      {
+          "Sid": "BedrockPermissions",
+          "Effect": "Allow",
+          "Action": [
+              "bedrock:InvokeModel",
+              "bedrock:ListFoundationModels",
+              "bedrock:GetFoundationModel",
+              "bedrock:ListCustomModels",
+              "bedrock:GetCustomModel",
+              "bedrock:ListModelInvocationLoggingConfigurations",
+              "bedrock:ListPromptsForCustomModel",
+              "bedrock:ListPromptTemplates",
+              "bedrock:GetPromptTemplate"
+          ],
+          "Resource": "*"
       },
       {
           "Sid": "CloudWatchLogPermissions",

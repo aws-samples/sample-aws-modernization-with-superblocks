@@ -154,15 +154,77 @@ Resources:
       GroupDescription: Security group for RDS
       VpcId: !GetAtt DefaultVPCLookup.VpcId
       SecurityGroupIngress:
+        # Allow access from VPC CIDR
         - IpProtocol: tcp
           FromPort: 5432
           ToPort: 5432
           CidrIp: !GetAtt DefaultVPCLookup.CidrBlock
+        # Allow access from Superblocks cloud IP addresses
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 107.22.228.244/32
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 3.93.101.124/32
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 34.209.17.50/32
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 34.227.169.51/32
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 35.155.119.178/32
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 35.171.116.214/32
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 35.86.18.137/32
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 44.232.244.93/32
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 54.148.33.216/32
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 13.50.50.66/32
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 13.50.81.30/32
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 13.51.231.18/32
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 52.17.136.219/32
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 54.220.65.107/32
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          CidrIp: 99.81.159.1/32
       SecurityGroupEgress:
         - IpProtocol: tcp
           FromPort: 0
           ToPort: 65535
-          CidrIp: !GetAtt DefaultVPCLookup.CidrBlock
+          CidrIp: 0.0.0.0/0
 
   DBSubnetGroup:
     Type: AWS::RDS::DBSubnetGroup
@@ -182,7 +244,7 @@ Resources:
       MasterUserPassword: !Join ['', ['{{resolve:secretsmanager:', !Ref RDSSecret, ':SecretString:password}}' ]]
       VPCSecurityGroups:
         - !Ref DBSecurityGroup
-      PubliclyAccessible: false
+      PubliclyAccessible: true
       BackupRetentionPeriod: 1
       MultiAZ: false
       DBSubnetGroupName: !Ref DBSubnetGroup

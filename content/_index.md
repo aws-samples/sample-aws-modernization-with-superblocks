@@ -6,7 +6,7 @@ weight: 1
 
 # Building a Full-Stack AI Application with AWS and Superblocks
 
-![Superblocks Logo](/images/superblocks-logo.png)
+:image[Superblocks Logo]{src="/images/superblocks-logo.png" width=400 height=226}
 
 ## Welcome
 
@@ -36,4 +36,4 @@ Your dashboard application will feature:
 
 - **Duration**: 2-3 hours across multiple sections
 - **Cost**: AWS Bedrock and RDS usage will incur charges. Superblocks offers a free 14-day trial.
-- **Clean-up**: Follow the clean-up instructions after completion to avoid additional costs. [REMINDER TO ADD CLEAN-UP SECTION]
+- **Clean-up**: Follow the [Clean Up](/9_ModuleNine_Cleanup) instructions after completion to avoid additional costs.

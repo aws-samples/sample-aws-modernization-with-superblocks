@@ -43,17 +43,14 @@ You can deploy Superblocks in two ways, choosing where to run the compute plane 
 
 The following diagram shows how the On-Premise Agent integrates with your infrastructure:
 
-<div style="position: relative; padding-bottom: 2%; max-width: 800px; margin: 0 auto;">
-  <img src="/images/opa-diagram.png" alt="On-Premise Agent Architecture" style="width: 100%; height: auto;"/>
-</div>
+
+[On-Premise Agent Architecture](/images/opa-diagram.png)
 
 ### Request Flow
 
 The following diagram shows the request flow when using the On-Premise Agent:
 
-<div style="position: relative; padding-bottom: 2%; max-width: 800px; margin: 0 auto;">
-  <img src="/images/opa-flow-diagram.png" alt="Request Flow" style="width: 100%; height: auto;"/>
-</div>
+[Request Flow](/images/opa-flow-diagram.png)
 
 ### Executing Requests via the On-Premise Agent
 

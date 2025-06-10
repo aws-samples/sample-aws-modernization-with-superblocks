@@ -47,9 +47,7 @@ Before deploying the templates, ensure the following:
 
    ![Acknowledge IAM Roles](/images/cloudformation-acknowledge-iam.png)  
 
-8. Click **Submit** to start the deployment.  
-
-   ![Create Stack Process](/images/cloudformation-create-process.png)
+8. Click **Submit** to start the deployment.
 
 ## Step 2: Deploy the RDS Database Template  
 
@@ -86,11 +84,11 @@ Before deploying the templates, ensure the following:
 
 5. Enter the password from the CloudFormation outputs when prompted
 
-   ![VS Code Login Screen](/images/vscode-server-login.png)
+   ![VS Code Login Screen](/images/Vscode-server-login.png)
 
 6. You should now have access to the VS Code Server environment
 
-   ![VS Code Interface](/images/vscode-server-interface.png)
+   ![VS Code Interface](/images/Vscode-server-interface.png)
 
 ---
 
