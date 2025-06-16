@@ -1,10 +1,8 @@
 ---
-title: "Cleanup"
+title: "Cleaning Up Resources"
 chapter: true
 weight: 10
 ---
-
-# Cleaning Up Resources
 
 After completing this workshop, it's important to clean up the resources you've created to avoid incurring any unexpected charges. This module will guide you through the process of properly removing all resources created during the workshop.
 

@@ -4,9 +4,7 @@ chapter: true
 weight: 1
 ---
 
-# Building a Full-Stack AI Application with AWS and Superblocks
-
-:image[Superblocks Logo]{src="/images/superblocks-logo.png" width=400 height=226}
+:image[Superblocks Logo]{src="/static/images/superblocks-logo.png" width="400" height="76"}
 
 ## Welcome
 

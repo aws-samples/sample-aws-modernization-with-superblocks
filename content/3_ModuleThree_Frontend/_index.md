@@ -4,8 +4,6 @@ chapter: true
 weight: 4
 ---
 
-# Building the Frontend
-
 ## What You'll Learn
 
 In this module, you'll build the frontend of the Acme Incorporated dashboard. You'll:

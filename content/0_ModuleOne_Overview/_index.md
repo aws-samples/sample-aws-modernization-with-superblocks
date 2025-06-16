@@ -1,10 +1,8 @@
 ---
-title: "Overview"
+title: "Prerequisites and Setup"
 chapter: true
 weight: 1
 ---
-
-# Prerequisites and Setup
 
 ## What You'll Learn
 

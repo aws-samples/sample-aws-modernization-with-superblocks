@@ -4,8 +4,6 @@ chapter: true
 weight: 5
 ---
 
-# Building the Backend
-
 ## What You'll Learn
 
 In this module, you'll create the backend services that power your Acme Incorporated dashboard. You'll:

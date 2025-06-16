@@ -4,8 +4,6 @@ chapter: true
 weight: 3
 ---
 
-# Getting Started
-
 To start the workshop, select one of the following options:
 
 * [Attending an AWS hosted event](./aws_event)

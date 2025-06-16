@@ -1,10 +1,8 @@
 ---
-title: "Next Steps"
+title: "Congratulations!"
 chapter: true
 weight: 9
 ---
-
-# Congratulations!
 
 You did it! You've completed the workshop and built an enterprise-grade dashboard application. Your Acme Incorporated dashboard now has:
 - A production-ready frontend with dynamic visualizations

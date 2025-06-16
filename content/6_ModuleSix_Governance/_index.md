@@ -4,8 +4,6 @@ chapter: true
 weight: 7
 ---
 
-# Governance & Access Controls
-
 ## What You'll Learn
 
 In this next module, you'll secure your Acme Incorporated dashboard with enterprise-grade access controls. You'll:

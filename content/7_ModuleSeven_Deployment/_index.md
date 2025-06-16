@@ -1,10 +1,8 @@
 ---
-title: "Deployment"
+title: "Deploying Your Application"
 chapter: true
 weight: 8
 ---
-
-# Deploying Your Application
 
 ## What You'll Learn
 

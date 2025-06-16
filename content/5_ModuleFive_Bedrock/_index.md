@@ -1,10 +1,8 @@
 ---
-title: "Integrating with Amazon Bedrock"
+title: "Enhancing Your Application with Amazon Bedrock"
 chapter: true
 weight: 6
 ---
-
-# Enhancing Your Application with Amazon Bedrock
 
 ## What You'll Learn
 
