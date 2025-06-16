@@ -1,12 +1,12 @@
 ---
-title: "Setting up AWS Bedrock"
+title: "Setting up Amazon Bedrock"
 chapter: true
 weight: 1
 ---
 
-# Setting up AWS Bedrock
+# Setting up Amazon Bedrock
 
-Let's configure the connection between your Superblocks application and AWS Bedrock. In this section, you'll learn how to enable access to Amazon Bedrock and request access to specific foundation models that we'll use in our application.
+Let's configure the connection between your Superblocks application and Amazon Bedrock. In this section, you'll learn how to enable access to Amazon Bedrock and request access to specific foundation models that we'll use in our application.
 
 ## Step 1: Navigate to the Amazon Bedrock Console
 
@@ -79,9 +79,9 @@ Once access has been granted, let's verify that you can see the individual model
 
 ![Model Playground](/images/bedrock-model-playground.png)
 
-## Step 4: Configure Superblocks to Connect with AWS Bedrock
+## Step 4: Configure Superblocks to Connect with Amazon Bedrock
 
-Now that you have enabled access to Amazon Bedrock models, you need to configure your Superblocks application to connect with AWS Bedrock using the IAM credentials we set up earlier:
+Now that you have enabled access to Amazon Bedrock models, you need to configure your Superblocks application to connect with Amazon Bedrock using the AWS Identity and Access Management (IAM) credentials we set up earlier:
 
 1. First, let's retrieve your AWS Bedrock credentials from the environment variables:
 
@@ -101,7 +101,7 @@ echo "AWS Region: us-east-1"  # Default region for this workshop
    - Search for and select **AWS**
 
 4. In the AWS integration form:
-   - **Name**: Enter "AWS Bedrock"
+   - **Name**: Enter "Amazon Bedrock"
    - **AWS Access Key ID**: Paste the value of `BEDROCK_ACCESS_KEY_ID` you copied earlier
    - **AWS Secret Access Key**: Paste the value of `BEDROCK_SECRET_ACCESS_KEY` you copied earlier
    - **AWS Region**: Enter "us-east-1" (or the region where you enabled Bedrock models)
@@ -128,6 +128,6 @@ For the most current pricing information, refer to the [Amazon Bedrock pricing p
 
 ## Next Steps
 
-Now that you have successfully enabled access to Amazon Bedrock models, you're ready to integrate them with your Superblocks application. In the next section, we'll configure the connection between Superblocks and AWS Bedrock.
+Now that you have successfully enabled access to Amazon Bedrock models, you're ready to integrate them with your Superblocks application. In the next section, we'll configure the connection between Superblocks and Amazon Bedrock.
 
 

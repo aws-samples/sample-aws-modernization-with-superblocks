@@ -56,12 +56,12 @@ def prepare_data_for_llm(input_data):
 return prepare_data_for_llm(get_input_data.output)
 ```
 
-### Step 3: Connect to AWS Bedrock
+### Step 3: Connect to Amazon Bedrock
 
 1. Create the Bedrock integration:
    - Add a new Python step
    - Name it "send_to_bedrock"
-   - Add the following code to interact with AWS Bedrock
+   - Add the following code to interact with Amazon Bedrock
    - Use the AWS integration you created in the previous section
 
 ```python
@@ -209,8 +209,8 @@ Congratulations! You've created a powerful inventory analysis feature that:
 
 ## Working with AWS Services using boto3
 
-The boto3 library is AWS's SDK for Python, providing a powerful interface to interact with any AWS service programmatically. Just as we used boto3 to connect with Bedrock above, you can use the same pattern to interact with other AWS services like S3, DynamoDB, or Lambda, making it easy to build comprehensive AWS applications.
+The boto3 library is AWS's SDK for Python, providing a powerful interface to interact with any AWS service programmatically. Just as we used boto3 to connect with Amazon Bedrock above, you can use the same pattern to interact with other AWS services like Amazon Simple Storage Service (Amazon S3), Amazon DynamoDB, or AWS Lambda, making it easy to build comprehensive AWS applications.
 
 ## Next Steps
 
-In the next section, we'll add a UI component to display the recommendations generated from Bedrock. 🚀
+In the next section, we'll add a UI component to display the recommendations generated from Amazon Bedrock. 🚀
