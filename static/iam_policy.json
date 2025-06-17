@@ -109,7 +109,7 @@
               "secretsmanager:DescribeSecret",
               "secretsmanager:ListSecrets"
           ],
-          "Resource": "arn:aws:secretsmanager:*:*:secret:*"
+          "Resource": "arn:aws:secretsmanager:*"
       },
       {
           "Sid": "SSMPermissions",
