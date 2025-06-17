@@ -109,6 +109,11 @@
               "secretsmanager:DescribeSecret",
               "secretsmanager:ListSecrets"
           ],
+          "Resource": [
+              "arn:aws:secretsmanager:us-west-2:{{.AccountId}}:secret:superblocks-rds-template-rds-credentials-*",
+              "arn:aws:secretsmanager:us-west-2:{{.AccountId}}:secret:VSCodeServer-*",
+              "arn:aws:secretsmanager:us-west-2:{{.AccountId}}:secret:MyUserAccessKey-*"
+    ]
           "Resource": "arn:aws:secretsmanager:*"
       },
       {
