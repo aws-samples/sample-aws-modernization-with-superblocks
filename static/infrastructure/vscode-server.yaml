@@ -207,7 +207,7 @@ Resources:
     Type: AWS::SecretsManager::Secret
     Properties:
       Name: MyUserAccessKey
-      Description: 'Access key for Suerblocks_User'
+      Description: 'Access key for Superblocks_User'
 
   LambdaExecutionRole:
     Type: AWS::IAM::Role
