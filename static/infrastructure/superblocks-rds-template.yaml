@@ -291,18 +291,3 @@ Outputs:
     Value: !GetAtt RDSInstance.Endpoint.Address
     Export:
       Name: RDS-DBEndpoint
-
-  DBSecretArn:
-    Description: The ARN of the database credentials secret
-    Value: !Ref RDSSecret
-    Export:
-      Name: RDS-SecretArn
-
-  ConnectionString:
-    Description: PostgreSQL connection string.
-    Value: !Sub 
-      - 'postgresql://${Username}:${Password}@${RDSInstance.Endpoint.Address}:5432/acme'
-      - Username: !Join ['', ['{{resolve:secretsmanager:', !Ref RDSSecret, ':SecretString:username}}' ]]
-        Password: !Join ['', ['{{resolve:secretsmanager:', !Ref RDSSecret, ':SecretString:password}}' ]]
-    Export:
-      Name: RDS-ConnectionString
