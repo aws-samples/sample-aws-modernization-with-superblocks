@@ -4,8 +4,6 @@ chapter: true
 weight: 1
 ---
 
-# Build Dropdown APIs
-
 Let's create two APIs to populate your filter dropdowns with paper categories and locations.
 
 ## Step 1: Create the Categories API

@@ -4,8 +4,6 @@ chapter: true
 weight: 2
 ---
 
-# Creating the Filter Section
-
 Let's add filters to help users interact with the dashboard data.
 
 ## Step 1: Create the Filter Container

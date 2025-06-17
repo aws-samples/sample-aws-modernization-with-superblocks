@@ -4,8 +4,6 @@ chapter: true
 weight: 1
 ---
 
-# Deploying Your Application
-
 Let's deploy your dashboard to production using Superblocks' simple deployment process.
 
 ## Understanding Deployment

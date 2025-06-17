@@ -4,8 +4,6 @@ chapter: true
 weight: 2
 ---
 
-# Creating the Inventory Data API
-
 Let's create a dynamic API that filters inventory data based on your dropdown selections.
 
 ## Step 1: Create the Inventory API

@@ -4,8 +4,6 @@ chapter: true
 weight: 3
 ---
 
-# Building the UI Component
-
 Let's create a UI component to display our Bedrock-powered inventory recommendations.
 
 ## Step 1: Add the Analysis Button

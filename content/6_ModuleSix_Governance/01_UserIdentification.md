@@ -4,8 +4,6 @@ chapter: true
 weight: 1
 ---
 
-# User Identification
-
 Let's display user information in your dashboard to help users identify who's logged in.
 
 ## Step 1: Set Up User Display

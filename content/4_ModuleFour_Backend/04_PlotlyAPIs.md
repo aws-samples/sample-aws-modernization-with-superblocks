@@ -4,9 +4,6 @@ chapter: true
 weight: 4
 ---
 
-# Creating Plotly Visualization APIs
-
-
 Let's create two interactive Plotly charts: a location-based sales chart and a monthly trends visualization.
 
 ## Step 1: Create Location Sales Chart

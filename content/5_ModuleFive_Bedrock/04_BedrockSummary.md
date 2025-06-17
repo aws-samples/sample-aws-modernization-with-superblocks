@@ -4,8 +4,6 @@ chapter: true
 weight: 4
 ---
 
-# Bedrock Module Summary
-
 Congratulations! You've successfully integrated AWS Bedrock with your Superblocks application to populate automated insights about inventory status and reordering needs.
 
 ## Key Takeaways

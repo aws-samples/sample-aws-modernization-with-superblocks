@@ -4,8 +4,6 @@ chapter: true
 weight: 1
 ---
 
-# Setting up Amazon Bedrock
-
 Let's configure the connection between your Superblocks application and Amazon Bedrock. In this section, you'll learn how to enable access to Amazon Bedrock and request access to specific foundation models that we'll use in our application.
 
 ## Step 1: Navigate to the Amazon Bedrock Console

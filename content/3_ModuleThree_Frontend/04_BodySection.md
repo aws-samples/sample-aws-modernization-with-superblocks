@@ -4,8 +4,6 @@ chapter: true
 weight: 4
 ---
 
-# Creating the Body Section
-
 Let's create the main dashboard layout with a data table and charts.
 
 ## Step 1: Set Up the Layout

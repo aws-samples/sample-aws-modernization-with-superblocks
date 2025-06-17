@@ -48,7 +48,7 @@ Copy these values as you'll need them for the next step.
 
 **Configure Superblocks Connection**
 
-1. In Superblocks, go to Integrations
+1. In Superblocks, go to [Integrations](https://app.superblocks.com/integrations)
 2. Click "Add Integration"
 3. Search for and select "PostgreSQL"
 4. Enter your database details:

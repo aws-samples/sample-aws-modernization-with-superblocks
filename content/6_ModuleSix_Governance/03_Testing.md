@@ -4,8 +4,6 @@ chapter: true
 weight: 3
 ---
 
-# Testing Access Controls
-
 Let's verify your access controls work correctly by testing with different user scenarios.
 
 ## Step 1: Test in Preview

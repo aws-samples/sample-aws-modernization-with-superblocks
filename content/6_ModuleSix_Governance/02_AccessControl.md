@@ -4,8 +4,6 @@ chapter: true
 weight: 2
 ---
 
-# Implementing Access Control
-
 Let's secure your dashboard by controlling who can access sensitive features.
 
 ## Step 1: Add Access Rules

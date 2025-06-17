@@ -4,8 +4,6 @@ chapter: true
 weight: 1
 ---
 
-# Building the Header Navigation
-
 Let's create a navigation header for your dashboard.
 
 ## Step 1: Add the Navigation Bar

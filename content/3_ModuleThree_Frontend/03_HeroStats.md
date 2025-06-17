@@ -4,8 +4,6 @@ chapter: true
 weight: 3
 ---
 
-# Building the Hero Stats Section
-
 Let's add key metrics to your dashboard using hero stats.
 
 ## Step 1: Add the Stats Section

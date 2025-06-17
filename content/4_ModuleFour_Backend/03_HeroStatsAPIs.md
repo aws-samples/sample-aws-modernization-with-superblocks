@@ -4,8 +4,6 @@ chapter: true
 weight: 3
 ---
 
-# Implementing the Hero Stats APIs
-
 Let's create APIs for your hero stats using parallel execution to fetch multiple metrics simultaneously.
 
 ## Step 1: Set Up the API
