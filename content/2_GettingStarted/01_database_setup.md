@@ -31,7 +31,7 @@ Before running the setup script, you need to set up a Python environment:
 
 ```bash
 # Create virtual environment
-python -m venv venv
+python3 -m venv venv
 
 # Activate virtual environment
 # On macOS/Linux:
@@ -39,9 +39,6 @@ source venv/bin/activate
 
 # On Windows:
 # venv\Scripts\activate
-
-# Install required dependencies
-pip install -r requirements.txt
 
 # The environment variables should already be set from the previous section
 echo "DB_USER=$DB_USERNAME" > .env
