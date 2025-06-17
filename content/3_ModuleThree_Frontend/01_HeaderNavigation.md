@@ -4,14 +4,18 @@ chapter: true
 weight: 1
 ---
 
+## Step 1: Create an Application
+1. Click [Create](https://app.superblocks.com/home/create-application)
+2. Name your application
+
 Let's create a navigation header for your dashboard.
 
-## Step 1: Add the Navigation Bar
+## Step 2: Add the Navigation Bar
 1. Click "Browse templates" in the top section
 2. Search for "Navigation bar with left aligned nav items"
 3. Click "Insert"
 
-## Step 2: Add Your Logo (Optional)
+## Step 3: Add Your Logo (Optional)
 1. Remove the default logo:
    - Click the "Acme inc." icon
    - Click delete
