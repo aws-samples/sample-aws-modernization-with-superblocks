@@ -115,6 +115,7 @@ echo "AWS Region: us-east-1"  # Default region for this workshop
    - You should see a green checkmark next to your new AWS integration
    - This integration will now be available to use in your Superblocks applications
 
+
 ## Step 5: Understanding Model Pricing
 
 Before proceeding, it's important to understand the pricing model for Amazon Bedrock:

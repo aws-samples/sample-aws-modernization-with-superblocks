@@ -35,6 +35,7 @@ Let's create a navigation header for your dashboard.
    - Set the image URL in the properties panel
    - Adjust the size as needed
 
+
 ## Example
 
 Here's how your header should look after completion:

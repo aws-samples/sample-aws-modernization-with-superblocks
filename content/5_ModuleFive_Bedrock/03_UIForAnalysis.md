@@ -18,6 +18,7 @@ Let's create a UI component to display our Bedrock-powered inventory recommendat
    - Select "Run API"
    - Choose your "generate_insights" API
 
+
 ## Step 2: Configure the Modal
 
 1. Click the "Generate Inventory Insights" button to open the modal
@@ -27,6 +28,7 @@ Let's create a UI component to display our Bedrock-powered inventory recommendat
 3. Add a table component to display results:
    - Remove placeholder data
    - Add this binding: `{{generate_insights.response.recommendations}}`
+
 
 ## Step 3: Test the Feature
 

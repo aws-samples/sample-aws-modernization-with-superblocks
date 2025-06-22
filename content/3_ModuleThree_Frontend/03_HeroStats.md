@@ -18,6 +18,7 @@ Let's add key metrics to your dashboard using hero stats.
    - Search for "Hero stats with label below"
    - Click "Insert"
 
+
 ## Step 2: Configure Your Stats
 
 1. Add a fourth stat:
@@ -36,6 +37,7 @@ Let's add key metrics to your dashboard using hero stats.
 
    - Remove the percentage changes
    - Remove the parent container
+
 
 ## Example
 

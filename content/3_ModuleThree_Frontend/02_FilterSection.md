@@ -18,6 +18,7 @@ Let's add filters to help users interact with the dashboard data.
    - Set layout to "Horizontal"
    - Set "Vertical align" to "Bottom"
 
+
 ## Step 2: Add Filter Components
 
 1. Add dropdowns:

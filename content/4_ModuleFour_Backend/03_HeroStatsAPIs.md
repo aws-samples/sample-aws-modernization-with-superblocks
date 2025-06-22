@@ -19,6 +19,7 @@ Let's create APIs for your hero stats using parallel execution to fetch multiple
    - Select "Run Parallel"
    - Click the pen icon next to 'API1' and rename it to "get_herostats"
 
+
 ## Step 2: Configure Parallel Paths
 
 1. Add paths:
@@ -32,6 +33,7 @@ Let's create APIs for your hero stats using parallel execution to fetch multiple
    - Path2: "get_lowstock"
    - Path3: "get_pendingorders"
    - Path4: "get_ytdsales"
+
 
 ## Step 3: Add Your Queries
 

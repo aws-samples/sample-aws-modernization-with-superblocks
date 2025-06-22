@@ -140,6 +140,7 @@ If you encounter any issues during the database setup:
    - Make sure the script is executable (`chmod +x setup_db.sh`)
    - Check for any error messages in the script output
 
+
 ## Next Steps
 
 Now that you have set up the ACME Inc database, you're ready to proceed to [Module 1: Overview](/1_ModuleOne_Overview) and start building your Superblocks application.

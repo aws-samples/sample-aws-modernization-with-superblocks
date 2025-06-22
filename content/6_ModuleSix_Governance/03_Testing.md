@@ -19,6 +19,7 @@ Let's verify your access controls work correctly by testing with different user 
    - Check what you can see in the preview
    - Verify restrictions work
 
+
 ## Test Access Rules
 
 1. Test restricted access:
@@ -35,6 +36,7 @@ Let's verify your access controls work correctly by testing with different user 
    ```
 
    - Verify Invoices tab appears
+
 
 ## Security Checklist
 

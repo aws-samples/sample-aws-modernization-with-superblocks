@@ -15,6 +15,7 @@ Let's create the main dashboard layout with a data table and charts.
 2. Configure the column:
    - Set layout to "Horizontal"
 
+
 ## Step 2: Add Containers
 
 1. Left container (for table):
@@ -31,6 +32,7 @@ Let's create the main dashboard layout with a data table and charts.
    - Set layout to "Vertical"
    - Set height to "Fill Parent"
 
+
 ## Step 3: Add the Table
 
 1. In the left container:
@@ -43,6 +45,7 @@ Let's create the main dashboard layout with a data table and charts.
    - Remove the default header
    - Remove the search bar
    - Remove the download button
+
 
 ## Step 4: Add Charts
 
