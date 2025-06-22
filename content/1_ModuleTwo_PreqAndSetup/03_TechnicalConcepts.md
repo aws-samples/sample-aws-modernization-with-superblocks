@@ -28,14 +28,16 @@ Superblocks uses a modern three-plane architecture:
 You can deploy Superblocks in two ways, choosing where to run the compute plane based on your security needs:
 
 1. **Cloud (Default)**
-   - Compute plane runs in Superblocks' secure infrastructure
-   - Zero setup with instant deployment
-   - Data flows through but is never stored
+
+    - Compute plane runs in Superblocks' secure infrastructure
+    - Zero setup with instant deployment
+    - Data flows through but is never stored
 
 2. **On-premise Agent**
-   - Compute plane runs inside your VPC via lightweight agent
-   - All data processing stays in your network
-   - Open-source agent for full auditability
+
+    - Compute plane runs inside your VPC via lightweight agent
+    - All data processing stays in your network
+    - Open-source agent for full auditability
 
 ### On-Premise Agent Architecture
 

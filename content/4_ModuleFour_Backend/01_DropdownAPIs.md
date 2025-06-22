@@ -10,12 +10,12 @@ Let's create two APIs to populate your filter dropdowns with paper categories an
 
 1. Open API Builder:
 
-   - Press CMD/CTRL + U
+    - Press CMD/CTRL + U
 
 2. Create the API:
 
-   - Click "Add new API"
-   - Select your database integration
+    - Click "Add new API"
+    - Select your database integration
 
 3. Add the query:
 
@@ -26,16 +26,16 @@ Let's create two APIs to populate your filter dropdowns with paper categories an
 
 4. Test and save:
 
-   - Click "Run API"
-   - Click the pencil icon next to 'API1' and rename it to "get_papercategories"
+    - Click "Run API"
+    - Click the pencil icon next to 'API1' and rename it to "get_papercategories"
 
 
 ## Step 2: Create the Locations API
 
 1. Create the API:
 
-   - Click "Add new API"
-   - Search for and select your database integration (aws-superblocks-rds)
+    - Click "Add new API"
+    - Search for and select your database integration (aws-superblocks-rds)
 
 2. Add the query:
 
@@ -46,8 +46,8 @@ Let's create two APIs to populate your filter dropdowns with paper categories an
 
 3. Test and save:
 
-   - Click "Run API"
-   - Click the pencil icon next to 'API1' and rename it to "get_locations"
+    - Click "Run API"
+    - Click the pencil icon next to 'API1' and rename it to "get_locations"
 
 
 ## Step 3: Connect Your Dropdowns
@@ -56,16 +56,16 @@ Let's create two APIs to populate your filter dropdowns with paper categories an
 
 2. Configure Categories dropdown:
 
-   - Select the Paper Categories dropdown
-   - In Properties panel:
+    - Select the Paper Categories dropdown
+    - In Properties panel:
      - Find "Options"
      - Clear placeholder data
      - Add: {{get_papercategories.response}}
 
 3. Configure Locations dropdown:
 
-   - Select the Location dropdown
-   - In Properties panel:
+    - Select the Location dropdown
+    - In Properties panel:
      - Find "Options"
      - Clear placeholder data
      - Add: {{get_locations.response}}

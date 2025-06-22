@@ -11,14 +11,14 @@ Now that we have our Bedrock connection set up, let's create a powerful inventor
 
 1. Create a new API:
 
-   - Open the API Builder Tool (CMD/CTRL + U)
-   - Click the pencil icon next to API1 and rename it to "generate_insights"
+    - Open the API Builder Tool (CMD/CTRL + U)
+    - Click the pencil icon next to API1 and rename it to "generate_insights"
 
 2. Configure the data source:
 
-   - Search for your database integration
-   - Add a new SQL step and rename it to "get_input_data"
-   - Add the query below:
+    - Search for your database integration
+    - Add a new SQL step and rename it to "get_input_data"
+    - Add the query below:
 
 ```sql
 SELECT 
@@ -35,9 +35,9 @@ LEFT JOIN dm_operations.pending_orders po ON ils.inventory_id = po.inventory_id 
 
 1. Add data preprocessing:
 
-   - Add a new Python step after the SQL query
-   - Name the step "simplify_input_data"
-   - Add the code below to prepare data for the AI model:
+    - Add a new Python step after the SQL query
+    - Name the step "simplify_input_data"
+    - Add the code below to prepare data for the AI model:
 
 ```python
 def prepare_data_for_llm(input_data):
@@ -63,10 +63,10 @@ return prepare_data_for_llm(get_input_data.output)
 
 1. Create the Bedrock integration:
 
-   - Add a new Python step
-   - Name it "send_to_bedrock"
-   - Add the following code to interact with Amazon Bedrock
-   - Use the AWS integration you created in the previous section
+    - Add a new Python step
+    - Name it "send_to_bedrock"
+    - Add the following code to interact with Amazon Bedrock
+    - Use the AWS integration you created in the previous section
 
 ```python
 import boto3
@@ -132,9 +132,9 @@ echo "AWS Secret Access Key: $BEDROCK_SECRET_ACCESS_KEY"
 
 1. Process the AI response:
 
-   - Add a final Python step
-   - Name it "format_output"
-   - Add the code below to parse and structure the recommendations as JSON:
+    - Add a final Python step
+    - Name it "format_output"
+    - Add the code below to parse and structure the recommendations as JSON:
 
 ````python
 import json
@@ -192,13 +192,13 @@ return parse_bullet_recommendations(raw_output)
 
 1. Test your new API:
 
-   - Click **Run API** to execute the workflow
-   - Review the recommendations in the response
-   - Verify the data formatting and structure
+    - Click **Run API** to execute the workflow
+    - Review the recommendations in the response
+    - Verify the data formatting and structure
 
 2. Click the "Runs on" button (underneath the API name) and update the "Run on page load" value to "Never"
 
-   - This will prevent the API from running automatically when the page loads as we will be running it whenever a user clicks a button component
+    - This will prevent the API from running automatically when the page loads as we will be running it whenever a user clicks a button component
 
 {{% notice tip %}}
 When crafting prompts for foundation models:

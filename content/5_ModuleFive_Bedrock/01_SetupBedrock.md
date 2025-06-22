@@ -24,8 +24,8 @@ Before you can use Amazon Bedrock models, you need to request access to them. Fo
 
 3. You'll be presented with two options:
 
-   - **Enable all models** - Grants access to all available foundation models
-   - **Enable specific models** - Allows you to select which models to enable
+    - **Enable all models** - Grants access to all available foundation models
+    - **Enable specific models** - Allows you to select which models to enable
 
 4. For this workshop, select **Enable specific models** so we can choose exactly what we need.
 
@@ -33,8 +33,8 @@ Before you can use Amazon Bedrock models, you need to request access to them. Fo
 
 6. For this workshop, we only need to select two model providers:
 
-   - **Amazon** - Select the checkbox next to "Amazon" to get access to the **Amazon Nova** family of models, AWS's own state-of-the-art foundation models (including Amazon Nova Premier, Amazon Nova Pro, Amazon Nova Lite, and Amazon Nova Micro)
-   - **Anthropic** - Select the checkbox next to "Anthropic"
+    - **Amazon** - Select the checkbox next to "Amazon" to get access to the **Amazon Nova** family of models, AWS's own state-of-the-art foundation models (including Amazon Nova Premier, Amazon Nova Pro, Amazon Nova Lite, and Amazon Nova Micro)
+    - **Anthropic** - Select the checkbox next to "Anthropic"
 
    You can experiment with other models if you wish, but these two are sufficient for completing the workshop exercises.
 
@@ -42,8 +42,8 @@ Before you can use Amazon Bedrock models, you need to request access to them. Fo
 
 7. If you want to be more selective about specific models, you can expand each provider:
 
-   - Under **Anthropic**, select **Claude 3.5 Sonnet** - This is Anthropic's powerful model for complex reasoning and content generation
-   - Under **Amazon**, select **Amazon Nova Premier** - This is Amazon's most capable multimodal model for complex tasks
+    - Under **Anthropic**, select **Claude 3.5 Sonnet** - This is Anthropic's powerful model for complex reasoning and content generation
+    - Under **Amazon**, select **Amazon Nova Premier** - This is Amazon's most capable multimodal model for complex tasks
 
    However, selecting the entire provider (as in step 6) will give you access to all models from that provider, which gives you more flexibility during the workshop.
 
@@ -68,17 +68,17 @@ Once access has been granted, let's verify that you can see the individual model
 2. In the dropdown menu at the top, you should now be able to select from the models you've enabled
 3. Try selecting different models to verify access:
 
-   - **Anthropic Claude 3.5 Sonnet** - A powerful model for complex reasoning and content generation
-   - **Amazon Nova Premier** - Amazon's most capable multimodal model for complex tasks
+    - **Anthropic Claude 3.5 Sonnet** - A powerful model for complex reasoning and content generation
+    - **Amazon Nova Premier** - Amazon's most capable multimodal model for complex tasks
 
 4. You can also use the compare mode to test how different models respond to the same prompt:
 
-   - Click the "Select model" button at the top of the playground
-   - Choose one of the models that have been granted access
-   - Enter a prompt in the text area
-   - Click "Run" to see the response
-   - Add another model for comparison by clicking "Add model" and selecting a different model
-   - This allows you to directly compare how different models handle the same prompt
+    - Click the "Select model" button at the top of the playground
+    - Choose one of the models that have been granted access
+    - Enter a prompt in the text area
+    - Click "Run" to see the response
+    - Add another model for comparison by clicking "Add model" and selecting a different model
+    - This allows you to directly compare how different models handle the same prompt
 
 ![Model Playground](/images/bedrock-model-playground.png)
 
@@ -99,26 +99,26 @@ echo "AWS Region: us-east-1"  # Default region for this workshop
 
 3. In the Superblocks application:
 
-   - Navigate to the **Settings** section
-   - Select **Integrations** from the left sidebar
-   - Click the **+ Add Integration** button
-   - Search for and select **AWS**
+    - Navigate to the **Settings** section
+    - Select **Integrations** from the left sidebar
+    - Click the **+ Add Integration** button
+    - Search for and select **AWS**
 
 4. In the AWS integration form:
 
-   - **Name**: Enter "Amazon Bedrock"
-   - **AWS Access Key ID**: Paste the value of `BEDROCK_ACCESS_KEY_ID` you copied earlier
-   - **AWS Secret Access Key**: Paste the value of `BEDROCK_SECRET_ACCESS_KEY` you copied earlier
-   - **AWS Region**: Enter "us-east-1" (or the region where you enabled Bedrock models)
-   - Click **Test Connection** to verify the credentials work
-   - Click **Save** to create the integration
+    - **Name**: Enter "Amazon Bedrock"
+    - **AWS Access Key ID**: Paste the value of `BEDROCK_ACCESS_KEY_ID` you copied earlier
+    - **AWS Secret Access Key**: Paste the value of `BEDROCK_SECRET_ACCESS_KEY` you copied earlier
+    - **AWS Region**: Enter "us-east-1" (or the region where you enabled Bedrock models)
+    - Click **Test Connection** to verify the credentials work
+    - Click **Save** to create the integration
 
 ![Superblocks AWS Integration](/images/superblocks-aws-integration.png)
 
 5. Verify the integration is working:
 
-   - You should see a green checkmark next to your new AWS integration
-   - This integration will now be available to use in your Superblocks applications
+    - You should see a green checkmark next to your new AWS integration
+    - This integration will now be available to use in your Superblocks applications
 
 
 ## Step 5: Understanding Model Pricing

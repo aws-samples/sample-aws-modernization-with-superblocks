@@ -9,16 +9,19 @@ weight: 1
 In this first module, you'll learn about:
 
 1. **Superblocks' Mission**
-   - Understanding Superblock's mission
-   - How Superblocks empowers developers
+
+    - Understanding Superblock's mission
+    - How Superblocks empowers developers
 
 2. **The DIY Development Trap**
-   - How custom tooling leads to technical debt
-   - Why internal platforms create endless maintenance
+
+    - How custom tooling leads to technical debt
+    - Why internal platforms create endless maintenance
 
 3. **Solution Overview**
-   - How Superblocks addresses these development challenges
-   - Key platform features and capabilities
+
+    - How Superblocks addresses these development challenges
+    - Key platform features and capabilities
 
 {{% notice info %}}
 This module provides the foundation for understanding why Superblocks is essential for modern enterprise application development. The concepts covered here will be applied throughout the workshop.

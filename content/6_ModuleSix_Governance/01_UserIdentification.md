@@ -10,14 +10,14 @@ Let's display user information in your dashboard to help users identify who's lo
 
 1. Find the user icon:
 
-   - Look in the top-right corner
-   - Click to select the icon component
+    - Look in the top-right corner
+    - Click to select the icon component
 
 2. Add the user's name:
 
-   - Open the Properties panel
-   - Find the "Label" field
-   - Add this JavaScript:
+    - Open the Properties panel
+    - Find the "Label" field
+    - Add this JavaScript:
 
    ```javascript
    {{Global.user.name}}

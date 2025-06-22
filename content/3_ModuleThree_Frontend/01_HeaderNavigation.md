@@ -21,19 +21,19 @@ Let's create a navigation header for your dashboard.
 
 1. Remove the default logo:
 
-   - Click the "Acme inc." icon
-   - Click delete
+    - Click the "Acme inc." icon
+    - Click delete
 
 2. Add your logo:
 
-   - Click "Add Component"
-   - Search for "Image"
-   - Select the image component
+    - Click "Add Component"
+    - Search for "Image"
+    - Select the image component
 
 3. Configure the image:
 
-   - Set the image URL in the properties panel
-   - Adjust the size as needed
+    - Set the image URL in the properties panel
+    - Adjust the size as needed
 
 
 ## Example

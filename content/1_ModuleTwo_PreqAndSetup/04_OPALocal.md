@@ -38,9 +38,9 @@ First, create a secure token for your local agent:
 2. Click **Create token**
 3. Configure the token:
 
-   - Name: "Local Development Agent"
-   - Type: **Agent key**
-   - Expiration: 90 days (default)
+    - Name: "Local Development Agent"
+    - Type: **Agent key**
+    - Expiration: 90 days (default)
 
 4. **Important**: Save the generated token securely - it cannot be viewed again
 
@@ -68,9 +68,9 @@ To connect your local databases or services:
 3. Click **Manage** (⋮ menu)
 4. Configure the connection:
 
-   - Host: Use `host.docker.internal` instead of `localhost`
-   - Port: Use the service's exposed port
-   - Credentials: Enter your local service credentials
+    - Host: Use `host.docker.internal` instead of `localhost`
+    - Port: Use the service's exposed port
+    - Credentials: Enter your local service credentials
 
 
 ## Verification

@@ -10,13 +10,13 @@ Let's secure your dashboard by controlling who can access sensitive features.
 
 1. Find the Invoices tab:
 
-   - Locate "Invoices" in the navigation
-   - Select to view its properties
+    - Locate "Invoices" in the navigation
+    - Select to view its properties
 
 2. Create visibility rule:
 
-   - Find "Visibility" under Layout
-   - Add this access check:
+    - Find "Visibility" under Layout
+    - Add this access check:
 
    ```javascript
    {{['John Smith', 'Sarah Johnson', 'Michael Lee'].includes(Global.user.name)}}
