@@ -7,14 +7,19 @@ weight: 4
 Let's create two interactive Plotly charts: a location-based sales chart and a monthly trends visualization.
 
 ## Step 1: Create Location Sales Chart
+
 1. Open API Builder:
+
    - Press CMD/CTRL + U
+
 2. Create the API:
+
    - Click "Add new API"
-   - Select your database integration
+   - Search for and select your database integration (aws-superblocks-rds)
    - Click the pen icon next to 'API1' and rename it to "location_chart"
 
 3. Add your query:
+
    ```sql
    SELECT location_name, SUM(total_amount) as total_sales
    FROM dm_operations.sales
@@ -23,6 +28,7 @@ Let's create two interactive Plotly charts: a location-based sales chart and a m
    ```
 
 Add a Python Function Step and add the below code:
+
    ```python
    import plotly.express as px
    import pandas as pd
@@ -51,12 +57,15 @@ Add a Python Function Step and add the below code:
 ```
 
 ## Step 2: Create Monthly Trends Chart
+
 1. Create the API:
+
    - Click "Add new API"
-   - Select your database integration
+   - Search for and select your database integration (aws-superblocks-rds)
    - Click the pen icon next to 'API1' and rename it to "monthly_trends"
 
 2. Add your query:
+
    ```sql
    SELECT
        DATE_TRUNC('month', sale_date) as month,
@@ -68,7 +77,7 @@ Add a Python Function Step and add the below code:
    ORDER BY month;
    ```
 
-5. Add a Python Function Step and add the below code:
+3. Add a Python Function Step and add the below code:
 
    ```python
    import plotly.graph_objects as go
@@ -125,16 +134,20 @@ Add a Python Function Step and add the below code:
    )
 
    return fig.to_json()
-```
+
+   ```
 
 ## Step 3: Connect Your Charts
+
 1. Set up location chart:
+
    - Select first chart component
    - Clear "Header"
    - Set "Definition" to "Plotly"
    - Set "Plotly chart JSON" to: {{location_chart.response}}
 
 2. Set up trends chart:
+
    - Select second chart component
    - Clear "Header"
    - Set "Definition" to "Plotly"
@@ -145,14 +158,19 @@ Your charts are interactive! Users can hover over points, zoom, and pan. If char
 {{% /notice %}}
 
 ## Testing
+
 1. Test rendering:
+
    - Check both charts appear
    - Verify data accuracy
    - Test hover tooltips
+
 2. Test interactions:
+
    - Try zooming in/out
    - Pan across the data
    - Click legend items
 
 ## Next Steps
+
 Now that your dashboard is working, let's integrate with AWS Bedrock.

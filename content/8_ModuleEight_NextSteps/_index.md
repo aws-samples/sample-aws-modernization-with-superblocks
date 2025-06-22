@@ -5,6 +5,7 @@ weight: 9
 ---
 
 You did it! You've completed the workshop and built an enterprise-grade dashboard application. Your Acme Incorporated dashboard now has:
+
 - A production-ready frontend with dynamic visualizations
 - Modern architecture with powerful, scalable APIs
 - AI-powered insights using AWS Bedrock
@@ -38,11 +39,13 @@ By subscribing to Superblocks through the AWS Marketplace, you'll get:
 In this workshop, you've just scratched the surface of what's possible with Amazon Bedrock and foundation models. Here are some resources to help you continue exploring:
 
 #### Amazon Bedrock Resources
+
 - 📚 [Amazon Bedrock Documentation](https://docs.aws.amazon.com/bedrock/)
 - 🎓 [Amazon Bedrock Workshop](https://catalog.workshops.aws/amazon-bedrock-workshop)
 - 💻 [Amazon Bedrock Sample Applications](https://github.com/aws-samples/amazon-bedrock-samples)
 
 #### Explore Amazon Nova Models
+
 - 🚀 [Amazon Nova Models Overview](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-nova.html)
 - 🧠 [Amazon Nova Prompt Engineering Guide](https://docs.aws.amazon.com/nova/latest/userguide/prompting.html)
 - 🔍 [Amazon Nova Use Cases](https://aws.amazon.com/bedrock/nova/)
@@ -54,17 +57,20 @@ In this workshop, you've just scratched the surface of what's possible with Amaz
 Here are some powerful features you can add to your application with Superblocks:
 
 #### 1. Enhanced Visualizations
+
 - Add predictive trend forecasting
 - Create interactive geographic heat maps
 - Design custom KPI widgets with alerts
 
 #### 2. Custom Integrations
+
 - Connect to your existing data sources
 - Enable real-time data streaming
 - Integrate with your business tools (Slack, Teams, etc.)
 - Set up automated webhook triggers
 
 #### 3. AI/ML Capabilities
+
 - Implement smart inventory predictions
 - Add natural language search
 - Create automated business insights
@@ -73,11 +79,13 @@ Here are some powerful features you can add to your application with Superblocks
 ## Resources to Help You Succeed
 
 #### Essential Superblocks Links
+
 - 📚 [Superblocks Documentation](https://docs.superblocks.com)
 - 🎓 [Superblocks Video Tutorials](https://superblocks.com/learn)
 - 💻 [Superblocks Sample Applications](https://superblocks.com/examples)
 
 #### Superblocks Developer Tools
+
 - 🔧 [Superblocks API Reference](https://docs.superblocks.com/api)
 - 🎨 [Superblocks Component Library](https://docs.superblocks.com/components)
 - 📝 [Superblocks Technical Blog](https://superblocks.com/blog)
@@ -85,6 +93,7 @@ Here are some powerful features you can add to your application with Superblocks
 ## Ready to Scale Your Success with Superblocks?
 
 Superblocks customers have seen remarkable results:
+
 - **60% faster** application development time
 - **80% reduction** in maintenance overhead
 - **3x increase** in developer productivity

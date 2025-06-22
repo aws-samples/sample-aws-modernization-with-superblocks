@@ -14,7 +14,7 @@ By combining AI-powered development with enterprise-grade security, Superblocks 
 
 ## Platform Overview
 
-::video{id=6mWT0ZPhq-k type=youTube autoplay=true}
+::video{id=6mWT0ZPhq-k type=youTube autoplay=false}
 
 
 ## Next Steps

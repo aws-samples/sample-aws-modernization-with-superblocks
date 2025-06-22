@@ -10,10 +10,12 @@ Now that we have our Bedrock connection set up, let's create a powerful inventor
 ### Step 1: Create the Inventory Analysis API
 
 1. Create a new API:
+
    - Open the API Builder Tool (CMD/CTRL + U)
    - Click the pencil icon next to API1 and rename it to "generate_insights"
 
 2. Configure the data source:
+
    - Search for your database integration
    - Add a new SQL step and rename it to "get_input_data"
    - Add the query below:
@@ -32,6 +34,7 @@ LEFT JOIN dm_operations.pending_orders po ON ils.inventory_id = po.inventory_id 
 ### Step 2: Process the Data
 
 1. Add data preprocessing:
+
    - Add a new Python step after the SQL query
    - Name the step "simplify_input_data"
    - Add the code below to prepare data for the AI model:
@@ -59,6 +62,7 @@ return prepare_data_for_llm(get_input_data.output)
 ### Step 3: Connect to Amazon Bedrock
 
 1. Create the Bedrock integration:
+
    - Add a new Python step
    - Name it "send_to_bedrock"
    - Add the following code to interact with Amazon Bedrock
@@ -127,6 +131,7 @@ echo "AWS Secret Access Key: $BEDROCK_SECRET_ACCESS_KEY"
 ### Step 4: Format the Results
 
 1. Process the AI response:
+
    - Add a final Python step
    - Name it "format_output"
    - Add the code below to parse and structure the recommendations as JSON:
@@ -186,14 +191,18 @@ return parse_bullet_recommendations(raw_output)
 ### Step 5: Test the Integration
 
 1. Test your new API:
+
    - Click **Run API** to execute the workflow
    - Review the recommendations in the response
    - Verify the data formatting and structure
+
 2. Click the "Runs on" button (underneath the API name) and update the "Run on page load" value to "Never"
+
    - This will prevent the API from running automatically when the page loads as we will be running it whenever a user clicks a button component
 
 {{% notice tip %}}
 When crafting prompts for foundation models:
+
 - Be specific about the format you want
 - Include examples when possible
 - Define clear constraints
@@ -202,6 +211,7 @@ When crafting prompts for foundation models:
 
 {{% notice success %}}
 Congratulations! You've created a powerful inventory analysis feature that:
+
 - Analyzes inventory data in real-time
 - Provides actionable transfer recommendations
 - Helps optimize stock levels across locations

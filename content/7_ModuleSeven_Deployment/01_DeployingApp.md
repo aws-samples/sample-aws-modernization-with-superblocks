@@ -9,6 +9,7 @@ Let's deploy your dashboard to production using Superblocks' simple deployment p
 ## Understanding Deployment
 
 When you deploy with Superblocks:
+
 - Your application runs on our Global Edge Network
 - Changes apply instantly worldwide
 - Users get fast access from anywhere
@@ -57,7 +58,8 @@ jobs:
 
 ### Command Line Deployment
 
-Superblocks also provides a CLI to deploy your application. This method works whether your tools are connected to git or not. 
+Superblocks also provides a CLI to deploy your application. This method works whether your tools are connected to git or not.
 
 ## Next Steps
+
 Congratulations! Your Acme Incorporated dashboard is now live and deployed! Let's look at what else you can do next.

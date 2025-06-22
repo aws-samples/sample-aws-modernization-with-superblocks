@@ -7,9 +7,11 @@ weight: 3
 Let's create a UI component to display our Bedrock-powered inventory recommendations.
 
 ## Step 1: Add the Analysis Button
+
 1. Add a button component next to the "Reset Filters" button and label it "Generate Inventory Insights"
 2. Adjust the width to "Fit Content"
 3. Configure the button's onClick event:
+
    - Select "Open/close modal"
    - Next to Modal, select "New Modal"
 4. Add another onClick event:
@@ -17,6 +19,7 @@ Let's create a UI component to display our Bedrock-powered inventory recommendat
    - Choose your "generate_insights" API
 
 ## Step 2: Configure the Modal
+
 1. Click the "Generate Inventory Insights" button to open the modal
 2. Adjust the modal settings:
    - Set width to "Large"
@@ -26,6 +29,7 @@ Let's create a UI component to display our Bedrock-powered inventory recommendat
    - Add this binding: `{{generate_insights.response.recommendations}}`
 
 ## Step 3: Test the Feature
+
 1. Preview your application
 2. Click the "Generate Inventory Insights" button
 3. Wait for the analysis to complete
@@ -33,6 +37,7 @@ Let's create a UI component to display our Bedrock-powered inventory recommendat
 5. Examine the visualization to identify at-risk products
 
 ## Example
+
 Here's how your analysis component should look:
 <br>
 <img src="/images/inventory-analysis-feature.png" width="700" height="350" />

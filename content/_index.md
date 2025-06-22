@@ -23,6 +23,7 @@ This workshop is ideal for developers, technical leaders, and solution architect
 ## What You'll Build
 
 Your dashboard application will feature:
+
 - Interactive inventory and sales visualizations
 - AI-powered analysis and forecasting using AWS Bedrock
 - Secure backend APIs and role-based access controls

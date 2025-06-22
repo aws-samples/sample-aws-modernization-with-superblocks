@@ -13,11 +13,11 @@ Your account must have the ability to have Administrative Access
 To set up the required resources for this workshop, you will need to deploy two CloudFormation templates:
 
 1. Download the :button[VS Code Server Template]{href="/static/infrastructure/vscode-server.yaml" action=download} CloudFormation Template
-2. Download the :button[RDS Database with Bedrock Template]{href="/static/infrastructure/superblocks-rds-bedrock-template.yaml" action=download} CloudFormation Template
+2. Download the :button[RDS Database with Bedrock Template]{href="/static/infrastructure/superblocks-rds-template.yaml" action=download} CloudFormation Template
 
 ---
 
-## Prerequisites  
+## Prerequisites
 
 Before deploying the templates, ensure the following:  
 
@@ -56,7 +56,7 @@ Before deploying the templates, ensure the following:
 
    ![Create Stack Button](/images/cloudformation-create-stack.png)  
 
-3. Click **Choose file**, select the `superblocks-rds-bedrock-template.yaml` file you downloaded, and click **Next**
+3. Click **Choose file**, select the `superblocks-rds-template.yaml` file you downloaded, and click **Next**
 4. Enter a **Stack Name** (e.g., `superblocks-rds-stack`) and click **Next**
 5. On the **Configure stack options** page, click **Next**
 6. Review the stack details and acknowledge the IAM role creation by checking the appropriate box

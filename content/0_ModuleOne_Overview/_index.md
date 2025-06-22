@@ -1,5 +1,5 @@
 ---
-title: "Prerequisites and Setup"
+title: "Workshop Overview"
 chapter: true
 weight: 1
 ---

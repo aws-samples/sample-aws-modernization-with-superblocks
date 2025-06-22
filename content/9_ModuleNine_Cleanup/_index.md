@@ -9,11 +9,13 @@ After completing this workshop, it's important to clean up the resources you've 
 ## What You'll Learn
 
 In this module, you'll:
+
 - Remove AWS Bedrock model access permissions
 - Delete any AWS resources created during the workshop
 - Clean up your Superblocks workspace (optional)
 
 ## Time to Complete
+
 This module should take approximately 10 minutes to complete.
 
 ## AWS Resources Cleanup
@@ -77,6 +79,7 @@ To verify that all resources have been properly cleaned up:
 Congratulations on completing the workshop and properly cleaning up your resources! We hope you found this workshop valuable and that you're excited about the possibilities of building with Superblocks and AWS Bedrock.
 
 If you're interested in learning more:
+
 - Explore the [AWS Bedrock documentation](https://docs.aws.amazon.com/bedrock/)
 - Check out the [Superblocks documentation](https://docs.superblocks.com)
 - Visit the [AWS Marketplace listing for Superblocks](https://aws.amazon.com/marketplace/pp/prodview-kllccta3zgs2q) to learn about subscription options

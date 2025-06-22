@@ -7,21 +7,29 @@ weight: 2
 Let's add filters to help users interact with the dashboard data.
 
 ## Step 1: Create the Filter Container
+
 1. Add a new section:
+
    - Click '+ Add Section' below the navigation bar
    - A new section with a column component will appear
+
 2. Configure the layout:
+
    - Set layout to "Horizontal"
    - Set "Vertical align" to "Bottom"
 
 ## Step 2: Add Filter Components
+
 1. Add dropdowns:
+
    - Click "Add Component" in the column
    - Add two dropdown components:
      - First dropdown: Label = "Paper Categories"
      - Second dropdown: Label = "Location"
      - Set both widths to "Fill Parent"
+
 2. Add buttons:
+
    - Add two button components:
      - First button: Label = "Submit"
      - Second button: Label = "Reset Filters"

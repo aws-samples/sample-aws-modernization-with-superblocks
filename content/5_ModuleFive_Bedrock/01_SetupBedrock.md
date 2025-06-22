@@ -93,12 +93,14 @@ echo "AWS Region: us-east-1"  # Default region for this workshop
 2. Copy these credentials as you'll need them in the next steps.
 
 3. In the Superblocks application:
+
    - Navigate to the **Settings** section
    - Select **Integrations** from the left sidebar
    - Click the **+ Add Integration** button
    - Search for and select **AWS**
 
 4. In the AWS integration form:
+
    - **Name**: Enter "Amazon Bedrock"
    - **AWS Access Key ID**: Paste the value of `BEDROCK_ACCESS_KEY_ID` you copied earlier
    - **AWS Secret Access Key**: Paste the value of `BEDROCK_SECRET_ACCESS_KEY` you copied earlier
@@ -109,6 +111,7 @@ echo "AWS Region: us-east-1"  # Default region for this workshop
 ![Superblocks AWS Integration](/images/superblocks-aws-integration.png)
 
 5. Verify the integration is working:
+
    - You should see a green checkmark next to your new AWS integration
    - This integration will now be available to use in your Superblocks applications
 
@@ -127,5 +130,3 @@ For the most current pricing information, refer to the [Amazon Bedrock pricing p
 ## Next Steps
 
 Now that you have successfully enabled access to Amazon Bedrock models, you're ready to integrate them with your Superblocks application. In the next section, we'll configure the connection between Superblocks and Amazon Bedrock.
-
-
