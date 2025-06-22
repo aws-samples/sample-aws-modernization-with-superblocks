@@ -37,9 +37,11 @@ First, create a secure token for your local agent:
 1. In Superblocks, navigate to **Organization Settings** → **Access Tokens**
 2. Click **Create token**
 3. Configure the token:
+
    - Name: "Local Development Agent"
    - Type: **Agent key**
    - Expiration: 90 days (default)
+
 4. **Important**: Save the generated token securely - it cannot be viewed again
 
 ### Step 2: Launch the Agent
@@ -65,6 +67,7 @@ To connect your local databases or services:
 2. Select your integration type
 3. Click **Manage** (⋮ menu)
 4. Configure the connection:
+
    - Host: Use `host.docker.internal` instead of `localhost`
    - Port: Use the service's exposed port
    - Credentials: Enter your local service credentials

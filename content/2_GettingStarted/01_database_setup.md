@@ -128,15 +128,18 @@ This database will be used throughout the workshop to build your Superblocks app
 If you encounter any issues during the database setup:
 
 1. **Connection Issues**:
+
    - Verify that your environment variables are set correctly
    - Check that the RDS instance is running and accessible
    - Ensure your security group allows connections from the VS Code Server
 
 2. **Permission Issues**:
+
    - Verify that you have the correct database credentials
    - Check that the database user has the necessary permissions
 
 3. **Script Execution Issues**:
+
    - Make sure the script is executable (`chmod +x setup_db.sh`)
    - Check for any error messages in the script output
 

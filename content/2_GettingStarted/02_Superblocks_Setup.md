@@ -52,6 +52,7 @@ Copy these values as you'll need them for the next step.
 2. Click "Add Integration"
 3. Search for and select "PostgreSQL"
 4. Enter your database details:
+
    - Integration Name: `aws-superblocks-rds`
    - Connection method: Form
    - Host: The DB_ENDPOINT value from the previous step
@@ -59,6 +60,7 @@ Copy these values as you'll need them for the next step.
    - Database: The DB_NAME value from the previous step
    - Username: The DB_USERNAME value from the previous step
    - Password: The DB_PASSWORD value from the previous step
+
 5. Click "Test Connection" to verify and click "Create"
 
 {{% notice warning %}}

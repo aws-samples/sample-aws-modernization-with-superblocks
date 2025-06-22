@@ -19,6 +19,7 @@ In this section, you'll learn how to access the cloud-based VS Code environment 
 
 1. Navigate to the **Event Outputs** section in the workshop portal
 2. Look for two important pieces of information:
+
    - **VSCODEURL**: Your unique VS Code server URL
    - **Password**: Your secure access credentials
 

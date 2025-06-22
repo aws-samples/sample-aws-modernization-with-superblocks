@@ -23,6 +23,7 @@ Before you can use Amazon Bedrock models, you need to request access to them. Fo
 2. You'll see a page with the heading "What is Model access?" explaining that to use Bedrock serverless models, account users with the correct IAM permissions must enable access to available Bedrock foundation models (FMs).
 
 3. You'll be presented with two options:
+
    - **Enable all models** - Grants access to all available foundation models
    - **Enable specific models** - Allows you to select which models to enable
 
@@ -31,6 +32,7 @@ Before you can use Amazon Bedrock models, you need to request access to them. Fo
 5. After selecting "Enable specific models", you'll see a list of available model providers. Click the **Collapse all** button at the top of the list to make selection easier.
 
 6. For this workshop, we only need to select two model providers:
+
    - **Amazon** - Select the checkbox next to "Amazon" to get access to the **Amazon Nova** family of models, AWS's own state-of-the-art foundation models (including Amazon Nova Premier, Amazon Nova Pro, Amazon Nova Lite, and Amazon Nova Micro)
    - **Anthropic** - Select the checkbox next to "Anthropic"
 
@@ -39,6 +41,7 @@ Before you can use Amazon Bedrock models, you need to request access to them. Fo
 ![Select Models](/images/bedrock-select-models.png)
 
 7. If you want to be more selective about specific models, you can expand each provider:
+
    - Under **Anthropic**, select **Claude 3.5 Sonnet** - This is Anthropic's powerful model for complex reasoning and content generation
    - Under **Amazon**, select **Amazon Nova Premier** - This is Amazon's most capable multimodal model for complex tasks
 
@@ -64,10 +67,12 @@ Once access has been granted, let's verify that you can see the individual model
 
 2. In the dropdown menu at the top, you should now be able to select from the models you've enabled
 3. Try selecting different models to verify access:
+
    - **Anthropic Claude 3.5 Sonnet** - A powerful model for complex reasoning and content generation
    - **Amazon Nova Premier** - Amazon's most capable multimodal model for complex tasks
 
 4. You can also use the compare mode to test how different models respond to the same prompt:
+
    - Click the "Select model" button at the top of the playground
    - Choose one of the models that have been granted access
    - Enter a prompt in the text area

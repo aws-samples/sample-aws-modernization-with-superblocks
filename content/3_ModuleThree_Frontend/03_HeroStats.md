@@ -14,6 +14,7 @@ Let's add key metrics to your dashboard using hero stats.
    - A column component will be added automatically
 
 2. Add the template:
+
    - Click the template icon next to "Add Component"
    - Search for "Hero stats with label below"
    - Click "Insert"

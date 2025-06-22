@@ -12,7 +12,9 @@ Let's create the main dashboard layout with a data table and charts.
 
    - Add a new section (adds a column automatically)
    - Set section height to "Fill Viewport"
+
 2. Configure the column:
+
    - Set layout to "Horizontal"
 
 

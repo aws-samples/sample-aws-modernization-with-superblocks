@@ -11,6 +11,7 @@ Let's create two APIs to populate your filter dropdowns with paper categories an
 1. Open API Builder:
 
    - Press CMD/CTRL + U
+
 2. Create the API:
 
    - Click "Add new API"

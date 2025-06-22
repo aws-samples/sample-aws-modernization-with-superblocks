@@ -76,11 +76,13 @@ Your table will now update dynamically based on the selected filters.
 ## Testing
 
 1. Test filtering:
+
    - Try different filter combinations
    - Click Submit to apply filters
    - Verify data updates correctly
 
 2. Test reset:
+
    - Click Reset Filters
    - Verify dropdowns clear
    - Check if table refreshes
