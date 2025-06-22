@@ -63,6 +63,7 @@ The "Fill Parent" and "Fill Viewport" settings ensure your components use the av
 ## Example
 
 Here's how your body section should look after completion:
+
 ![Body Section Example](/images/gifs/body-section-example.gif)
 
 ## Next Steps
