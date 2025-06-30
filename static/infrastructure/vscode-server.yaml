@@ -163,12 +163,33 @@ Mappings:
 
 Resources:
 
+  SuperblocksUserGroup:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: SuperblocksUsers
+      ManagedPolicyArns:
+        - !Ref BedrockUserPolicy
+
   MyIAMUser:
     Type: AWS::IAM::User
     Properties:
       UserName: Superblocks_User
+      Groups:
+        - !Ref SuperblocksUserGroup
+
+  BedrockExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: BedrockExecutionRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: bedrock.amazonaws.com
+            Action: sts:AssumeRole
       ManagedPolicyArns:
-        - !Ref BedrockUserPolicy
+        - arn:aws:iam::aws:policy/service-role/AmazonBedrockServiceRolePolicy
 
   BedrockUserPolicy:
     Type: AWS::IAM::ManagedPolicy
@@ -184,15 +205,14 @@ Resources:
               - bedrock:GetFoundationModel
               - bedrock:ListCustomModels
               - bedrock:GetCustomModel
-              - bedrock:ListModelInvocationLoggingConfigurations
-              - bedrock:ListPromptsForCustomModel
-              - bedrock:ListPromptTemplates
-              - bedrock:GetPromptTemplate
+              - bedrock:GetModelInvocationLoggingConfiguration
+              - bedrock:ListPrompts
+              - bedrock:GetPrompt
             Resource: '*'
           - Effect: Allow
             Action:
               - iam:PassRole
-            Resource: '*'
+            Resource: !GetAtt BedrockExecutionRole.Arn
             Condition:
               StringEquals:
                 iam:PassedToService: bedrock.amazonaws.com
@@ -234,7 +254,7 @@ Resources:
   StoreSecretFunction:
     Type: AWS::Lambda::Function
     Properties:
-      Runtime: python3.8
+      Runtime: python3.13
       Handler: index.handler
       Role: !GetAtt LambdaExecutionRole.Arn
       Code:
@@ -1146,13 +1166,23 @@ Resources:
                     DB_PASSWORD=$(aws ssm get-parameter --name /rds/db-password --query 'Parameter.Value' --output text --with-decryption)
                     CONNECTION_STRING=$(aws ssm get-parameter --name /rds/connection-string --query 'Parameter.Value' --output text --with-decryption)
                     
-                    # Create or update .bashrc
+                    # Get Bedrock credentials from Secrets Manager
+                    SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id MyUserAccessKey --query SecretString --output text)
+                    BEDROCK_ACCESS_KEY_ID=$(echo $SECRET_VALUE | jq -r '.AccessKeyId')
+                    BEDROCK_SECRET_ACCESS_KEY=$(echo $SECRET_VALUE | jq -r '.SecretAccessKey')
+                    
+                    # Create or update .bashrc with database credentials
                     echo "export DB_ENDPOINT='$DB_ENDPOINT'" >> /home/${VSCodeUser}/.bashrc
                     echo "export DB_USERNAME='$DB_USERNAME'" >> /home/${VSCodeUser}/.bashrc
                     echo "export DB_PASSWORD='$DB_PASSWORD'" >> /home/${VSCodeUser}/.bashrc
                     echo "export DB_NAME='employees'" >> /home/${VSCodeUser}/.bashrc
                     echo "export PGPASSWORD='$DB_PASSWORD'" >> /home/${VSCodeUser}/.bashrc
                     echo "export PROD_DATABASE_URL='$CONNECTION_STRING'" >> /home/${VSCodeUser}/.bashrc
+                    
+                    # Add Bedrock credentials to .bashrc
+                    echo "export BEDROCK_ACCESS_KEY_ID='$BEDROCK_ACCESS_KEY_ID'" >> /home/${VSCodeUser}/.bashrc
+                    echo "export BEDROCK_SECRET_ACCESS_KEY='$BEDROCK_SECRET_ACCESS_KEY'" >> /home/${VSCodeUser}/.bashrc
+                    echo "export BEDROCK_REGION='${AWS::Region}'" >> /home/${VSCodeUser}/.bashrc
                     
                     # Set ownership and source
                     chown -R ${VSCodeUser}:${VSCodeUser} /home/${VSCodeUser}/.bashrc
@@ -1162,13 +1192,28 @@ Resources:
                     
                     # Verify the environment variables were set
                     echo "Verifying environment variables..."
-                    su - ${VSCodeUser} -c 'env | grep -E "DB_|PROD_DATABASE_URL"'
+                    su - ${VSCodeUser} -c 'env | grep -E "DB_|PROD_DATABASE_URL|BEDROCK_"'
+                    
+                    # Create a helper script for displaying Bedrock credentials
+                    cat > /home/${VSCodeUser}/get-bedrock-credentials.sh << 'EOF'
+#!/bin/bash
+echo "=== Bedrock Credentials for Superblocks Integration ==="
+echo "AWS Access Key ID: $BEDROCK_ACCESS_KEY_ID"
+echo "AWS Secret Access Key: $BEDROCK_SECRET_ACCESS_KEY"
+echo "AWS Region: $BEDROCK_REGION"
+echo ""
+echo "Use these credentials in your Superblocks AWS integration."
+echo "Integration Name: AWS Services"
+echo "Region: $BEDROCK_REGION"
+EOF
+                    chmod +x /home/${VSCodeUser}/get-bedrock-credentials.sh
+                    chown ${VSCodeUser}:${VSCodeUser} /home/${VSCodeUser}/get-bedrock-credentials.sh
           - action: aws:runShellScript
             name: FullDatabaseSetup
             inputs:
               runCommand:
                 - '#!/bin/bash'
-                - !Sub |
+                - |
                     echo "Using environment variables for database setup..."
                     
                     echo "Updating system packages..."
@@ -1278,7 +1323,7 @@ Resources:
             Encrypted: true
       Monitoring: true
       SecurityGroupIds:
-        - !Ref SecurityGroup
+        - !GetAtt SecurityGroup.GroupId
       IamInstanceProfile: !Ref VSCodeInstanceProfile
       UserData:
         Fn::Base64: !Sub |

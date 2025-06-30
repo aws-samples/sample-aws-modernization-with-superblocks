@@ -57,18 +57,26 @@ Let's create two APIs to populate your filter dropdowns with paper categories an
 2. Configure Categories dropdown:
 
     - Select the Paper Categories dropdown
-    - In Properties panel:
+    - In the Properties panel under the Content section:
      - Find "Options"
      - Clear placeholder data
-     - Add: {{get_papercategories.response}}
+     - Add:
+
+     ```sh
+     {{get_papercategories.response}}
+     ```
 
 3. Configure Locations dropdown:
 
     - Select the Location dropdown
-    - In Properties panel:
+    - In the Properties panel under the Content section:
      - Find "Options"
      - Clear placeholder data
-     - Add: {{get_locations.response}}
+     - Add:
+
+     ```sh
+     {{get_locations.response}}
+     ```
 
 {{% notice tip %}}
 Test both dropdowns after connecting the APIs. They should show real categories and locations. If no data appears, try clicking "Run API" again and verify your SQL queries.

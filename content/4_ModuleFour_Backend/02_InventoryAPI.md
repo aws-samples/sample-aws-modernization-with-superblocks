@@ -38,7 +38,9 @@ Make sure your dropdown component names match `Dropdown1` and `Dropdown2`. If yo
 
 ## Step 2: Connect Your Table
 
-1. Configure the table:
+1. Close API Builder (CMD/CTRL + U)
+
+2. Configure the table:
 
     - Select the Table component
     - In Properties panel:
@@ -50,8 +52,8 @@ Make sure your dropdown component names match `Dropdown1` and `Dropdown2`. If yo
 1. Configure Submit button:
 
     - Select the "Submit" button
-    - Add onClick handler:
-     - Click + next to "Event handlers"
+    - In the Properties panel under the Event handlers section:
+     - Click + next to "Add onClick"
      - Choose "Run APIs"
      - Select "get_inventory_data"
 

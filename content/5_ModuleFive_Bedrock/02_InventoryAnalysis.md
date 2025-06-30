@@ -35,7 +35,7 @@ LEFT JOIN dm_operations.pending_orders po ON ils.inventory_id = po.inventory_id 
 
 1. Add data preprocessing:
 
-    - Add a new Python step after the SQL query
+    - Add a new Python Function step after the SQL query by clicking the "+" under the get_input_data block
     - Name the step "simplify_input_data"
     - Add the code below to prepare data for the AI model:
 
@@ -63,7 +63,7 @@ return prepare_data_for_llm(get_input_data.output)
 
 1. Create the Bedrock integration:
 
-    - Add a new Python step
+    - Add a new Python Function step
     - Name it "send_to_bedrock"
     - Add the following code to interact with Amazon Bedrock
     - Use the AWS integration you created in the previous section
@@ -72,20 +72,18 @@ return prepare_data_for_llm(get_input_data.output)
 import boto3
 import json
 
-
 def send_to_bedrock(text_data):
-    # Truncate data
+    # Truncate data to stay within token limits
     text_data = text_data[:5000]
 
-    # Create client using the AWS integration you set up
+    # Create Bedrock client using the AWS integration
+    # Superblocks automatically provides AWS credentials from your integration
     client = boto3.client(
         service_name="bedrock-runtime",
-        region_name="us-east-1",  # Use the region where you enabled Bedrock models
-        aws_access_key_id=env.BEDROCK_ACCESS_KEY_ID,  # Use the environment variable
-        aws_secret_access_key=env.BEDROCK_SECRET_ACCESS_KEY,  # Use the environment variable
+        region_name="us-east-1"  # Use the region where you enabled Bedrock models
     )
 
-    # Simple prompt for bullet points
+    # Create a focused prompt for inventory transfer recommendations
     prompt = f"""Based on this inventory data: {text_data}
 
 Provide 5 inventory transfer recommendations as bullet points. For each recommendation, include:
@@ -93,19 +91,33 @@ Provide 5 inventory transfer recommendations as bullet points. For each recommen
 • From location → To location  
 • Brief reasoning
 
-Format as JSON."""
+Format as JSON with this structure:
+[
+  {{
+    "product": "Product Name",
+    "quantity": 10,
+    "from_location": "Location A",
+    "to_location": "Location B",
+    "reasoning": "Brief explanation"
+  }}
+]"""
 
-    # Make request
+    # Make request to Amazon Bedrock
     response = client.invoke_model(
-        modelId="us.amazon.nova-micro-v1:0",
-        body=json.dumps(
-            {"messages": [{"role": "user", "content": [{"text": prompt}]}]}
-        ),
+        modelId="us.amazon.nova-micro-v1:0",  # Using Amazon Nova Micro for cost efficiency
+        body=json.dumps({
+            "messages": [
+                {
+                    "role": "user", 
+                    "content": [{"text": prompt}]
+                }
+            ]
+        }),
         contentType="application/json",
-        accept="application/json",
+        accept="application/json"
     )
 
-    # Parse response
+    # Parse the response
     response_body = json.loads(response["body"].read())
 
     if "content" in response_body and isinstance(response_body["content"], list):
@@ -115,18 +127,13 @@ Format as JSON."""
 
     return {"raw_output": output}
 
-
-# Call the function
+# Call the function with the processed data
 return send_to_bedrock(simplify_input_data.output)
 ```
 
-{{% notice tip %}}
-If you need to check your Bedrock credentials again, you can run this command in your terminal:
-```bash
-echo "AWS Access Key ID: $BEDROCK_ACCESS_KEY_ID"
-echo "AWS Secret Access Key: $BEDROCK_SECRET_ACCESS_KEY"
-```
-{{% /notice %}}
+:::alert{type="info"}
+Superblocks automatically handles AWS authentication when you use boto3 in Python steps. The credentials from your AWS integration are automatically available to boto3 clients, so you don't need to manually specify access keys or secret keys in your code.
+:::
 
 ### Step 4: Format the Results
 
@@ -200,22 +207,22 @@ return parse_bullet_recommendations(raw_output)
 
     - This will prevent the API from running automatically when the page loads as we will be running it whenever a user clicks a button component
 
-{{% notice tip %}}
+:::alert{type="info"}
 When crafting prompts for foundation models:
 
 - Be specific about the format you want
 - Include examples when possible
 - Define clear constraints
 - Test and refine your prompts
-{{% /notice %}}
+:::
 
-{{% notice success %}}
+:::alert{type="success"}
 Congratulations! You've created a powerful inventory analysis feature that:
 
 - Analyzes inventory data in real-time
 - Provides actionable transfer recommendations
 - Helps optimize stock levels across locations
-{{% /notice %}}
+:::
 
 ## Working with AWS Services using boto3
 

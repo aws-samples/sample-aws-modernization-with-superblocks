@@ -13,9 +13,17 @@ Let's create the main dashboard layout with a data table and charts.
     - Add a new section (adds a column automatically)
     - Set section height to "Fill Viewport"
 
+:::alert{header="Important" type="warning"}
+After adding the new section, if you click into the new column, the option to set section height to "Fill Viewport" will become grayed out. To regain access to this setting:
+- Click outside the column to deselect it (then click the column again to reselect it), OR
+- Click on "Section 3" in the top right properties panel
+:::
+
 2. Configure the column:
 
-    - Set layout to "Horizontal"
+    - Click inside the column and Set Layout to "Horizontal"
+
+    ![Horizontal Layout](/images/horizontal-layout.png)
 
 
 ## Step 2: Add Containers
@@ -29,7 +37,7 @@ Let's create the main dashboard layout with a data table and charts.
 
 2. Right container (for charts):
 
-    - Add a container component
+    - Add a container component by right clicking and selecting container
     - Set width to "Fill Parent"
     - Set layout to "Vertical"
     - Set height to "Fill Parent"
@@ -44,9 +52,8 @@ Let's create the main dashboard layout with a data table and charts.
 
 2. Simplify the table:
 
-    - Remove the default header
-    - Remove the search bar
-    - Remove the download button
+    - Remove the default header by going to "content" and delete the "Users" Header
+    - Remove the search bar by going to "Interaction" and toggling off the search switch.
 
 
 ## Step 4: Add Charts

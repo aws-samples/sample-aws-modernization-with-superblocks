@@ -21,8 +21,8 @@ Open a terminal in VS Code Server and run the following commands:
 
 ```bash
 # Clone the repository
-git clone https://github.com/nvardaro-sb/acme-inc-db-setup.git
-cd acme-inc-db-setup
+git clone https://github.com/superblocksteam/aws-workshop
+cd aws-workshop
 ```
 
 ### Step 2: Set Up Python Environment
@@ -79,7 +79,7 @@ You should see a count of the inventory items in the database. If you see a numb
 
 ### Step 4: Explore the Database Schema
 
-The ACME Inc database has the following schema in the `dm_operations` schema:
+The ACME Inc database has the following schema in the `dm_operations` tables:
 
 ```
 dm_operations (schema)
@@ -129,20 +129,19 @@ If you encounter any issues during the database setup:
 
 1. **Connection Issues**:
 
-    - Verify that your environment variables are set correctly
-    - Check that the RDS instance is running and accessible
-    - Ensure your security group allows connections from the VS Code Server
+   - Verify that your environment variables are set correctly
+   - Check that the RDS instance is running and accessible
+   - Ensure your security group allows connections from the VS Code Server
 
 2. **Permission Issues**:
 
-    - Verify that you have the correct database credentials
-    - Check that the database user has the necessary permissions
+   - Verify that you have the correct database credentials
+   - Check that the database user has the necessary permissions
 
 3. **Script Execution Issues**:
 
-    - Make sure the script is executable (`chmod +x setup_db.sh`)
-    - Check for any error messages in the script output
-
+   - Make sure the script is executable (`chmod +x setup_db.sh`)
+   - Check for any error messages in the script output
 
 ## Next Steps
 

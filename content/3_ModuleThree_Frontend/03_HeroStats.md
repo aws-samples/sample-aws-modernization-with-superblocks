@@ -16,7 +16,7 @@ Let's add key metrics to your dashboard using hero stats.
 2. Add the template:
 
     - Click the template icon next to "Add Component"
-    - Search for "Hero stats with label below"
+    - Search for "Hero stats with label below, percentage change beside"
     - Click "Insert"
 
 
@@ -29,16 +29,16 @@ Let's add key metrics to your dashboard using hero stats.
 
 2. Update the stats:
 
-    - Total Inventory (use "$")
-    - Low Stock Items (use "items")
-    - Pending Orders (use "orders")
-    - YTD Sales (use "$")
+    - "Total subscribers" to "Total Inventory" & click on the KPI, select "Currency"
+    - "Average open rate" to "Low Stock Items" & click on the KPI, select "Number"
+    - "Average click rate" to "Pending Orders" & click on the KPI, select "Number"
+    - "Average click rate" to "YTD Sales" & click on the KPI, select "Currency"
+
+![Hero Stats](/images/hero-stats.png)
 
 3. Simplify the display:
 
-    - Remove the percentage changes
-    - Remove the parent container
-
+    - Remove the parent container and the percentage components
 
 ## Example
 

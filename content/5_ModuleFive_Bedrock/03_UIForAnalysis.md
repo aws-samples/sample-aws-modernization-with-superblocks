@@ -49,6 +49,6 @@ Here's how your analysis component should look:
 <br>
 <img src="/images/inventory-analysis-feature.png" width="700" height="350" />
 
-{{% notice success %}}
+:::alert{type="success"}
 Congratulations! You've created a powerful inventory analysis feature that leverages AWS Bedrock to provide actionable insights. This feature demonstrates how Superblocks and AWS Bedrock can work together to transform raw data into valuable business intelligence.
-{{% /notice %}}
+:::

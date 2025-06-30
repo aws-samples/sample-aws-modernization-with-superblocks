@@ -99,8 +99,7 @@ echo "AWS Region: us-east-1"  # Default region for this workshop
 
 3. In the Superblocks application:
 
-    - Navigate to the **Settings** section
-    - Select **Integrations** from the left sidebar
+    - Navigate to the [Integrations](https://app.superblocks.com/integrations) section from the left sidebar
     - Click the **+ Add Integration** button
     - Search for and select **AWS**
 
