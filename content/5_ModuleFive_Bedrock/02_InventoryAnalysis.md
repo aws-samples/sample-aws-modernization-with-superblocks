@@ -61,38 +61,58 @@ return prepare_data_for_llm(get_input_data.output)
 
 ### Step 3: Connect to Amazon Bedrock
 
-1. Create the Bedrock integration:
+1. **Add an AWS Integration Step:**
 
-    - Add a new Python Function step
+    - Add a new step after the "simplify_input_data" step
+    - Choose **AWS** as the integration type
+    - Name it "get_bedrock_credentials"
+    - Select **Secrets Manager** service
+    - Choose **Get Secret Value** action
+    - Configure the step:
+      - **Secret Name**: `MyUserAccessKey`
+      - **Region**: `us-east-1`
+      - **AWS Access Key ID**: `{{sb_secrets.bedrock_credentials.MyUserAccessKey}}`
+      - **AWS Secret Access Key**: Use the array notation if needed: `{{sb_secrets['bedrock_credentials']['MyUserAccessKey']}}`
+
+2. **Create the Bedrock Python Function:**
+
+    - Add a new Python Function step after the AWS integration step
     - Name it "send_to_bedrock"
-    - Add the following code to interact with Amazon Bedrock using AWS Secrets Manager
+    - Add the following code:
 
 ```python
 import boto3
 import json
 
-def send_to_bedrock(text_data):
+def send_to_bedrock(text_data, credentials_data):
     # Truncate data to stay within token limits
     text_data = text_data[:5000]
-
-    # Get AWS credentials from Secrets Manager
-    # Access the secret using Superblocks secrets syntax
-    secret_value = sb_secrets.bedrock_credentials.MyUserAccessKey
     
-    # Parse the secret JSON
-    if isinstance(secret_value, str):
-        import json
-        credentials = json.loads(secret_value)
+    # Parse credentials from the AWS Secrets Manager response
+    if isinstance(credentials_data, str):
+        credentials = json.loads(credentials_data)
     else:
-        credentials = secret_value
+        credentials = credentials_data.get('SecretString', {})
+        if isinstance(credentials, str):
+            credentials = json.loads(credentials)
+
+    # Extract AWS credentials
+    access_key_id = credentials.get('AccessKeyId')
+    secret_access_key = credentials.get('SecretAccessKey')
     
-    # Create Bedrock client using credentials from Secrets Manager
-    client = boto3.client(
-        service_name="bedrock-runtime",
-        region_name="us-east-1",
-        aws_access_key_id=credentials["AccessKeyId"],
-        aws_secret_access_key=credentials["SecretAccessKey"]
-    )
+    if not access_key_id or not secret_access_key:
+        return {"error": "Could not extract AWS credentials from secret", "credentials_data": credentials_data}
+
+    # Create Bedrock client using retrieved credentials
+    try:
+        client = boto3.client(
+            service_name="bedrock-runtime",
+            region_name="us-east-1",
+            aws_access_key_id=access_key_id,
+            aws_secret_access_key=secret_access_key
+        )
+    except Exception as e:
+        return {"error": f"Failed to create Bedrock client: {str(e)}"}
 
     # Create a focused prompt for inventory transfer recommendations
     prompt = f"""Based on this inventory data: {text_data}
@@ -113,37 +133,45 @@ Format as JSON with this structure:
   }}
 ]"""
 
-    # Make request to Amazon Bedrock
-    response = client.invoke_model(
-        modelId="us.amazon.nova-micro-v1:0",  # Using Amazon Nova Micro for cost efficiency
-        body=json.dumps({
-            "messages": [
-                {
-                    "role": "user", 
-                    "content": [{"text": prompt}]
-                }
-            ]
-        }),
-        contentType="application/json",
-        accept="application/json"
-    )
+    try:
+        # Make request to Amazon Bedrock
+        response = client.invoke_model(
+            modelId="us.amazon.nova-micro-v1:0",  # Using Amazon Nova Micro for cost efficiency
+            body=json.dumps({
+                "messages": [
+                    {
+                        "role": "user", 
+                        "content": [{"text": prompt}]
+                    }
+                ]
+            }),
+            contentType="application/json",
+            accept="application/json"
+        )
 
-    # Parse the response
-    response_body = json.loads(response["body"].read())
+        # Parse the response
+        response_body = json.loads(response["body"].read())
 
-    if "content" in response_body and isinstance(response_body["content"], list):
-        output = response_body["content"][0]["text"]
-    else:
-        output = str(response_body)
+        if "content" in response_body and isinstance(response_body["content"], list):
+            output = response_body["content"][0]["text"]
+        else:
+            output = str(response_body)
 
-    return {"raw_output": output}
+        return {"raw_output": output}
+        
+    except Exception as e:
+        return {"error": f"Bedrock API call failed: {str(e)}"}
 
-# Call the function with the processed data
-return send_to_bedrock(simplify_input_data.output)
+# Call the function with the processed data and credentials
+return send_to_bedrock(simplify_input_data.output, get_bedrock_credentials.output)
 ```
 
 :::alert{header="Important" type="info"}
-The code above uses `sb_secrets.bedrock_credentials.MyUserAccessKey` which follows the Superblocks secrets syntax: `sb_secrets.STORE_NAME.SECRET_NAME`. Make sure your secret store is named "bedrock_credentials" and contains the secret "MyUserAccessKey".
+This approach uses a two-step process:
+1. **AWS Integration Step**: Uses `{{sb_secrets.bedrock_credentials.MyUserAccessKey}}` to retrieve credentials from your configured AWS Secrets Manager
+2. **Python Function**: Receives the credentials as a parameter and uses them to create the Bedrock client
+
+This follows Superblocks best practices for accessing secrets in backend APIs.
 :::
 
 :::alert{type="info"}

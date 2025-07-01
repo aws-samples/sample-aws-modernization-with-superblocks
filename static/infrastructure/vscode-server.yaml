@@ -1214,16 +1214,16 @@ Resources:
                     
                     # Create a helper script for displaying Bedrock credentials
                     cat > /home/${VSCodeUser}/get-bedrock-credentials.sh << 'EOF'
-#!/bin/bash
-echo "=== Bedrock Credentials for Superblocks Integration ==="
-echo "AWS Access Key ID: $BEDROCK_ACCESS_KEY_ID"
-echo "AWS Secret Access Key: $BEDROCK_SECRET_ACCESS_KEY"
-echo "AWS Region: $BEDROCK_REGION"
-echo ""
-echo "Use these credentials in your Superblocks AWS integration."
-echo "Integration Name: AWS Services"
-echo "Region: $BEDROCK_REGION"
-EOF
+                    #!/bin/bash
+                    echo "=== Bedrock Credentials for Superblocks Integration ==="
+                    echo "AWS Access Key ID: $BEDROCK_ACCESS_KEY_ID"
+                    echo "AWS Secret Access Key: $BEDROCK_SECRET_ACCESS_KEY"
+                    echo "AWS Region: $BEDROCK_REGION"
+                    echo ""
+                    echo "Use these credentials in your Superblocks AWS integration."
+                    echo "Integration Name: AWS Services"
+                    echo "Region: $BEDROCK_REGION"
+                    EOF
                     chmod +x /home/${VSCodeUser}/get-bedrock-credentials.sh
                     chown ${VSCodeUser}:${VSCodeUser} /home/${VSCodeUser}/get-bedrock-credentials.sh
           - action: aws:runShellScript
