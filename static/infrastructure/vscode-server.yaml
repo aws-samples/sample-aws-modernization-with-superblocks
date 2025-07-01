@@ -189,8 +189,26 @@ Resources:
             Principal:
               Service: bedrock.amazonaws.com
             Action: sts:AssumeRole
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/service-role/AmazonBedrockServiceRolePolicy
+      Policies:
+        - PolicyName: BedrockExecutionPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - bedrock:InvokeModel
+                  - bedrock:InvokeModelWithResponseStream
+                  - bedrock:ListFoundationModels
+                  - bedrock:GetFoundationModel
+                  - bedrock:ListCustomModels
+                  - bedrock:GetCustomModel
+                  - bedrock:GetModelInvocationLoggingConfiguration
+                  - bedrock:ListPrompts
+                  - bedrock:GetPrompt
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: '*'
 
   BedrockUserPolicy:
     Type: AWS::IAM::ManagedPolicy
@@ -202,6 +220,7 @@ Resources:
           - Effect: Allow
             Action:
               - bedrock:InvokeModel
+              - bedrock:InvokeModelWithResponseStream
               - bedrock:ListFoundationModels
               - bedrock:GetFoundationModel
               - bedrock:ListCustomModels
@@ -209,6 +228,12 @@ Resources:
               - bedrock:GetModelInvocationLoggingConfiguration
               - bedrock:ListPrompts
               - bedrock:GetPrompt
+              - bedrock:PutFoundationModelEntitlement
+              - bedrock:GetFoundationModelAvailability
+              - bedrock:ListFoundationModelAgreementOffers
+              - bedrock:CreateFoundationModelAgreement
+              - bedrock:GetUseCaseForModelAccess
+              - bedrock:PutUseCaseForModelAccess
             Resource: '*'
           - Effect: Allow
             Action:
