@@ -76,15 +76,15 @@ def send_to_bedrock(text_data):
     text_data = text_data[:5000]
 
     # Get AWS credentials from Secrets Manager
-    # Using the secrets name "bedrock_credentials" as configured in the previous section
-    secret = secrets.get("bedrock_credentials", "MyUserAccessKey")
+    # Access the secret using Superblocks secrets syntax
+    secret_value = sb_secrets.bedrock_credentials.MyUserAccessKey
     
     # Parse the secret JSON
-    if isinstance(secret, str):
+    if isinstance(secret_value, str):
         import json
-        credentials = json.loads(secret)
+        credentials = json.loads(secret_value)
     else:
-        credentials = secret
+        credentials = secret_value
     
     # Create Bedrock client using credentials from Secrets Manager
     client = boto3.client(
@@ -143,7 +143,7 @@ return send_to_bedrock(simplify_input_data.output)
 ```
 
 :::alert{header="Important" type="info"}
-The code above uses "bedrock_credentials" which matches the secrets name you configured in the previous section. Make sure this matches exactly with what you entered in your Organization settings.
+The code above uses `sb_secrets.bedrock_credentials.MyUserAccessKey` which follows the Superblocks secrets syntax: `sb_secrets.STORE_NAME.SECRET_NAME`. Make sure your secret store is named "bedrock_credentials" and contains the secret "MyUserAccessKey".
 :::
 
 :::alert{type="info"}
