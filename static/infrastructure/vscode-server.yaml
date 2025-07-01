@@ -169,6 +169,7 @@ Resources:
       GroupName: SuperblocksUsers
       ManagedPolicyArns:
         - !Ref BedrockUserPolicy
+        - !Ref SecretsManagerUserPolicy
 
   MyIAMUser:
     Type: AWS::IAM::User
@@ -216,6 +217,23 @@ Resources:
             Condition:
               StringEquals:
                 iam:PassedToService: bedrock.amazonaws.com
+
+  SecretsManagerUserPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: SecretsManagerUserPolicy
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Resource: !Ref MySecret
+          - Effect: Allow
+            Action:
+              - secretsmanager:ListSecrets
+            Resource: '*'
 
 
   MyIAMUserAccessKey:

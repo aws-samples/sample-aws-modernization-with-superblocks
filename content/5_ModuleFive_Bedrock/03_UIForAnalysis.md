@@ -40,7 +40,7 @@ Let's create a UI component to display our Bedrock-powered inventory recommendat
 1. Preview your application
 2. Click the "Generate Inventory Insights" button
 3. Wait for the analysis to complete
-4. Review the insights provided by AWS Bedrock
+4. Review the insights provided by Amazon Bedrock
 5. Examine the visualization to identify at-risk products
 
 ## Example
@@ -50,5 +50,5 @@ Here's how your analysis component should look:
 <img src="/images/inventory-analysis-feature.png" width="700" height="350" />
 
 :::alert{type="success"}
-Congratulations! You've created a powerful inventory analysis feature that leverages AWS Bedrock to provide actionable insights. This feature demonstrates how Superblocks and AWS Bedrock can work together to transform raw data into valuable business intelligence.
+Congratulations! You've created a powerful inventory analysis feature that leverages Amazon Bedrock to provide actionable insights. This feature demonstrates how Superblocks and Amazon Bedrock can work together to transform raw data into valuable business intelligence.
 :::

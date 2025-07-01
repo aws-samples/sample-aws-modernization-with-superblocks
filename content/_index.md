@@ -13,7 +13,7 @@ In this hands-on workshop, you'll build a complete inventory and sales managemen
 ## Key Benefits of Superblocks
 
 - **10x Faster Development** ⚡: Build in days what would normally take months
-- **Simplified AI Integration** 🤖: Easily incorporate AWS Bedrock's generative AI capabilities
+- **Simplified AI Integration** 🤖: Easily incorporate Amazon Bedrock's generative AI capabilities
 - **Enterprise-Ready** 🔒: Implement proper governance and security from day one
 - **Full-Stack Solution** 🏗️: Create complete applications with frontend, backend, and AI components
 - **No ML Expertise Required** 🧠: Leverage advanced AI capabilities without specialized knowledge
@@ -25,7 +25,7 @@ This workshop is ideal for developers, technical leaders, and solution architect
 Your dashboard application will feature:
 
 - Interactive inventory and sales visualizations
-- AI-powered analysis and forecasting using AWS Bedrock
+- AI-powered analysis and forecasting using Amazon Bedrock
 - Secure backend APIs and role-based access controls
 - Production-ready deployment pipeline
 
@@ -34,5 +34,5 @@ Your dashboard application will feature:
 ## Workshop Details
 
 - **Duration**: 2-3 hours across multiple sections
-- **Cost**: AWS Bedrock and RDS usage will incur charges. Superblocks offers a free 14-day trial.
+- **Cost**: Amazon Bedrock and RDS usage will incur charges. Superblocks offers a free 14-day trial.
 - **Clean-up**: Follow the [Clean Up](/9_ModuleNine_Cleanup) instructions after completion to avoid additional costs.

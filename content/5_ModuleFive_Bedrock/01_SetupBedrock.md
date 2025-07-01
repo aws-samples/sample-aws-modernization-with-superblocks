@@ -84,40 +84,83 @@ Once access has been granted, let's verify that you can see the individual model
 
 ## Step 4: Configure Superblocks to Connect with Amazon Bedrock
 
-Now that you have enabled access to Amazon Bedrock models, you need to configure your Superblocks application to connect with Amazon Bedrock using the AWS Identity and Access Management (IAM) credentials we set up earlier:
+Now that you have enabled access to Amazon Bedrock models, you need to configure your Superblocks application to connect with Amazon Bedrock using AWS Secrets Manager for secure credential management.
 
-1. First, let's retrieve your AWS Bedrock credentials from the environment variables:
+1. **Navigate to Organization Settings:**
 
-```bash
-# Display your Bedrock credentials for easy copying
-echo "AWS Access Key ID: $BEDROCK_ACCESS_KEY_ID"
-echo "AWS Secret Access Key: $BEDROCK_SECRET_ACCESS_KEY"
-echo "AWS Region: us-east-1"  # Default region for this workshop
-```
+    - Click on your **name (email)** in the left menu of Superblocks
+    - Select **Organization settings** from the dropdown menu
 
-2. Copy these credentials as you'll need them in the next steps.
+2. **Access Secrets Management:**
 
-3. In the Superblocks application:
+    - Scroll down to the **Build and Deploy** section
+    - Click on **Secrets Management**
 
-    - Navigate to the [Integrations](https://app.superblocks.com/integrations) section from the left sidebar
-    - Click the **+ Add Integration** button
-    - Search for and select **AWS**
+3. **Configure AWS Secrets Manager:**
 
-4. In the AWS integration form:
+    - Click **AWS Secrets Manager**
+    - You'll be prompted to create a new AWS Secrets Manager configuration
 
-    - **Name**: Enter "Amazon Bedrock"
-    - **AWS Access Key ID**: Paste the value of `BEDROCK_ACCESS_KEY_ID` you copied earlier
-    - **AWS Secret Access Key**: Paste the value of `BEDROCK_SECRET_ACCESS_KEY` you copied earlier
-    - **AWS Region**: Enter "us-east-1" (or the region where you enabled Bedrock models)
+4. **Enter Configuration Details:**
+
+    - **Secrets Name**: Enter the name below:
+    ```sh
+    bedrock_credentials
+    ```
+    - **Region**: Enter "us-east-1"
+    - **Auth Type**: Switch from the default to **Access Key**
+
+5. **Get Your Bedrock Credentials:**
+
+    First, retrieve your Amazon Bedrock credentials from the terminal:
+
+    ```bash
+    # Display your Amazon Bedrock credentials
+    env | grep -E "BEDROCK_"
+    ```
+
+    This will show output similar to:
+    ```
+    BEDROCK_ACCESS_KEY_ID=AKIA...
+    BEDROCK_SECRET_ACCESS_KEY=abc123...
+    ```
+
+6. **Enter Your Credentials:**
+
+    - **Access Key ID**: Enter the value from `BEDROCK_ACCESS_KEY_ID`
+    - **Secret Access Key**: Enter the value from `BEDROCK_SECRET_ACCESS_KEY`
+
+![Superblocks AWS Secrets Manager Configuration](/images/superblocks-secrets-manager-config.png)
+
+7. **Test and Create:**
+
     - Click **Test Connection** to verify the credentials work
-    - Click **Save** to create the integration
+    - Once the connection test is successful, click **Create**
 
-![Superblocks AWS Integration](/images/superblocks-aws-integration.png)
+8. **Using the Secret in Your Application:**
 
-5. Verify the integration is working:
+    Once configured, you can reference this secret in your Superblocks Python code to retrieve the Amazon Bedrock credentials:
 
-    - You should see a green checkmark next to your new AWS integration
-    - This integration will now be available to use in your Superblocks applications
+    ```python
+    # The secret name you created (e.g., "BedrockCredentials") can now be used
+    # to securely access your AWS credentials in your application code
+    ```
+
+9. **Verify Your Configuration:**
+
+    After creating the AWS Secrets Manager configuration:
+
+    - You should see your new secrets configuration listed in the Secrets Management section
+    - This will allow your Superblocks applications to securely access Amazon Bedrock credentials
+    - The secret "MyUserAccessKey" from your AWS account will be accessible through this configuration
+
+:::alert{header="Security Best Practice" type="info"}
+Using AWS Secrets Manager through Organization settings ensures that:
+- Credentials are centrally managed and secure
+- Multiple applications can use the same credential configuration
+- Access is controlled at the organization level
+- Credentials can be rotated without updating individual applications
+:::
 
 
 ## Step 5: Understanding Model Pricing

@@ -55,7 +55,7 @@ Excellent work! You've successfully implemented:
 
 1. A modern dashboard frontend
 2. Powerful backend APIs
-3. AI features with AWS Bedrock
+3. AI features with Amazon Bedrock
 4. Enterprise security controls
 5. A fully tested application
 

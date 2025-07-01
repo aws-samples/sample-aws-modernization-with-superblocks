@@ -8,7 +8,7 @@ You did it! You've completed the workshop and built an enterprise-grade dashboar
 
 - A production-ready frontend with dynamic visualizations
 - Modern architecture with powerful, scalable APIs
-- AI-powered insights using AWS Bedrock
+- AI-powered insights using Amazon Bedrock
 - Enterprise-grade security controls
 - A solid foundation for future growth
 
@@ -107,4 +107,4 @@ Don't miss out on the opportunity to transform your business with Superblocks.
 Have questions? Contact the Superblocks sales team at [sales@superblocks.com](mailto:sales@superblocks.com) to discuss enterprise pricing, custom solutions, or implementation support.
 {{% /notice %}}
 
-Keep building amazing things with Superblocks and AWS Bedrock! 🚀
+Keep building amazing things with Superblocks and Amazon Bedrock! 🚀

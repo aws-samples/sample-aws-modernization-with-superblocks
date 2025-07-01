@@ -65,8 +65,7 @@ return prepare_data_for_llm(get_input_data.output)
 
     - Add a new Python Function step
     - Name it "send_to_bedrock"
-    - Add the following code to interact with Amazon Bedrock
-    - Use the AWS integration you created in the previous section
+    - Add the following code to interact with Amazon Bedrock using AWS Secrets Manager
 
 ```python
 import boto3
@@ -76,11 +75,23 @@ def send_to_bedrock(text_data):
     # Truncate data to stay within token limits
     text_data = text_data[:5000]
 
-    # Create Bedrock client using the AWS integration
-    # Superblocks automatically provides AWS credentials from your integration
+    # Get AWS credentials from Secrets Manager
+    # Using the secrets name "bedrock_credentials" as configured in the previous section
+    secret = secrets.get("bedrock_credentials", "MyUserAccessKey")
+    
+    # Parse the secret JSON
+    if isinstance(secret, str):
+        import json
+        credentials = json.loads(secret)
+    else:
+        credentials = secret
+    
+    # Create Bedrock client using credentials from Secrets Manager
     client = boto3.client(
         service_name="bedrock-runtime",
-        region_name="us-east-1"  # Use the region where you enabled Bedrock models
+        region_name="us-east-1",
+        aws_access_key_id=credentials["AccessKeyId"],
+        aws_secret_access_key=credentials["SecretAccessKey"]
     )
 
     # Create a focused prompt for inventory transfer recommendations
@@ -131,8 +142,15 @@ Format as JSON with this structure:
 return send_to_bedrock(simplify_input_data.output)
 ```
 
+:::alert{header="Important" type="info"}
+The code above uses "bedrock_credentials" which matches the secrets name you configured in the previous section. Make sure this matches exactly with what you entered in your Organization settings.
+:::
+
 :::alert{type="info"}
-Superblocks automatically handles AWS authentication when you use boto3 in Python steps. The credentials from your AWS integration are automatically available to boto3 clients, so you don't need to manually specify access keys or secret keys in your code.
+This approach uses AWS Secrets Manager to securely retrieve your AWS credentials, following security best practices by:
+- Keeping credentials encrypted and centrally managed
+- Avoiding hardcoded credentials in your application code
+- Enabling credential rotation without code changes
 :::
 
 ### Step 4: Format the Results

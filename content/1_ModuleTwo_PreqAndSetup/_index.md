@@ -42,7 +42,7 @@ The workshop is divided into six modules:
 1. Prerequisites and Setup (30 minutes)
 2. Building the Frontend (30 minutes)
 3. Building the Backend (30 minutes)
-4. Integrating with AWS Bedrock (20 minutes)
+4. Integrating with Amazon Bedrock (20 minutes)
 5. Governance & Access Controls (30 minutes)
 6. Deploying the Application (10 minutes)
 

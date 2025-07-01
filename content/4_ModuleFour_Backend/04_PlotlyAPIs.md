@@ -174,4 +174,4 @@ Your charts are interactive! Users can hover over points, zoom, and pan. If char
 
 ## Next Steps
 
-Now that your dashboard is working, let's integrate with AWS Bedrock.
+Now that your dashboard is working, let's integrate with Amazon Bedrock.

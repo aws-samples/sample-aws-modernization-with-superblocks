@@ -10,7 +10,7 @@ After completing this workshop, it's important to clean up the resources you've 
 
 In this module, you'll:
 
-- Remove AWS Bedrock model access permissions
+- Remove Amazon Bedrock model access permissions
 - Delete any AWS resources created during the workshop
 - Clean up your Superblocks workspace (optional)
 
@@ -36,7 +36,7 @@ AWS CloudShell provides a browser-based shell with AWS CLI pre-installed, making
 
 ```bash
 # List all Amazon Bedrock model access permissions
-aws bedrock list-foundation-models
+Amazon Bedrock list-foundation-models
 
 # Remove any IAM roles created for the workshop (if applicable)
 # aws iam delete-role --role-name superblocks-workshop-role
@@ -76,11 +76,11 @@ To verify that all resources have been properly cleaned up:
 
 ## Next Steps
 
-Congratulations on completing the workshop and properly cleaning up your resources! We hope you found this workshop valuable and that you're excited about the possibilities of building with Superblocks and AWS Bedrock.
+Congratulations on completing the workshop and properly cleaning up your resources! We hope you found this workshop valuable and that you're excited about the possibilities of building with Superblocks and Amazon Bedrock.
 
 If you're interested in learning more:
 
-- Explore the [AWS Bedrock documentation](https://docs.aws.amazon.com/bedrock/)
+- Explore the [Amazon Bedrock documentation](https://docs.aws.amazon.com/bedrock/)
 - Check out the [Superblocks documentation](https://docs.superblocks.com)
 - Visit the [AWS Marketplace listing for Superblocks](https://aws.amazon.com/marketplace/pp/prodview-kllccta3zgs2q) to learn about subscription options
 
