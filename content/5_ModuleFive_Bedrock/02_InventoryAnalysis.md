@@ -61,22 +61,9 @@ return prepare_data_for_llm(get_input_data.output)
 
 ### Step 3: Connect to Amazon Bedrock
 
-1. **Add an AWS Integration Step:**
+1. **Create the Bedrock Python Function:**
 
-    - Add a new step after the "simplify_input_data" step
-    - Choose **AWS** as the integration type
-    - Name it "get_bedrock_credentials"
-    - Select **Secrets Manager** service
-    - Choose **Get Secret Value** action
-    - Configure the step:
-      - **Secret Name**: `MyUserAccessKey`
-      - **Region**: `us-east-1`
-      - **AWS Access Key ID**: `{{sb_secrets.bedrock_credentials.MyUserAccessKey}}`
-      - **AWS Secret Access Key**: Use the array notation if needed: `{{sb_secrets['bedrock_credentials']['MyUserAccessKey']}}`
-
-2. **Create the Bedrock Python Function:**
-
-    - Add a new Python Function step after the AWS integration step
+    - Add a new Python Function step after the "simplify_input_data" step
     - Name it "send_to_bedrock"
     - Add the following code:
 
@@ -84,25 +71,15 @@ return prepare_data_for_llm(get_input_data.output)
 import boto3
 import json
 
-def send_to_bedrock(text_data, credentials_data):
+def send_to_bedrock(text_data):
     # Truncate data to stay within token limits
     text_data = text_data[:5000]
     
-    # Parse credentials from the AWS Secrets Manager response
-    if isinstance(credentials_data, str):
-        credentials = json.loads(credentials_data)
-    else:
-        credentials = credentials_data.get('SecretString', {})
-        if isinstance(credentials, str):
-            credentials = json.loads(credentials)
-
-    # Extract AWS credentials
-    access_key_id = credentials.get('AccessKeyId')
-    secret_access_key = credentials.get('SecretAccessKey')
+    # Access credentials directly from Superblocks organization secrets
+    # These are automatically available when you configure the secret store
+    access_key_id = "{{sb_secrets.bedrock_credentials.AccessKeyId}}"
+    secret_access_key = "{{sb_secrets.bedrock_credentials.SecretAccessKey}}"
     
-    if not access_key_id or not secret_access_key:
-        return {"error": "Could not extract AWS credentials from secret", "credentials_data": credentials_data}
-
     # Create Bedrock client using retrieved credentials
     try:
         client = boto3.client(
@@ -162,23 +139,25 @@ Format as JSON with this structure:
     except Exception as e:
         return {"error": f"Bedrock API call failed: {str(e)}"}
 
-# Call the function with the processed data and credentials
-return send_to_bedrock(simplify_input_data.output, get_bedrock_credentials.output)
+# Call the function with the processed data
+return send_to_bedrock(simplify_input_data.output)
 ```
 
 :::alert{header="Important" type="info"}
-This approach uses a two-step process:
-1. **AWS Integration Step**: Uses `{{sb_secrets.bedrock_credentials.MyUserAccessKey}}` to retrieve credentials from your configured AWS Secrets Manager
-2. **Python Function**: Receives the credentials as a parameter and uses them to create the Bedrock client
+This approach uses Superblocks Organization-level secrets:
+- **Credentials Access**: Uses `{{sb_secrets.bedrock_credentials.SECRET_NAME}}` to access credentials configured in Organization Settings
+- **Security**: Credentials are centrally managed and encrypted
+- **Simplicity**: No need for additional AWS API calls to retrieve secrets
 
 This follows Superblocks best practices for accessing secrets in backend APIs.
 :::
 
 :::alert{type="info"}
-This approach uses AWS Secrets Manager to securely retrieve your AWS credentials, following security best practices by:
-- Keeping credentials encrypted and centrally managed
+This approach uses Organization-level secrets to securely retrieve your AWS credentials, following security best practices by:
+- Keeping credentials encrypted and centrally managed in Superblocks
 - Avoiding hardcoded credentials in your application code
-- Enabling credential rotation without code changes
+- Enabling credential rotation through Organization Settings
+- Restricting secret access to Backend APIs only (not Frontend components)
 :::
 
 ### Step 4: Format the Results

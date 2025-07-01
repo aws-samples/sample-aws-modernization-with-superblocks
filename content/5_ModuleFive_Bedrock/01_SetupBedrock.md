@@ -84,7 +84,7 @@ Once access has been granted, let's verify that you can see the individual model
 
 ## Step 4: Configure Superblocks to Connect with Amazon Bedrock
 
-Now that you have enabled access to Amazon Bedrock models, you need to configure your Superblocks application to connect with Amazon Bedrock using AWS Secrets Manager for secure credential management.
+Now that you have enabled access to Amazon Bedrock models, you need to configure your Superblocks application to connect with Amazon Bedrock using Organization-level secrets for secure credential management.
 
 1. **Navigate to Organization Settings:**
 
@@ -103,32 +103,31 @@ Now that you have enabled access to Amazon Bedrock models, you need to configure
 
 4. **Enter Configuration Details:**
 
-    - **Secrets Name**: Enter the name below:
-    ```sh
-    bedrock_credentials
-    ```
-    - **Region**: Enter "us-east-1"
-    - **Auth Type**: Switch from the default to **Access Key**
+    - **Store Name**: `bedrock_credentials`
+    - **Region**: `us-east-1`
+    - **Auth Type**: **Access Key**
 
 5. **Get Your Bedrock Credentials:**
 
-    First, retrieve your Amazon Bedrock credentials from the terminal:
+    From your terminal or VSCode server, run:
 
     ```bash
     # Display your Amazon Bedrock credentials
-    env | grep -E "BEDROCK_"
+    ./get-bedrock-credentials.sh
     ```
 
     This will show output similar to:
     ```
-    BEDROCK_ACCESS_KEY_ID=AKIA...
-    BEDROCK_SECRET_ACCESS_KEY=abc123...
+    === Bedrock Credentials for Superblocks Integration ===
+    AWS Access Key ID: AKIA...
+    AWS Secret Access Key: abc123...
+    AWS Region: us-east-1
     ```
 
 6. **Enter Your Credentials:**
 
-    - **Access Key ID**: Enter the value from `BEDROCK_ACCESS_KEY_ID`
-    - **Secret Access Key**: Enter the value from `BEDROCK_SECRET_ACCESS_KEY`
+    - **Access Key ID**: Enter the value from `AWS Access Key ID`
+    - **Secret Access Key**: Enter the value from `AWS Secret Access Key`
 
 ![Superblocks AWS Secrets Manager Configuration](/images/superblocks-secrets-manager-config.png)
 
@@ -137,29 +136,21 @@ Now that you have enabled access to Amazon Bedrock models, you need to configure
     - Click **Test Connection** to verify the credentials work
     - Once the connection test is successful, click **Create**
 
-8. **Using the Secret in Your Application:**
-
-    Once configured, you can reference this secret in your Superblocks Python code to retrieve the Amazon Bedrock credentials:
-
-    ```python
-    # The secret name you created (e.g., "BedrockCredentials") can now be used
-    # to securely access your AWS credentials in your application code
-    ```
-
-9. **Verify Your Configuration:**
+8. **Verify Your Configuration:**
 
     After creating the AWS Secrets Manager configuration:
 
     - You should see your new secrets configuration listed in the Secrets Management section
-    - This will allow your Superblocks applications to securely access Amazon Bedrock credentials
-    - The secret "MyUserAccessKey" from your AWS account will be accessible through this configuration
+    - The secrets will be accessible in your APIs using `{{sb_secrets.bedrock_credentials.SECRET_NAME}}`
+    - This allows your Superblocks applications to securely access Amazon Bedrock credentials
 
 :::alert{header="Security Best Practice" type="info"}
-Using AWS Secrets Manager through Organization settings ensures that:
+Using Organization-level secrets in Superblocks ensures that:
 - Credentials are centrally managed and secure
 - Multiple applications can use the same credential configuration
 - Access is controlled at the organization level
 - Credentials can be rotated without updating individual applications
+- Secrets are only accessible in Backend APIs, not Frontend components
 :::
 
 
