@@ -75,21 +75,16 @@ def send_to_bedrock(text_data):
     # Truncate data to stay within token limits
     text_data = text_data[:5000]
     
-    # Access credentials directly from Superblocks organization secrets
-    # These are automatically available when you configure the secret store
-    access_key_id = "{{sb_secrets.bedrock_credentials.AccessKeyId}}"
-    secret_access_key = "{{sb_secrets.bedrock_credentials.SecretAccessKey}}"
+    # Access credentials from Superblocks organization secrets
+    creds = json.loads(sb_secrets.myuseraccesskey.MyUserAccessKey)
     
     # Create Bedrock client using retrieved credentials
-    try:
-        client = boto3.client(
-            service_name="bedrock-runtime",
-            region_name="us-east-1",
-            aws_access_key_id=access_key_id,
-            aws_secret_access_key=secret_access_key
-        )
-    except Exception as e:
-        return {"error": f"Failed to create Bedrock client: {str(e)}"}
+    client = boto3.client(
+        service_name="bedrock-runtime",
+        region_name="us-east-1",  # Use the region where you enabled Bedrock models
+        aws_access_key_id=creds["AccessKeyId"],
+        aws_secret_access_key=creds["SecretAccessKey"]
+    )
 
     # Create a focused prompt for inventory transfer recommendations
     prompt = f"""Based on this inventory data: {text_data}
@@ -143,13 +138,129 @@ Format as JSON with this structure:
 return send_to_bedrock(simplify_input_data.output)
 ```
 
+## 🔍 Code Breakdown: Understanding the Bedrock Integration
+
+Let's break down the key components of this integration to help you understand and customize it:
+
+### 🔐 **AWS Secrets Manager Integration**
+
+```python
+# Access credentials from Superblocks organization secrets
+creds = json.loads(sb_secrets.myuseraccesskey.MyUserAccessKey)
+```
+
+**How it works:**
+- **`sb_secrets`**: Superblocks' built-in object for accessing Organization-level secrets
+- **`myuseraccesskey`**: The name of your secret store configured in Organization Settings
+- **`MyUserAccessKey`**: The actual AWS secret name in your AWS Secrets Manager
+- **`json.loads()`**: Parses the JSON string returned from AWS Secrets Manager
+
+**The Flow:**
+1. Superblocks → Your AWS Account → AWS Secrets Manager → Retrieves JSON: `{"AccessKeyId": "AKIA...", "SecretAccessKey": "..."}`
+2. Parse JSON → Extract individual credentials → Use with boto3
+
+---
+
+### 🤖 **Amazon Bedrock Model Selection**
+
+```python
+modelId="us.amazon.nova-micro-v1:0"  # Using Amazon Nova Micro for cost efficiency
+```
+
+**Available Models** (you can replace the `modelId` with any of these):
+
+| **Model Family** | **Model ID** | **Best For** | **Cost** |
+|------------------|--------------|--------------|----------|
+| **Amazon Nova** | `us.amazon.nova-micro-v1:0` | Quick tasks, cost-effective | 💰 Lowest |
+| | `us.amazon.nova-lite-v1:0` | Balanced performance | 💰💰 Low |
+| | `us.amazon.nova-pro-v1:0` | Complex reasoning | 💰💰💰 Medium |
+| | `us.amazon.nova-premier-v1:0` | Most capable tasks | 💰💰💰💰 Higher |
+| **Anthropic Claude** | `anthropic.claude-3-5-sonnet-20241022-v2:0` | Advanced reasoning | 💰💰💰 Medium-High |
+| | `anthropic.claude-3-haiku-20240307-v1:0` | Fast responses | 💰💰 Low-Medium |
+
+**💡 Pro Tip:** You can find all available model IDs in the [Amazon Bedrock Console](https://console.aws.amazon.com/bedrock/home#/model-access) under "Model access"
+
+---
+
+### 🌍 **Region Configuration**
+
+```python
+region_name="us-east-1"  # Use the region where you enabled Bedrock models
+```
+
+**Important Notes:**
+- **Bedrock Models**: Available in specific regions (us-east-1, us-west-2, eu-west-1, etc.)
+- **Your AWS Secret**: Located in `us-west-2` (but accessed through Superblocks)
+- **Cross-Region Access**: Superblocks handles the cross-region secret access automatically
+
+---
+
+### 💬 **Prompt Engineering**
+
+```python
+prompt = f"""Based on this inventory data: {text_data}
+
+Provide 5 inventory transfer recommendations as bullet points...
+
+Format as JSON with this structure:
+[
+  {{
+    "product": "Product Name",
+    "quantity": 10,
+    "from_location": "Location A", 
+    "to_location": "Location B",
+    "reasoning": "Brief explanation"
+  }}
+]"""
+```
+
+**Customization Options:**
+- **Change the number**: Replace `5` with any number of recommendations
+- **Modify the format**: Request different output formats (CSV, XML, plain text)
+- **Add constraints**: Include budget limits, distance restrictions, etc.
+- **Change the task**: Modify for demand forecasting, stock optimization, etc.
+
+---
+
+### 🔧 **Easy Customizations**
+
+**1. Switch to a More Powerful Model:**
+```python
+modelId="us.amazon.nova-pro-v1:0"  # More capable reasoning
+```
+
+**2. Change the Analysis Type:**
+```python
+prompt = f"""Based on this inventory data: {text_data}
+
+Analyze demand patterns and provide 3 restocking recommendations...
+```
+
+**3. Modify Output Format:**
+```python
+prompt = f"""...Format as a simple bullet list with no JSON."""
+```
+
+**4. Add Business Context:**
+```python
+prompt = f"""You are a supply chain expert. Based on this inventory data: {text_data}
+Consider seasonal trends and provide recommendations...
+```
+
+:::alert{header="🎯 Model Selection Guide" type="info"}
+- **Development/Testing**: Use `nova-micro` for cost efficiency
+- **Production/Complex Analysis**: Use `nova-pro` or `claude-3-5-sonnet`
+- **Quick Responses**: Use `nova-lite` or `claude-haiku`
+- **Most Advanced Tasks**: Use `nova-premier` for maximum capability
+:::
+
 :::alert{header="Important" type="info"}
 This approach uses Superblocks Organization-level secrets:
-- **Credentials Access**: Uses `{{sb_secrets.bedrock_credentials.SECRET_NAME}}` to access credentials configured in Organization Settings
-- **Security**: Credentials are centrally managed and encrypted
-- **Simplicity**: No need for additional AWS API calls to retrieve secrets
+- **Direct Access**: Uses `sb_secrets.myuseraccesskey.MyUserAccessKey` to access the secret directly (no string interpolation needed in Python functions)
+- **JSON Parsing**: The secret is returned as a JSON string, so we parse it with `json.loads()`
+- **Credential Extraction**: Extract individual credentials using dictionary access: `creds["AccessKeyId"]`
 
-This follows Superblocks best practices for accessing secrets in backend APIs.
+This follows the correct Superblocks pattern for accessing AWS Secrets Manager in Python functions.
 :::
 
 :::alert{type="info"}

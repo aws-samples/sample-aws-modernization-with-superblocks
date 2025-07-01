@@ -104,7 +104,7 @@ Now that you have enabled access to Amazon Bedrock models, you need to configure
 4. **Enter Configuration Details:**
 
     - **Store Name**: `bedrock_credentials`
-    - **Region**: `us-east-1`
+    - **Region**: `us-west-2`
     - **Auth Type**: **Access Key**
 
 5. **Get Your Bedrock Credentials:**
@@ -121,7 +121,7 @@ Now that you have enabled access to Amazon Bedrock models, you need to configure
     === Bedrock Credentials for Superblocks Integration ===
     AWS Access Key ID: AKIA...
     AWS Secret Access Key: abc123...
-    AWS Region: us-east-1
+    AWS Region: us-west-2
     ```
 
 6. **Enter Your Credentials:**
