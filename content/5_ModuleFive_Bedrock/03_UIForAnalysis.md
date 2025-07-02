@@ -4,7 +4,7 @@ chapter: true
 weight: 3
 ---
 
-Let's create a UI component to display our Bedrock-powered inventory recommendations.
+Let's create UI components to generate and display our Bedrock-powered inventory recommendations.
 
 ## Step 1: Add the Analysis Button
 
@@ -12,28 +12,26 @@ Let's create a UI component to display our Bedrock-powered inventory recommendat
 2. Adjust the width to "Fit Content"
 3. Configure the button's onClick event:
 
-    - Select "Open/close modal"
-    - Next to Modal, select "New Modal"
+   - Select "Open/close modal"
+   - Next to Modal, select "New Modal"
 
 4. Add another onClick event:
 
-    - Select "Run API"
-    - Choose your "generate_insights" API
-
+   - Select "Run API"
+   - Choose your "generate_insights" API
 
 ## Step 2: Configure the Modal
 
 1. Click the "Generate Inventory Insights" button to open the modal
 2. Adjust the modal settings:
 
-    - Set width to "Large"
-    - Update heading to "Inventory Management Insights"
+   - Set width to "Large"
+   - Update heading to "Inventory Management Insights"
 
 3. Add a table component to display results:
 
-    - Remove placeholder data
-    - Add this binding: `{{generate_insights.response.recommendations}}`
-
+   - Remove placeholder data
+   - Add this binding: `{{generate_insights.response.recommendations}}`
 
 ## Step 3: Test the Feature
 

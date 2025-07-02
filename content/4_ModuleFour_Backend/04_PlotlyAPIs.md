@@ -10,15 +10,15 @@ Let's create two interactive Plotly charts: a location-based sales chart and a m
 
 1. Open API Builder:
 
-    - Press CMD/CTRL + U
+   - Press CMD/CTRL + U
 
 2. Create the API:
 
-    - Click "Add new API"
-    - Search for and select your database integration (aws-superblocks-rds)
-    - Click the pen icon next to 'API1' and rename it to "location_chart"
+   - Click "Add new API"
+   - Search for and select your database integration (aws-superblocks-rds)
+   - Click the pen icon next to 'API1' and rename it to "location_chart"
 
-3. Add your query:
+3. Add the below SQL query to the Postgres step:
 
    ```sql
    SELECT location_name, SUM(total_amount) as total_sales
@@ -27,7 +27,7 @@ Let's create two interactive Plotly charts: a location-based sales chart and a m
    ORDER BY total_sales DESC;
    ```
 
-Add a Python Function Step and add the below code:
+4. Click the plus sign below the Postgres step, add a Python Function Step, and add the below code:
 
    ```python
    import plotly.express as px
@@ -54,17 +54,17 @@ Add a Python Function Step and add the below code:
    )
 
    return fig.to_json()
-```
+   ```
 
 ## Step 2: Create Monthly Trends Chart
 
 1. Create the API:
 
-    - Click "Add new API"
-    - Search for and select your database integration (aws-superblocks-rds)
-    - Click the pen icon next to 'API1' and rename it to "monthly_trends"
+   - From the API builder, click "Add new API"
+   - Search for and select your database integration (aws-superblocks-rds)
+   - Click the pen icon next to 'API1' and rename it to "monthly_trends"
 
-2. Add your query:
+2. Add the below SQL query to the Postgres step:
 
    ```sql
    SELECT
@@ -77,7 +77,7 @@ Add a Python Function Step and add the below code:
    ORDER BY month;
    ```
 
-3. Add a Python Function Step and add the below code:
+3. Click the plus sign below the Postgres step, add a Python Function Step, and add the below code:
 
    ```python
    import plotly.graph_objects as go
@@ -141,17 +141,25 @@ Add a Python Function Step and add the below code:
 
 1. Set up location chart:
 
-    - Select first chart component
-    - Clear "Header"
-    - Set "Definition" to "Plotly"
-    - Set "Plotly chart JSON" to: {{location_chart.response}}
+   - Select the first chart component
+   - Clear the text in the "Header" property
+   - Set "Definition" to "Plotly"
+   - Set "Plotly chart JSON" to:
+
+   ```sh
+   {{location_chart.response}}
+   ```
 
 2. Set up trends chart:
 
-    - Select second chart component
-    - Clear "Header"
-    - Set "Definition" to "Plotly"
-    - Set "Plotly chart JSON" to: {{monthly_trends.response}}
+   - Select the second chart component
+   - Clear the text in the "Header" property
+   - Set "Definition" to "Plotly"
+   - Set "Plotly chart JSON" to:
+
+   ```sh
+   {{monthly_trends.response}}
+   ```
 
 {{% notice tip %}}
 Your charts are interactive! Users can hover over points, zoom, and pan. If charts don't appear, try clicking "Run API" in the API Builder Tool.
@@ -161,17 +169,16 @@ Your charts are interactive! Users can hover over points, zoom, and pan. If char
 
 1. Test rendering:
 
-    - Check both charts appear
-    - Verify data accuracy
-    - Test hover tooltips
+   - Check both charts appear
+   - Verify data accuracy
+   - Test hover tooltips
 
 2. Test interactions:
 
-    - Try zooming in/out
-    - Pan across the data
-    - Click legend items
-
+   - Try zooming in/out
+   - Pan across the data
+   - Click legend items
 
 ## Next Steps
 
-Now that your dashboard is working, let's integrate with Amazon Bedrock.
+Now that your dashboard is working, let's integrate with Amazon Bedrock!

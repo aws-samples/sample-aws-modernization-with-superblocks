@@ -6,10 +6,9 @@ weight: 1
 
 ## Step 1: Create an Application
 
-1. Click [Create](https://app.superblocks.com/home/create-application)
-2. Name your application
-
-Let's create a navigation header for your dashboard.
+1. From the Home page, click **[Create](https://app.superblocks.com/home/create-application)**
+2. Select Application
+3. Name your application and click **Create**
 
 ## Step 2: Add the Navigation Bar
 
@@ -21,20 +20,22 @@ Let's create a navigation header for your dashboard.
 
 1. Remove the default logo:
 
-    - Click the "Acme inc." icon
-    - Click delete
+   - Click the "Acme inc." icon
+   - Click delete
 
 2. Add your logo:
 
-    - Click "Add Component"
-    - Search for "Image"
-    - Select the image component
+   - Click "Add Component"
+
+<img src="/images/logo-replacement.png" width="700" height="350" />
+
+- Search for "Image"
+- Select the image component
 
 3. Configure the image:
 
-    - Set the image URL in the properties panel
-    - Adjust the size as needed
-
+   - Set the image URL in the properties panel to a custom image address
+   - Adjust the size of the image component as needed
 
 ## Example
 
