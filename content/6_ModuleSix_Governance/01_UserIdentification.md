@@ -10,16 +10,14 @@ Let's display user information in your dashboard to help users identify who's lo
 
 1. Find the user icon:
 
-    - Look in the top-right corner
-    - Click to select the icon component
+   - In the top-right corner of the application, click the icon component
 
 2. Add the user's name:
 
-    - Open the Properties panel
-    - Find the "Label" field
-    - Add this JavaScript:
+   - From the Properties panel, click the plus (+) sign next to the Label field
+   - Add the following javaScript:
 
-   ```javascript
+   ```sh
    {{Global.user.name}}
    ```
 
@@ -34,15 +32,12 @@ The `Global.user` object gives you access to:
 
 Example uses:
 
-```javascript
-// Display name
-{{Global.user.name}}
+```sh
+  // Show email
+  {{Global.user.email}}
 
-// Show email
-{{Global.user.email}}
-
-// Check admin access
-{{Global.user.groups.includes('admin')}}
+  // Check admin access
+  {{Global.user.groups.includes("admin")}}
 ```
 
 {{% notice tip %}}
