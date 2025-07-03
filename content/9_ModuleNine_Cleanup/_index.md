@@ -54,13 +54,7 @@ Make sure you understand what each command does before executing it. The command
 
 ## Superblocks Cleanup (Optional)
 
-If you don't plan to continue using Superblocks after this workshop, you can clean up your Superblocks workspace:
-
-1. Log in to your Superblocks account
-2. Navigate to your workshop project
-3. Go to "Settings" > "General"
-4. Scroll to the bottom and click "Delete Project"
-5. Type the project name to confirm deletion
+If you don't plan to continue using Superblocks after this workshop, you can reach out to Superblocks Support via email (help@superblocks.com) and request that your account be deleted.
 
 {{% notice note %}}
 If you're interested in continuing to use Superblocks, you can keep your workshop project as a reference or starting point for future development.

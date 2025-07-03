@@ -10,30 +10,32 @@ Let's add filters to help users interact with the dashboard data.
 
 1. Add a new section:
 
-    - Click '+ Add Section' below the navigation bar
-    - A new section with a column component will appear
+   - Click '+ Add Section' below the navigation bar
+   - A new section with a column component will appear
 
 2. Configure the layout:
 
-    - Set layout to "Horizontal"
-    - Set "Vertical align" to "Bottom"
-
+   - Click the newly generated section so it's in context
+   - Within the properties panel, set the Layout property to "Horizontal"
+   - Set "Vertical align" property to "Bottom"
 
 ## Step 2: Add Filter Components
 
 1. Add dropdowns:
 
-    - Click "Add Component" in the column
-    - Add two dropdown components:
-     - First dropdown: Label = "Paper Categories"
-     - Second dropdown: Label = "Location"
-     - Set both widths to "Fill Parent"
+   - In the new section, click "Add Component"
+   - Add two dropdown components:
+   - Select the first dropdown component and update the Label value in the properties panel to "Paper Categories"
+   - Select the second dropdown component and update the Label value in the properties panel to "Location"
+   - Set the width property for both dropdowns to "Fill Parent"
 
 2. Add buttons:
 
-    - Add two button components:
-     - First button: Label = "Submit"
-     - Second button: Label = "Reset Filters"
+   - Click the section with the two dropdowns so it's in context
+   - Right click in the section, select 'Add component' and add two button components
+   - Select the second button component and update the Label value in the properities panel to "Reset Filters"
+
+<img src="/images/clean-filter-bar.png" width="1200" height="900" />
 
 {{% notice tip %}}
 The horizontal layout ensures all filter components are aligned properly in a single row and removes the need to use CSS or Flexbox to align components.

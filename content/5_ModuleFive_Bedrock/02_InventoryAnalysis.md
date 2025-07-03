@@ -11,19 +11,20 @@ Now that we have our Bedrock connection set up, let's create a powerful inventor
 
 1. Create a new API:
 
-    - Open the API Builder Tool (CMD/CTRL + U)
-    - Click the pencil icon next to API1 and rename it to "generate_insights"
+   - Open the API Builder Tool (CMD/CTRL + U)
+   - Click "Add new API"
+   - Select your database integration (aws-superblocks-rds)
+   - Click the pencil icon next to API1 and rename it to "generate_insights"
 
 2. Configure the data source:
 
-    - Search for your database integration
-    - Add a new SQL step and rename it to "get_input_data"
-    - Add the query below:
+   - Rename the postgres step to "get_input_data"
+   - Add the below SQL query to the Postgres step:
 
 ```sql
-SELECT 
+SELECT
 ils.inventory_id, ils.sku, ils.product_name, ils.category_name,
-ils.location_name, ils.current_stock, ils.reorder_point, 
+ils.location_name, ils.current_stock, ils.reorder_point,
 ils.stock_margin, ils.stock_status,
 sv.daily_velocity, po.total_quantity_ordered
 FROM dm_operations.inventory_location_status ils
@@ -31,13 +32,16 @@ LEFT JOIN dm_operations.sales_velocity sv ON ils.inventory_id = sv.inventory_id 
 LEFT JOIN dm_operations.pending_orders po ON ils.inventory_id = po.inventory_id AND ils.location_name = po.location_name;
 ```
 
+Postgres SQL Step:
+<img src="/images/generate-insights.png" width="700" height="350" />
+
 ### Step 2: Process the Data
 
 1. Add data preprocessing:
 
-    - Add a new Python Function step after the SQL query by clicking the "+" under the get_input_data block
-    - Name the step "simplify_input_data"
-    - Add the code below to prepare data for the AI model:
+   - Add a new Python Function step after the SQL query by clicking the "+" under the get_input_data block
+   - Name the step "simplify_input_data"
+   - Add the below Python code to prepare data for the AI model:
 
 ```python
 def prepare_data_for_llm(input_data):
@@ -63,9 +67,9 @@ return prepare_data_for_llm(get_input_data.output)
 
 1. **Create the Bedrock Python Function:**
 
-    - Add a new Python Function step after the "simplify_input_data" step
-    - Name it "send_to_bedrock"
-    - Add the following code:
+   - Add a new Python Function step after the "simplify_input_data" step
+   - Name the step "send_to_bedrock"
+   - Add the below Python code to send data to the AI model:
 
 ```python
 import boto3
@@ -74,10 +78,10 @@ import json
 def send_to_bedrock(text_data):
     # Truncate data to stay within token limits
     text_data = text_data[:5000]
-    
+
     # Access credentials from Superblocks organization secrets
     creds = json.loads(sb_secrets.myuseraccesskey.MyUserAccessKey)
-    
+
     # Create Bedrock client using retrieved credentials
     client = boto3.client(
         service_name="bedrock-runtime",
@@ -91,7 +95,7 @@ def send_to_bedrock(text_data):
 
 Provide 5 inventory transfer recommendations as bullet points. For each recommendation, include:
 • Product name and quantity to transfer
-• From location → To location  
+• From location → To location
 • Brief reasoning
 
 Format as JSON with this structure:
@@ -112,7 +116,7 @@ Format as JSON with this structure:
             body=json.dumps({
                 "messages": [
                     {
-                        "role": "user", 
+                        "role": "user",
                         "content": [{"text": prompt}]
                     }
                 ]
@@ -130,7 +134,7 @@ Format as JSON with this structure:
             output = str(response_body)
 
         return {"raw_output": output}
-        
+
     except Exception as e:
         return {"error": f"Bedrock API call failed: {str(e)}"}
 
@@ -150,12 +154,14 @@ creds = json.loads(sb_secrets.myuseraccesskey.MyUserAccessKey)
 ```
 
 **How it works:**
+
 - **`sb_secrets`**: Superblocks' built-in object for accessing Organization-level secrets
 - **`myuseraccesskey`**: The name of your secret store configured in Organization Settings
 - **`MyUserAccessKey`**: The actual AWS secret name in your AWS Secrets Manager
 - **`json.loads()`**: Parses the JSON string returned from AWS Secrets Manager
 
 **The Flow:**
+
 1. Superblocks → Your AWS Account → AWS Secrets Manager → Retrieves JSON: `{"AccessKeyId": "AKIA...", "SecretAccessKey": "..."}`
 2. Parse JSON → Extract individual credentials → Use with boto3
 
@@ -169,14 +175,14 @@ modelId="us.amazon.nova-micro-v1:0"  # Using Amazon Nova Micro for cost efficien
 
 **Available Models** (you can replace the `modelId` with any of these):
 
-| **Model Family** | **Model ID** | **Best For** | **Cost** |
-|------------------|--------------|--------------|----------|
-| **Amazon Nova** | `us.amazon.nova-micro-v1:0` | Quick tasks, cost-effective | 💰 Lowest |
-| | `us.amazon.nova-lite-v1:0` | Balanced performance | 💰💰 Low |
-| | `us.amazon.nova-pro-v1:0` | Complex reasoning | 💰💰💰 Medium |
-| | `us.amazon.nova-premier-v1:0` | Most capable tasks | 💰💰💰💰 Higher |
-| **Anthropic Claude** | `anthropic.claude-3-5-sonnet-20241022-v2:0` | Advanced reasoning | 💰💰💰 Medium-High |
-| | `anthropic.claude-3-haiku-20240307-v1:0` | Fast responses | 💰💰 Low-Medium |
+| **Model Family**     | **Model ID**                                | **Best For**                | **Cost**           |
+| -------------------- | ------------------------------------------- | --------------------------- | ------------------ |
+| **Amazon Nova**      | `us.amazon.nova-micro-v1:0`                 | Quick tasks, cost-effective | 💰 Lowest          |
+|                      | `us.amazon.nova-lite-v1:0`                  | Balanced performance        | 💰💰 Low           |
+|                      | `us.amazon.nova-pro-v1:0`                   | Complex reasoning           | 💰💰💰 Medium      |
+|                      | `us.amazon.nova-premier-v1:0`               | Most capable tasks          | 💰💰💰💰 Higher    |
+| **Anthropic Claude** | `anthropic.claude-3-5-sonnet-20241022-v2:0` | Advanced reasoning          | 💰💰💰 Medium-High |
+|                      | `anthropic.claude-3-haiku-20240307-v1:0`    | Fast responses              | 💰💰 Low-Medium    |
 
 **💡 Pro Tip:** You can find all available model IDs in the [Amazon Bedrock Console](https://console.aws.amazon.com/bedrock/home#/model-access) under "Model access"
 
@@ -189,6 +195,7 @@ region_name="us-east-1"  # Use the region where you enabled Bedrock models
 ```
 
 **Important Notes:**
+
 - **Bedrock Models**: Available in specific regions (us-east-1, us-west-2, eu-west-1, etc.)
 - **Your AWS Secret**: Located in `us-west-2` (but accessed through Superblocks)
 - **Cross-Region Access**: Superblocks handles the cross-region secret access automatically
@@ -207,7 +214,7 @@ Format as JSON with this structure:
   {{
     "product": "Product Name",
     "quantity": 10,
-    "from_location": "Location A", 
+    "from_location": "Location A",
     "to_location": "Location B",
     "reasoning": "Brief explanation"
   }}
@@ -215,6 +222,7 @@ Format as JSON with this structure:
 ```
 
 **Customization Options:**
+
 - **Change the number**: Replace `5` with any number of recommendations
 - **Modify the format**: Request different output formats (CSV, XML, plain text)
 - **Add constraints**: Include budget limits, distance restrictions, etc.
@@ -225,11 +233,13 @@ Format as JSON with this structure:
 ### 🔧 **Easy Customizations**
 
 **1. Switch to a More Powerful Model:**
+
 ```python
 modelId="us.amazon.nova-pro-v1:0"  # More capable reasoning
 ```
 
 **2. Change the Analysis Type:**
+
 ```python
 prompt = f"""Based on this inventory data: {text_data}
 
@@ -237,25 +247,29 @@ Analyze demand patterns and provide 3 restocking recommendations...
 ```
 
 **3. Modify Output Format:**
+
 ```python
 prompt = f"""...Format as a simple bullet list with no JSON."""
 ```
 
 **4. Add Business Context:**
+
 ```python
 prompt = f"""You are a supply chain expert. Based on this inventory data: {text_data}
 Consider seasonal trends and provide recommendations...
 ```
 
 :::alert{header="🎯 Model Selection Guide" type="info"}
+
 - **Development/Testing**: Use `nova-micro` for cost efficiency
 - **Production/Complex Analysis**: Use `nova-pro` or `claude-3-5-sonnet`
 - **Quick Responses**: Use `nova-lite` or `claude-haiku`
 - **Most Advanced Tasks**: Use `nova-premier` for maximum capability
-:::
+  :::
 
 :::alert{header="Important" type="info"}
 This approach uses Superblocks Organization-level secrets:
+
 - **Direct Access**: Uses `sb_secrets.myuseraccesskey.MyUserAccessKey` to access the secret directly (no string interpolation needed in Python functions)
 - **JSON Parsing**: The secret is returned as a JSON string, so we parse it with `json.loads()`
 - **Credential Extraction**: Extract individual credentials using dictionary access: `creds["AccessKeyId"]`
@@ -265,19 +279,20 @@ This follows the correct Superblocks pattern for accessing AWS Secrets Manager i
 
 :::alert{type="info"}
 This approach uses Organization-level secrets to securely retrieve your AWS credentials, following security best practices by:
+
 - Keeping credentials encrypted and centrally managed in Superblocks
 - Avoiding hardcoded credentials in your application code
 - Enabling credential rotation through Organization Settings
 - Restricting secret access to Backend APIs only (not Frontend components)
-:::
+  :::
 
 ### Step 4: Format the Results
 
 1. Process the AI response:
 
-    - Add a final Python step
-    - Name it "format_output"
-    - Add the code below to parse and structure the recommendations as JSON:
+   - Add a final Python step
+   - Name it "format_output"
+   - Add the code below to parse and structure the recommendations as JSON:
 
 ````python
 import json
@@ -335,13 +350,13 @@ return parse_bullet_recommendations(raw_output)
 
 1. Test your new API:
 
-    - Click **Run API** to execute the workflow
-    - Review the recommendations in the response
-    - Verify the data formatting and structure
+   - Click **Run API** to execute the workflow
+   - Review the recommendations in the response
+   - Verify the data formatting and structure
 
 2. Click the "Runs on" button (underneath the API name) and update the "Run on page load" value to "Never"
 
-    - This will prevent the API from running automatically when the page loads as we will be running it whenever a user clicks a button component
+   - This will prevent the API from running automatically when the page loads as we will be running it whenever a user clicks a button component
 
 :::alert{type="info"}
 When crafting prompts for foundation models:
@@ -350,7 +365,7 @@ When crafting prompts for foundation models:
 - Include examples when possible
 - Define clear constraints
 - Test and refine your prompts
-:::
+  :::
 
 :::alert{type="success"}
 Congratulations! You've created a powerful inventory analysis feature that:
@@ -358,7 +373,7 @@ Congratulations! You've created a powerful inventory analysis feature that:
 - Analyzes inventory data in real-time
 - Provides actionable transfer recommendations
 - Helps optimize stock levels across locations
-:::
+  :::
 
 ## Working with AWS Services using boto3
 

@@ -10,35 +10,40 @@ Let's add key metrics to your dashboard using hero stats.
 
 1. Create a new section:
 
-    - Click "+ Add Section" below the filters
-    - A column component will be added automatically
+   - Click "+ Add Section" below the filters
+   - A column component will be added automatically
 
 2. Add the template:
 
-    - Click the template icon next to "Add Component"
-    - Search for "Hero stats with label below, percentage change beside"
-    - Click "Insert"
-
+   - In the newly created section, click the template icon next to "Add Component"
+   - Search for "Hero stats with label below, percentage change beside"
+   - Click "Insert"
 
 ## Step 2: Configure Your Stats
 
 1. Add a fourth stat:
 
-    - Select the third stat tile and copy it (CMD/CTRL + C)
-    - Paste to create a new tile (CMD/CTRL + V)
+   - Select the third stat tile and copy it (CMD/CTRL + C)
+   - Paste to create a new tile (CMD/CTRL + V)
 
-2. Update the stats:
+2. Update the stats
 
-    - "Total subscribers" to "Total Inventory" & click on the KPI, select "Currency"
-    - "Average open rate" to "Low Stock Items" & click on the KPI, select "Number"
-    - "Average click rate" to "Pending Orders" & click on the KPI, select "Number"
-    - "Average click rate" to "YTD Sales" & click on the KPI, select "Currency"
+   - Rename each hero stat tile and set its data type in the properties panel:
 
-![Hero Stats](/images/hero-stats.png)
+     1. Change "Total subscribers" to "Total Inventory"
+        - Set data type to Currency
+     2. Change "Average open rate" to "Low Stock Items"
+        - Set data type to Number
+     3. Change "Average click rate" to "Pending Orders"
+        - Set data type to Number
+     4. Change "Average click rate" to "YTD Sales"
+        - Set data type to Currency
 
 3. Simplify the display:
 
-    - Remove the parent container and the percentage components
+   - Remove the plus/minus components, percentage components, and parent containers
+
+![Hero Stats](/images/hero-stats.png)
 
 ## Example
 

@@ -10,7 +10,7 @@ Let's deploy your dashboard to production using Superblocks' simple deployment p
 
 When you deploy with Superblocks:
 
-- Your application runs on our Global Edge Network
+- Your application runs on the Superblocks Global Edge Network
 - Changes apply instantly worldwide
 - Users get fast access from anywhere
 
@@ -27,20 +27,20 @@ While UI deployment is recommended for this workshop, Superblocks also supports 
 
 ### GitHub Actions Integration
 
-For production environments, you can automate deployment using actions:
+For production environments, you can automate deployment using actions. More information about this deployment model can be found at the following [webpage.](https://docs.superblocks.com/development-lifecycle/source-control/deploy)
 
 ```yaml
 name: Deploy
 
 on:
-  workflow_run:  
-    workflows: ["Sync changes to Superblocks"] 
-    types:  
+  workflow_run:
+    workflows: ["Sync changes to Superblocks"]
+    types:
       - completed
 
 jobs:
   deploy:
-    if: ${{ github.event.workflow_run.head_branch == 'main' && github.event.workflow_run.conclusion == 'success' }} 
+    if: ${{ github.event.workflow_run.head_branch == 'main' && github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     name: Deploy
     steps:

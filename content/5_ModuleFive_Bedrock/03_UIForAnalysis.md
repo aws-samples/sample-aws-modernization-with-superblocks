@@ -4,36 +4,44 @@ chapter: true
 weight: 3
 ---
 
-Let's create a UI component to display our Bedrock-powered inventory recommendations.
+Let's create UI components to generate and display our Bedrock-powered inventory recommendations.
 
 ## Step 1: Add the Analysis Button
 
-1. Add a button component next to the "Reset Filters" button and label it "Generate Inventory Insights"
-2. Adjust the width to "Fit Content"
-3. Configure the button's onClick event:
+1. Right click next to the 'Reset Filters' button and add a button component
+2. Update the Label property in the properties panel to "Generate Inventory Insights"
+3. In the Properties panel under the Event handlers section:
 
-    - Select "Open/close modal"
-    - Next to Modal, select "New Modal"
+   - Click + next to "onClick"
+   - Select "Open/close modal"
+   - Next to Modal, select "New Modal"
 
 4. Add another onClick event:
 
-    - Select "Run API"
-    - Choose your "generate_insights" API
-
+   - Click + next to "onClick"
+   - Select "Run API"
+   - Select the "generate_insights" API
 
 ## Step 2: Configure the Modal
 
 1. Click the "Generate Inventory Insights" button to open the modal
-2. Adjust the modal settings:
+2. In the properties panel, adjust the modal settings:
 
-    - Set width to "Large"
-    - Update heading to "Inventory Management Insights"
+   - Set width to "Large"
+   - Update heading to "Inventory Management Insights"
 
 3. Add a table component to display results:
 
-    - Remove placeholder data
-    - Add this binding: `{{generate_insights.response.recommendations}}`
+   - Select the middle section of the modal, and set the Layout property to "Vertical"
+   - Click 'Add component' and add a table component
+   - Select the table component and remove the default header by going to "content" and delete "Users"
+   - Remove the search bar by going to "Interaction" and toggling off the search switch
+   - Clear the placeholder data in the "Data" field
+   - Add:
 
+   ```sh
+    {{generate_insights.response.recommendations}}
+   ```
 
 ## Step 3: Test the Feature
 
