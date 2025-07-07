@@ -8,39 +8,35 @@ Let's secure your dashboard by controlling who can access sensitive features.
 
 ## Step 1: Add Access Rules
 
-1. Find the Invoices tab:
+1. Find the Invoices tab and create a visibility rule:
 
-    - Locate "Invoices" in the navigation
-    - Select to view its properties
+   - Select "Invoices" in the navigation header to view its properties
+   - In the Layout section, find the "Visibility" property
+   - Select the <> icon next to "Visibility"
+   - Add the below access check:
 
-2. Create visibility rule:
-
-    - Find "Visibility" under Layout
-    - Add this access check:
-
-   ```javascript
-   {{['John Smith', 'Sarah Johnson', 'Michael Lee'].includes(Global.user.name)}}
+   ```sh
+   {{["John Smith", "Sarah Johnson", "Michael Lee"].includes(Global.user.name)}}
    ```
 
 ## How Access Control Works
 
 This rule:
 
-- Only shows Invoices to users in the finance group
+- Only shows Invoices to users whose name matches the provided values
 - Hides it from everyone else
 - Keeps the UI clean and secure
-- Follows security best practices by using group-based access
 
 ## More Access Examples
 
 Control access by group membership:
 
-```javascript
+```sh
 // Manager-only features
-{{Global.user.groups.includes('manager')}}
+{{Global.user.groups.includes("manager")}}
 
 // Admin dashboard access
-{{Global.user.groups.includes('admin')}}
+{{Global.user.groups.includes("admin")}}
 ```
 
 ## Security Best Practices
@@ -49,10 +45,9 @@ Control access by group membership:
 2. Use consistent rules
 3. Keep rules simple
 4. Document permissions
-5. Use groups instead of individual names
 
 {{% notice tip %}}
-It is always recommended to secure your APIs in addition to implementing UI controls. Groups are also easier to maintain, more scalable, and follow security best practices instead of individual names.
+It is always recommended to secure your APIs in addition to implementing UI controls. Groups are also easier to maintain and more scalable.
 {{% /notice %}}
 
 ## Next Steps

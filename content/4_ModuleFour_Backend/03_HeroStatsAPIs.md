@@ -24,14 +24,16 @@ Let's create APIs for your hero stats using parallel execution to fetch multiple
 1. Add paths:
 
    - Click the Parallel block
-   - Click + to add two new paths
+   - Click "+ Add path" twice to add two new paths
 
-2. Name your paths:
+2. Rename your paths to the following:
 
    - Path1: "get_inventory"
    - Path2: "get_lowstock"
    - Path3: "get_pendingorders"
    - Path4: "get_ytdsales"
+
+   <img src="/images/parallel-loading-block.png" width="900" height="600" />
 
 ## Step 3: Add Your Queries
 
@@ -65,13 +67,13 @@ Click “+ Add Block” for each path, search for and select your database integ
    ```sql
    SELECT SUM(total_amount)
    FROM dm_operations.sales
-   WHERE EXTRACT(YEAR FROM sale_date) = 
+   WHERE EXTRACT(YEAR FROM sale_date) =
          EXTRACT(YEAR FROM CURRENT_DATE);
    ```
 
 ## Step 4: Connect Your Stats
 
-Select the text box component that displays each hero stat, and replace the placeholder text property with its API response.
+Press CMD/CTRL + U to hide then API builder, then select the text box component that displays each hero stat. Replace the placeholder text property with its API response.
 
 1. Total Inventory:
 
@@ -96,6 +98,9 @@ Select the text box component that displays each hero stat, and replace the plac
    ```sh
    {{get_herostats.response.get_ytdsales}}
    ```
+
+Here's how you connect your the hero stats to the APIs:
+![Dropdown Components Example](/images/gifs/parallel-apis.gif)
 
 ## Testing
 

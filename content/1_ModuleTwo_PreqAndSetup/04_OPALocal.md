@@ -38,11 +38,11 @@ First, create a secure token for your local agent:
 2. Click **Create token**
 3. Configure the token:
 
-    - Name: "Local Development Agent"
-    - Type: **Agent key**
-    - Expiration: 90 days (default)
+   - Name: "Local Development Agent"
+   - Type: **Agent key**
+   - Expiration: 90 days (default)
 
-4. **Important**: Save the generated token securely - it cannot be viewed again
+4. **Important**: Copy and save the generated token securely - it cannot be viewed again
 
 ### Step 2: Launch the Agent
 
@@ -63,15 +63,13 @@ docker compose -p superblocks -f - up
 
 To connect your local databases or services:
 
-1. Open the **Integrations** page in Superblocks
+1. Open the **Integrations** page in Superblocks and click **Add integration**
 2. Select your integration type
-3. Click **Manage** (⋮ menu)
-4. Configure the connection:
+3. Configure the connection:
 
-    - Host: Use `host.docker.internal` instead of `localhost`
-    - Port: Use the service's exposed port
-    - Credentials: Enter your local service credentials
-
+   - Host: Use `host.docker.internal` instead of `localhost` when setting the host address
+   - Port: Use the service's exposed port
+   - Credentials: Enter your local service credentials
 
 ## Verification
 
@@ -83,9 +81,9 @@ To connect your local databases or services:
 
 ### Step 5: Test the Connection
 
-1. Create a new API in Superblocks
-2. Select your local integration
-3. Run a test query
+1. Create a new Superblocks application and click **"Add new API"** in the API builder
+2. Search for and select your database integration
+3. Write a test query and click **"Run API"**
 4. Verify the results in the response panel
 
 ## Troubleshooting
@@ -94,7 +92,7 @@ If you encounter issues:
 
 1. Check the [Superblocks documentation](https://docs.superblocks.com)
 2. Review agent logs for specific errors
-3. Check out the [Troubleshooting OPA](https://docs.superblocks.com/superblocks/on-premise-agent/troubleshooting) guide for common issues and solutions.
+3. Check out the [Troubleshooting OPA](https://docs.superblocks.com/on-premise-agent/manage/troubleshooting) guide for common issues and solutions.
 
 {{% notice warning %}}
 The On-Premise Agent is optional for this workshop. If you're using the cloud offering with a cloud database, you can skip this section.
