@@ -16,7 +16,7 @@ In this hands-on workshop, you'll build a complete inventory and sales managemen
 - **Simplified AI Integration** 🤖: Easily incorporate Amazon Bedrock's generative AI capabilities
 - **Enterprise-Ready** 🔒: Implement proper governance and security from day one
 - **Full-Stack Solution** 🏗️: Create complete applications with frontend, backend, and AI components
-- **No ML Expertise Required** 🧠: Leverage advanced AI capabilities without specialized knowledge
+- **No ML Expertise Required** 🧠: Leverage advanced AI capabilities without specialized knowledge 
 
 This workshop is ideal for developers, technical leaders, and solution architects looking to accelerate application development while incorporating powerful AI capabilities.
 
